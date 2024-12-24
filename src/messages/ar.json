@@ -1,0 +1,488 @@
+{
+  "auth": {
+    "login": "دخول",
+    "signUp": "تسجيل",
+    "email": "الحساب",
+    "password": "كلمة المرور",
+    "password_confirm": "تأكيد كلمة المرور"
+  },
+  "InfoBar": {
+    "phone": {
+      "title": "اتصل بنا",
+      "subtitle": "٢٣٤) ٨٧٦٥ ٥٥٥ ١+"
+    },
+    "clock": {
+      "title": "ساعات العمل",
+      "subtitle": "الإثنين، الجمعة،  ٨ صباحًا - ٦ مساءً"
+    }
+  },
+  "NavBar": {
+    "searchForProducts": "ابحث عن ما يقارب ٢٠٬٠٠٠ منتج",
+    "buttons": {
+      "login": "تسجيل دخول",
+      "signUp": "تسجيل",
+      "trackOrders": "تتبع الطلبات",
+      "profile": "الملف الشخصي",
+      "logout": "تسجيل خروج"
+    },
+    "navigation": {
+      "allCategories": {
+        "name": "الجميع"
+      },
+      "steel": {
+        "name": "فولاذ"
+      },
+      "topItems": {
+        "name": "أعلى العناصر"
+      },
+      "aluminium": {
+        "name": "الألومنيوم"
+      }
+    },
+    "Tooltips": {
+      "cart": "قائمة الطلبات",
+      "search": "ابحث"
+    }
+  },
+  "Footer": {
+    "copyright": "حقوق النشر © 2024 موارد. كل الحقوق محفوظة.",
+    "policy": "السياسات والشروط",
+    "comingSoon": "سيتم إطلاقه قريباً",
+    "contact": {
+      "title": "اتصل بنا",
+      "services": "الخدمات",
+      "placeHolder": "ادخل البريد الألكتروني",
+      "button": "ارسال"
+    },
+    "policies": {
+      "privacy": "سياسة الخصوصية",
+      "terms": "الشروط والأحكام",
+      "refund": "سياسة الاسترجاع"
+    },
+    "paragraph": "بيع المنتجات الأصلية المعتمدة، ضمان أقل الأسعار / باب المخزون السابق التسليم لعملائنا."
+  },
+  "Tiltle": {
+    "home_page": "الصفحة الرئيسية",
+    "users": "المستخدمين",
+    "schemas": "الوثائق",
+    "best_sellers": "المنتجات",
+    "top_products": "المنتجات",
+    "mostPurchased": "الأعلي مبيعاً",
+    "properties": "الخصائص",
+    "categories": "الفئات",
+    "subCategory": "الفئات الفرعية",
+    "seller": "البائع",
+    "availability": "التوفر",
+    "newArrivals": "الجديد",
+    "brands": "الماركات",
+    "price": "السعر",
+    "tags": "العلامات",
+    "currencies": "العملات",
+    "store_view": "واجهة المتجر",
+    "not__found": "لم يتم العثور على البيانات",
+    "More": "المزيد",
+    "shopping_cart": "قائمة الطلبات",
+    "remove": "حزف",
+    "total": "المجموع ",
+    "checkout": " الدفع",
+    "continue_shopping": "مواصلة التسوق",
+    "description": "الوصف",
+    "currency": "ر.س"
+  },
+  "sidebar_sections": {
+    "management": "الادارة",
+    "supply_chain": "سلاسل الأمداد",
+    "e_store": "المتجر الالكتروني"
+  },
+  "Tooltips": {
+    "add_to_favorites": "أضف الي المفضلة",
+    "remvoe_from_favorites": "حذف من المفضلة"
+  },
+  "HomePage": {
+    "adsViews": {
+      "newArrivals": "وصل حديثا",
+      "topItems": "أهم المنتجات",
+      "viewMore": "عرض المزيد"
+    },
+    "features": {
+      "QA": "ضمان الجودة",
+      "client": "محفظة العملاء",
+      "delivery": "تسليم سريع",
+      "service": "خدمة سريعة"
+    }
+  },
+  "ProductPage": {
+    "card": {
+      "available": "متاح",
+      "notAvailable": "غير متاح",
+      "priceWithDiscount": "السعر بعد الخصم:",
+      "discountPercentage": "نسبة الخصم:",
+      "qty": "الكمية:",
+      "currency": "ر.س",
+      "from": "من: ",
+      "to": "الي: ",
+      "highestPrice": "اطلب عرض سعر",
+      "buttons": {
+        "order": "أضف للطلب",
+        "seeSimilarItems": "عرض منتجات مشابهة",
+        "addToWishlist": "إضافة إلى قائمة الأمنيات",
+        "removeFromWishlist": "حذف من قائمة الأمنيات"
+      }
+    },
+    "sections": {
+      "titles": {
+        "productDescription": "وصف المنتج",
+        "additionalInfo": {
+          "title": "معلومات اضافية"
+        },
+        "tags": {
+          "title": "علامات المنتج",
+          "show": "إظهار",
+          "hide": "اخفاء"
+        },
+        "sameProductWithDefProp": {
+          "title": "ضع في اعتبارك سلعة مماثلة"
+        },
+        "similarProductsDefProp": {
+          "title": "المنتجات الموصى بها"
+        },
+        "reviews": {
+          "header": "مراجعات المنتج",
+          "subHeader": "استبيان رأي حول منتج",
+          "title": "اكتب تقييمك الخاص",
+          "subtitle": "كيف تقيم هذا المنتج؟",
+          "rating": {
+            "Price": "السعر",
+            "Value": "القيمة",
+            "Quality": "الجودة"
+          },
+          "form": {
+            "firstName": "الاسم الأول",
+            "lastName": "الاسم الأخير",
+            "review": "المراجعه",
+            "button": "تسجيل المراجعه",
+            "ValidationError": {
+              "firstName": "من فضلك ادخل الاسم الأول",
+              "lastName": "من فضلك ادخل الاسم الأخير",
+              "review": "من فضلك ادخل المراجعه",
+              "ratings": "من فضلك قم بتقييم المنتج"
+            }
+          }
+        },
+        "customerReviews": "مراجعة الزبائن"
+      }
+    }
+  },
+  "ShopPage": {
+    "search_page": "صفحة البحث",
+    "filters": {
+      "currencies": " العملات",
+      "categories": "الفئات",
+      "subCategory": "الفئة الفرعية",
+      "vendors": "البائعون",
+      "price": "السعر",
+      "brands": "العلامات التجارية",
+      "tags": "العلامات"
+    },
+    "filter": "تصفية",
+    "clear": "مسح",
+    "grid": "شبكة",
+    "item": " عنصر ",
+    "items": " عناصر ",
+    "from": " من أصل ",
+    "availableProducts": " المنتجات المتوفرة: ",
+    "list": "قائمة",
+    "show": "عرض: ",
+    "previous": "السابق",
+    "next": "التالي"
+  },
+  "Profile": {
+    "account": {
+      "title": "اعدادات الحساب",
+      "form": {
+        "title": "البيانات الشخصية",
+        "firstName": "الاسم الأول",
+        "lastName": "الاسم الأخير",
+        "phone": "رقم الهاتف"
+      },
+      "privacy": ""
+    },
+    "favourites": {
+      "title": "المفضلات",
+      "subTitle": "قائمة المفضلات",
+      "box": {
+        "name": "الاسم",
+        "brand": "العلامة التجارية",
+        "category": "التصنيف",
+        "price": "السعر",
+        "operations": {
+          "title": "العمليات",
+          "tooltips": {
+            "remove": "حذف",
+            "preview": "عرض"
+          }
+        }
+      },
+      "empty": "لا توجد منتجات مفضلة"
+    },
+    "trackingOrders": {
+      "title": "تتبع الطلبات",
+
+      "table": {
+        "titles": {
+          "productName": "اسم المنتج",
+          "qty": "الكمية",
+          "vendor": "البائع",
+          "price": "السعر",
+          "notes": "ملاحظات",
+          "status": "الحالة",
+          "action": "الإجراء"
+        },
+        "constants": {
+          "highest": "اطلب عرض سعر",
+          "orderNum": "رقم الطلب",
+          "currency": "ر.س"
+        },
+        "actions": {
+          "edit": "تعديل",
+          "cancel": "إلغاء",
+          "preview": "عرض",
+          "canceled": "الطلب ملغي",
+          "cantEdit": "لا يمكن تعديل الطلب"
+        },
+        "edit": {
+          "title": "تعديل الطلب",
+          "btn": "تعديل الباينات",
+          "quantity": "الكمية"
+        }
+      }
+    },
+    "searchOrders": "ابحث عن طلبات",
+    "pickDate": "تحديد التاريخ"
+  },
+  "Services": {
+    "toolTips": {
+      "backAnchor": "رجوع"
+    },
+    "mail": "الميل",
+    "emailPlaceholder": "john@example.com",
+    "descriptionPlaceholder": "ملخص طلبك هنا",
+
+    "title": "طلب خدمة",
+    "IS": "خدمة استفسار",
+    "CS": "خدمة  الشكاوي",
+    "Other": "اخرى",
+    "button": "إرسال",
+    "phone": "الهاتف",
+    "firstName": "الاسم الأول",
+    "lastName": "الإسم الأخير",
+    "message": "الرسالة",
+    "placeHolders": {
+      "firstName": "ادخل اسمك الأول",
+      "lastName": "ادخل اسمك الأخير",
+      "phone": "ادخل رقم هاتفك",
+      "email": "ادخل بريدك الإلكتروني",
+      "message": "الرسالة"
+    },
+    "errors": {
+      "firstName": {
+        "empty": "يجب أن لا يكون الاسم الأول فارغًا"
+      },
+      "lastName": {
+        "empty": "يجب أن لا يكون الاسم الأخير فارغًا"
+      },
+      "email": {
+        "empty": "يجب أن لا يكون البريد الإلكتروني فارغًا",
+        "invalid": "البريد الإلكتروني غير صالح"
+      },
+      "phoneNumber": {
+        "empty": "الرجاء إدخال رقم هاتفك"
+      },
+      "message": {
+        "empty": "يجب أن لا تكون الرسالة فارغة"
+      }
+    }
+  },
+  "Cart": {
+    "title": "Cart",
+    "currency": "ر.س",
+    "highest": "اطلب عرض سعر",
+    "price": "السعر: ",
+    "discount": "خصم",
+    "productName": "اسم المنتج",
+    "qty": "الكمية",
+    "category": "الفئة",
+    "shopping_cart": "قائمة الطلبات",
+    "remove": "حزف",
+    "total": "مجموع الطلبات",
+    "checkout": "إنشاء طلب",
+    "orTxt": "أو",
+    "continue_shopping": "مواصلة التسوق",
+    "taxesInclusive": "يتم احتساب رسوم الشحن والضرائب عند الدفع."
+  },
+  "ProductCard": {
+    "price": "السعر: ",
+    "by": "بواسطة: ",
+    "highestPrice": "اطلب عرض سعر",
+    "off": "خصم!",
+    "save": "لقد وفرت",
+    "addToCart": "طلب عرض",
+    "buyNow": "اشتر الآن",
+    "viewDetails": "عرض التفاصيل"
+  },
+  "InstantSearch": {
+    "searching": "جاري البحث...",
+    "noResults": "لا توجد نتائج",
+    "price": "السعر: ",
+    "currency": "ر.س",
+    "highestPrice": "اطلب عرض سعر"
+  },
+  "checkout": {
+    "title": "نموذج الطلب",
+    "orderSummary": "ملخص الطلب",
+    "productDetails": "تفاصيل المنتج",
+    "validationMessages": {
+      "phoneInvalid": "يرجى إدخال رقم هاتف مصري صالح."
+    },
+    "labels": {
+      "fullName": "الاسم الكامل",
+      "country": "البلد",
+      "city": "المدينة",
+      "district": "الحي",
+      "governorate": "المحافظة",
+      "nearestLandmark": "أقرب معلم",
+      "phone": "رقم الهاتف",
+      "address": "العنوان",
+      "address2": "العنوان 2 (اختياري)"
+    },
+    "placeholders": {
+      "fullName": "محمد احمد",
+      "country": "بلدك",
+      "city": "مدينتك",
+      "district": "حيك",
+      "governorate": "محافظتك",
+      "nearestLandmark": "أقرب معلم",
+      "phoneNumber": "123-45-678",
+      "address": "عنوانك",
+      "address2": "العنوان 2 الخاص بك"
+    },
+    "checkoutBtn": "تاكيد الطلب",
+    "btn": "تنفيذ",
+    "cancelBtn": "إلغاء"
+  },
+  "PrivacyPage": {
+    "title": "سياسة الخصوصية",
+    "content": [
+      {
+        "title": "جمع بيانات الزوار:",
+        "description": "نقوم بجمع بيانات الزوار بشكل تلقائي، مثل عناوين IP ومتصفحات الويب، لتحليل الأنماط وتحسين خدماتنا."
+      },
+      {
+        "title": "معلومات االتصال: ",
+        "description": "عند استخدام نماذج االتصال، نقوم بجمع معلومات االتصال للرد على استفسارات العمالء وتقديم الدعم. "
+      },
+      {
+        "title": "مشاركة المعلومات: ",
+        "description": "ال نقوم ببيع أو مشاركة معلومات الزوار مع أطراف ثالثة دون موافقتهم، إال في حالة االلتزام بالقوانين أو حماية حقوقنا."
+      },
+      {
+        "title": "ملفات تعريف االرتباط: ",
+        "description": "نستخدم ملفات تعريف االرتباط لتحسين تجربة المستخدم وتخصيص اإلعالنات."
+      },
+      {
+        "title": "أمان المعلومات: ",
+        "description": "نحمي معلوماتك باستخدام إجراءات أمان قوية لمنع الوصول غير المصرح به."
+      },
+      {
+        "title": "تحديثات الخصوصية:",
+        "description": "يمكننا تحديث سياسات الخصوصية بشكل دوري، وسيتم نشر أي تغييرات هنا."
+      },
+      {
+        "title": "استفسارات: ",
+        "description": "ألية استفسارات حول سياسات الخصوصية، يمكنك التواصل معنا من ",
+        "url": "هنا"
+      }
+    ]
+  },
+  "TermsAndConditionsPage": {
+    "title": "الشروط والأحكام",
+    "subHeader": "مرحبًا بك في منصتنا موارد. يرجى قراءة الشروط التالية بعناية قبل استخدام الموقع:",
+    "content": [
+      {
+        "title": "الاستخدام الشخصي: ",
+        "description": "يجب استخدام المنصة ألغراض شخصية فقط، ويُمنع نقل حقوق الوصول إلى أي شخص آخر."
+      },
+      {
+        "title": "المحتوى:",
+        "description": "يُشدد على عدم نشر أو نقل أي محتوى ينتهك حقوق الملكية الفكرية أو يتعارض مع القوانين المحلية."
+      },
+      {
+        "title": "التسجيل: ",
+        "description": "يتطلب الوصول الكامل للخدمات التسجيل، ويجب تقديم معلومات دقيقة وتحديثها عند الضرورة."
+      },
+      {
+        "title": "السلوك غير المالئم: ",
+        "description": "يمنع استخدام المنصة ألي نشاط يعتبر غير قانوني أو مسيء أو يخرق أخالقيات االستخدام. "
+      },
+      {
+        "title": "التحديثات: ",
+        "description": "يحق لنا تعديل شروط االستخدام بشكل دوري، وسيتم نشر أي تحديثات هنا. يُفضل مراجعة الشروط بانتظام."
+      },
+      {
+        "title": "مسؤولية المستخدم: ",
+        "description": "المستخدمون مسؤولون عن حفظ سرية معلومات حساباتهم ويجب اإلبالغ عن أي استخدام غير مصرح به. "
+      },
+      {
+        "title": "الدعم واالستفسارات: ",
+        "description": "نحن هنا لتقديم الدعم. ألي استفسارات أو مشاكل، يمكنك التواصل عبر",
+        "url": "هنا"
+      }
+    ]
+  },
+  "toasts": {
+    "loginAlert": "يجب عليك تسجيل الدخول أولا"
+  },
+  "RefundPage": { "title": "سياسة الاسترجاع", "content": [{}] },
+  "productNotFound": "المنتج غير موجود",
+  "percent": "٪",
+  "Register": {
+    "securityAnswer": "ادخل الاجابه علي  السول الامني",
+
+    "country": "البلد",
+    "city": "المدينة",
+    "title": "تسجيل حساب",
+    "fullName": "الاسم بالكامل",
+    "nickName": "اللقب",
+    "firstName": "الاسم الأول",
+    "lastName": "الاسم الأخير",
+    "email": "البريد الالكتروني",
+    "phone": "رقم الجوال",
+    "password": "كلمة المرور",
+    "rePassword": "تأكيد كلمة المرور",
+    "submit": "تسجيل الحساب",
+    "errors": {
+      "fullName": {
+        "empty": "الاسم بالكامل لا يمكن أن يكون فارغاً"
+      },
+      "nickName": {
+        "empty": "اللقب لا يمكن أن يكون فارغاً"
+      },
+      "email": {
+        "empty": "البريد الالكتروني لا يمكن أن يكون فارغاً"
+      },
+      "phone": {
+        "empty": "من فضلك ادخل رقم الهاتف ",
+        "invalid": "من فضلك ادخل رقم هاتف سعودي"
+      },
+      "password": {
+        "empty": "من فضلك ادخل الرقم السري ",
+        "invalid": "الرقم السري يجب ان يكون علي الاقل 8 حروف او ارقام"
+      },
+      "confirmPassword": {
+        "empty": "من فضلك اعد ادخال الرقم السري ",
+        "invalid": "الرقم السري غير متطابق"
+      }
+    },
+    "login": "لديك حساب بالفعل ؟"
+  }
+}

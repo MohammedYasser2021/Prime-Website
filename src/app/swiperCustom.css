@@ -1,0 +1,16 @@
+.thumbs .swiper-slide {
+  opacity: 0.75;
+}
+
+.thumbs .swiper-slide-thumb-active {
+  opacity: 1;
+  border-radius: 2px;
+  border: 2px solid #000;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  width: 40px; /* Adjust size as needed */
+  height: 40px; /* Adjust size as needed */
+  filter: drop-shadow(var(--swiper-button-shadow));
+}

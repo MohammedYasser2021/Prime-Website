@@ -1,0 +1,329 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 224 71.4% 4.1%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 224 71.4% 4.1%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71.4% 4.1%;
+
+    --primary: 220.9 39.3% 11%;
+    --primary-foreground: 210 20% 98%;
+
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
+
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 220.9 39.3% 11%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 224 71.4% 4.1%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 224 71.4% 4.1%;
+    --foreground: 210 20% 98%;
+
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 210 20% 98%;
+    --primary-foreground: 220.9 39.3% 11%;
+
+    --secondary: 215 27.9% 16.9%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+
+    --accent: 215 27.9% 16.9%;
+    --accent-foreground: 210 20% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 216 12.2% 83.9%;
+  }
+}
+
+@font-face {
+  font-family: "Cairo";
+  src: url("../../src/assets/Cairo/static/Cairo-ExtraLight.ttf");
+  font-display: swap;
+  font-weight: 200;
+}
+@font-face {
+  font-family: "Cairo";
+  src: url("../../src/assets/Cairo/static/Cairo-Light.ttf");
+  font-display: swap;
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Cairo";
+  src: url("../../src/assets/Cairo/static/Cairo-Regular.ttf");
+  font-display: swap;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Cairo";
+  src: url("../../src/assets/Cairo/static/Cairo-Medium.ttf");
+  font-display: swap;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Cairo";
+  src: url("../../src/assets/Cairo/static/Cairo-SemiBold.ttf");
+  font-display: swap;
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Cairo";
+  src: url("../../src/assets/Cairo/static/Cairo-Bold.ttf");
+  font-display: swap;
+  font-weight: 700;
+}
+
+* {
+  font-family: "Cairo", sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+/* body {
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+} */
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 6px; /* height of horizontal scrollbar ← You're missing this */
+  border: 1px solid #d5d5d5;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #c4c4c4;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(189, 188, 188);
+}
+
+#navigation_under_navbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 123, 110, 0.7);
+}
+
+/* .swiper-button-prev,
+.swiper-button-next {
+  position: static !important;
+  font-size: 30px !important;
+  margin-top: 0px !important;
+  cursor: pointer;
+  color: #387b6e !important;
+}
+
+.swiper-button-prev.swiper-button-disabled,
+.swiper-button-next.swiper-button-disabled {
+  opacity: 0.35;
+  cursor: auto;
+  pointer-events: none;
+} */
+
+.float {
+  position: fixed;
+  top: 25%;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.whats-float {
+  width: 100%;
+  /* overflow: hidden; */
+  background-color: #25d366;
+  color: #fff;
+  border-radius: 2px 0 0 2px;
+  transform: translate(108px, 0px);
+  transition: all 0.5s ease-in-out;
+  vertical-align: middle;
+}
+
+.mail-float {
+  width: 100%;
+  /* overflow: hidden; */
+  background-color: #c70013;
+  color: #fff;
+  border-radius: 2px 0 0 2px;
+  transform: translate(108px, 0px);
+  transition: all 0.5s ease-in-out;
+  vertical-align: middle;
+}
+
+.phone-float {
+  width: 100%;
+  /* overflow: hidden; */
+  background-color: rgb(63, 63, 70);
+  color: #fff;
+  border-radius: 2px 0 0 2px;
+  transform: translate(108px, 0px);
+  transition: all 0.5s ease-in-out;
+  vertical-align: middle;
+}
+
+.whats-float h2,
+.mail-float h2,
+.phone-float h2 {
+  font-size: 14px;
+  padding: 5px 0px 5px 0px;
+  line-height: 16px;
+  font-weight: bold;
+  overflow: visible;
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease-in-out;
+  width: 100%;
+  border-radius: 0px 0 0 2px;
+}
+
+.whats-float:hover h2,
+.mail-float:hover h2,
+.phone-float:hover h2 {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.whats-float .floating,
+.mail-float .floating,
+.phone-float .floating {
+  font-size: 45px;
+  color: white;
+  /* line-height: 30px; */
+  padding: 5px;
+  transform: rotate(0deg);
+  transition: all 0.5s ease-in-out;
+  text-align: center;
+}
+
+.whats-float:hover,
+.mail-float:hover,
+.phone-float:hover {
+  color: #ffffff;
+  transform: translate(0px, 0px);
+  border-radius: 2px 0 0 2px;
+}
+
+.whats-float:hover .floating,
+.mail-float:hover .floating,
+.phone-float:hover .floating {
+  transform: rotate(360deg);
+}
+
+.blur_background {
+  background: rgba(255, 255, 255, 0.03) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+  /* rgba(255, 255, 255, 0.1) */
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s cubic-bezier(0.6, 0.4, 0, 1), transform 0.15s ease;
+}
+
+.card > :not(.hover_card) {
+  transition: 0.3s cubic-bezier(0.6, 0.4, 0, 1);
+}
+
+.card .hover_card {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  top: 100%;
+  transition: all 0.4s cubic-bezier(0.6, 0.4, 0, 1);
+}
+
+.card:hover .hover_card {
+  top: 0%;
+}
+
+/* ------------------------------- */
+/* Hr for split two line right and left */
+.hr-text {
+  border: 0;
+  line-height: 1em;
+  position: relative;
+  text-align: center;
+  height: 1.5em;
+  font-size: 16px;
+  margin: 10px 5px 30px 5px;
+}
+
+.hr-text::before {
+  content: "";
+  background: linear-gradient(to right, transparent, #111827, transparent);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+}
+
+.hr-text::after {
+  content: attr(data-content);
+  position: relative;
+  padding: 0 7px;
+  line-height: 1.5em;
+  color: #111827;
+  background-color: white;
+}

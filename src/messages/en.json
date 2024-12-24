@@ -1,0 +1,480 @@
+{
+  "auth": {
+    "login": "Login",
+    "signUp": "SIGN UP",
+    "email": "Email",
+    "password": "Password",
+    "password_confirm": "Password Confirm"
+  },
+  "InfoBar": {
+    "phone": {
+      "title": "Contact Us",
+      "subtitle": "(234) 8765 555 1+"
+    },
+    "clock": {
+      "title": "Opening Hours",
+      "subtitle": "Monday to Friday, 8 AM - 6 PM"
+    }
+  },
+  "NavBar": {
+    "searchForProducts": "Search for more than 20,000 products",
+    "buttons": {
+      "login": "LOGIN",
+      "signUp": "SIGN UP",
+      "trackOrders": "Track Orders",
+      "logout": "Logout",
+      "profile": "Profile Settings"
+    },
+    "navigation": {
+      "allCategories": {
+        "name": "All"
+      },
+      "steel": {
+        "name": "Steel"
+      },
+      "topItems": {
+        "name": "Top Items"
+      },
+      "aluminium": {
+        "name": "Aluminium"
+      }
+    },
+    "Tooltips": {
+      "cart": "Request list",
+      "search": "Search"
+    }
+  },
+  "Footer": {
+    "copyright": "Copyright © 2024 mawared, All rights reserved.",
+    "policy": "Policies",
+    "comingSoon": "Coming Soon",
+    "contact": {
+      "title": "Contact Us",
+      "services": "Services",
+      "placeHolder": "Enter your e-mail address",
+      "button": "Share"
+    },
+    "policies": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms & Conditions",
+      "refund": "Refund Policy"
+    },
+    "paragraph": "Selling certified original products, guaranteed lowest prices / Warehouse gate. Previous delivery to our customers."
+  },
+  "Tiltle": {
+    "home_page": "Home page",
+    "users": "Users",
+    "schemas": "Schemas",
+    "best_sellers": "Best Sellers",
+    "top_products": "Top Products",
+    "mostPurchased": "Most Purchased",
+    "categories": "Categories",
+    "subCategory": "Sub category",
+    "properties": "Properties",
+    "brands": "Brands",
+    "seller": "Seller",
+    "availability": "Availability",
+    "newArrivals": "New Arrivals",
+    "price": "Price",
+    "tags": "Tags",
+    "currencies": "Currencies",
+    "store_view": "Store view",
+    "not__found": "Data Not Found",
+    "More": "More",
+    "shopping_cart": "Requests list",
+    "remove": "Remove",
+    "total": "Total",
+    "checkout": " Checkout",
+    "continue_shopping": "Continue Shopping",
+    "description": "Description",
+    "currency": "Rs. "
+  },
+  "sidebar_sections": {
+    "management": "Management",
+    "supply_chain": "Supply chain",
+    "e_store": "E-Store"
+  },
+  "Tooltips": {
+    "add_to_favorites": "Add to Favorites",
+    "remvoe_from_favorites": "Remvoe from Favorites"
+  },
+  "HomePage": {
+    "adsViews": {
+      "newArrivals": "New Arrivals",
+      "topItems": "Top Items",
+      "viewMore": "View More"
+    },
+    "features": {
+      "QA": "Quality Assurance",
+      "client": "Client Portfolio",
+      "delivery": "Fast Delivery",
+      "service": "Speedy Service"
+    }
+  },
+  "ProductPage": {
+    "card": {
+      "available": "Available",
+      "notAvailable": "Not available",
+      "priceWithDiscount": "Price after discount:",
+      "discountPercentage": "Discount percentage:",
+      "qty": "Quantity:",
+      "currency": "Rs. ",
+      "from": "From: ",
+      "to": "To: ",
+      "highestPrice": "Request offer",
+      "buttons": {
+        "order": "Add to order",
+        "seeSimilarItems": "See similar items",
+        "addToWishlist": "Add to favourites",
+        "removeFromWishlist": "Remove from favourites"
+      }
+    },
+    "sections": {
+      "titles": {
+        "productDescription": "Product Description",
+        "additionalInfo": {
+          "title": "Additional Information"
+        },
+        "tags": {
+          "title": "Product Tags",
+          "show": "Show",
+          "hide": "Hide"
+        },
+        "sameProductWithDefProp": {
+          "title": " Consider a similar item "
+        },
+        "similarProductsDefProp": {
+          "title": "Recommended Products"
+        },
+        "reviews": {
+          "header": "Product Reviews",
+          "subHeader": "Product Feedback Survey",
+          "title": "Write Your Own Review",
+          "subtitle": "How do you rate this product?",
+          "rating": {
+            "Price": "Price",
+            "Value": "Value",
+            "Quality": "Quality"
+          },
+          "form": {
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "review": "Review",
+            "button": "Submit Review",
+            "ValidationError": {
+              "firstName": "Please enter your first name",
+              "lastName": "Please enter your last name",
+              "review": "Please enter your review",
+              "ratings": "Please rate the product"
+            }
+          }
+        },
+        "customerReviews": "Customer Reviews"
+      }
+    }
+  },
+  "ShopPage": {
+    "search_page": "Search page",
+    "filters": {
+      "categories": "categories",
+      "subCategory": "sub category",
+      "vendors": "vendors",
+      "price": "price",
+      "brands": "brands",
+      "tags": "tags"
+    },
+    "filter": "Filter",
+    "clear": "Clear",
+    "grid": "Grid",
+    "item": " Item ",
+    "items": " Items ",
+    "from": " from ",
+    "availableProducts": " Available products: ",
+    "list": "List",
+    "show": "Show: ",
+    "previous": "Prev",
+    "next": "Next"
+  },
+  "Profile": {
+    "account": {
+      "title": "Account Settings",
+      "form": {
+        "title": "Personal Details",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "phone": "Phone"
+      },
+      "privacy": ""
+    },
+    "favourites": {
+      "title": "Favourites",
+      "subTitle": "Favourites list",
+      "box": {
+        "name": "Name",
+        "brand": "Brand",
+        "category": "Category",
+        "price": "Price",
+        "operations": {
+          "title": "Operations",
+          "tooltips": {
+            "remove": "Remove",
+            "preview": "Preview"
+          }
+        }
+      },
+      "empty": "Your favorites list is empty."
+    },
+    "trackingOrders": {
+      "title": "Tracking Orders",
+      "table": {
+        "titles": {
+          "productName": "Product Name",
+          "qty": "Quantity",
+          "vendor": "Vendor",
+          "price": "Price",
+          "notes": "Notes",
+          "status": "Status",
+          "action": "Action"
+        },
+        "constants": {
+          "highest": "Request offer",
+          "orderNum": "Order Number",
+          "currency": "Rs. "
+        },
+        "actions": {
+          "edit": "Edit",
+          "cancel": "Cancel",
+          "preview": "Preview",
+          "canceled": "Canceled",
+          "cantEdit": "Can't edit order"
+        },
+        "edit": {
+          "title": "Edit order details",
+          "btn": "Update details",
+          "quantity": "Quantity"
+        }
+      }
+    },
+    "searchOrders": "Search Orders",
+    "pickDate": "Pick up Date"
+  },
+  "Services": {
+    "toolTips": {
+      "backAnchor": "Back"
+    },
+    "descriptionPlaceholder": "Summary of your request here",
+    "emailPlaceholder": "john@example.com",
+    "mail": "Email",
+    "title": "Service Request",
+    "IS": "Inquiry service",
+    "CS": "Complaint service",
+    "Other": "Other",
+    "button": "Send",
+    "phone": "Phone",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "message": "Message",
+    "placeHolders": {
+      "firstName": "Enter your first Name",
+      "lastName": "Enter your last Name",
+      "phone": "Enter your phone number",
+      "email": "Enter your Email",
+      "message": "Message"
+    },
+    "errors": {
+      "firstName": {
+        "empty": "First name cannot be empty"
+      },
+      "lastName": {
+        "empty": "Last name cannot be empty"
+      },
+      "email": {
+        "empty": "Email cannot be empty",
+        "invalid": "Email is not valid"
+      },
+      "phoneNumber": {
+        "empty": "Please enter your phone number"
+      },
+      "message": {
+        "empty": "Message cannot be empty"
+      }
+    }
+  },
+  "Cart": {
+    "title": "Cart",
+    "currency": "Rs. ",
+    "highest": "Request offer",
+    "price": "Price: ",
+    "discount": "OFF",
+    "productName": "Product Name",
+    "qty": "Qty",
+    "category": "Category",
+    "shopping_cart": "Requests list",
+    "remove": "Remove",
+    "total": "Total Orders",
+    "checkout": "Create order",
+    "orTxt": "Or",
+    "continue_shopping": "Continue Shopping",
+    "taxesInclusive": "Shipping and taxes calculated at checkout."
+  },
+  "ProductCard": {
+    "price": "Price: ",
+    "by": "By: ",
+    "highestPrice": "Request offer",
+    "off": "OFF!",
+    "save": "You save",
+    "addToCart": "Request offer",
+    "buyNow": "Buy now",
+    "viewDetails": "View Details"
+  },
+  "InstantSearch": {
+    "searching": "Searching...",
+    "noResults": "No results found",
+    "price": "Price: ",
+    "currency": "Rs. ",
+    "highestPrice": "Request offer"
+  },
+  "checkout": {
+    "title": "Order form",
+    "orderSummary": "Order Summary",
+    "productDetails": "Product Details",
+    "validationMessages": {
+      "phoneInvalid": "Please enter a valid Egyptian phone number."
+    },
+    "labels": {
+      "fullName": "Full Name",
+      "country": "Country",
+      "city": "City",
+      "district": "District",
+      "governorate": "Governorate",
+      "nearestLandmark": "Nearest Landmark",
+      "phone": "Phone Number",
+      "address": "Address",
+      "address2": "Address 2 (Optional)"
+    },
+    "placeholders": {
+      "fullName": "Ahmed Mohamed",
+      "country": "Your Country",
+      "city": "Your City",
+      "district": "Your District",
+      "governorate": "Your Governorate",
+      "nearestLandmark": "Nearest Landmark",
+      "phoneNumber": "123-45-678",
+      "address": "Your Address",
+      "address2": "Your Address 2"
+    },
+    "checkoutBtn": "Submit order",
+    "btn": "Submit",
+    "cancelBtn": "Cancel"
+  },
+  "PrivacyPage": {
+    "title": "Privacy Policy",
+    "content": [
+      {
+        "title": "Data Collection:",
+        "description": "We automatically collect visitor data, such as IP addresses and web browsers, to analyze patterns and improve our services."
+      },
+      {
+        "title": "Contact Information:",
+        "description": "When using contact forms, we collect contact information to respond to customer inquiries and provide support."
+      },
+      {
+        "title": "Information Sharing:",
+        "description": "We do not sell or share visitor information with third parties without their consent, except as required by law or to protect our rights."
+      },
+      {
+        "title": "Cookies:",
+        "description": "We use cookies to improve the user experience and personalize advertising."
+      },
+      {
+        "title": "Information Security:",
+        "description": "We protect your information using strong security measures to prevent unauthorized access."
+      },
+      {
+        "title": "Privacy Updates:",
+        "description": "We may update our privacy policy periodically, and any changes will be posted here."
+      }
+    ]
+  },
+  "TermsAndConditionsPage": {
+    "title": "Terms & Conditions",
+    "subHeader": "Welcome to our Mawared platform. Please read the following terms carefully before using the site:",
+    "content": [
+      {
+        "title": "Personal Use:",
+        "description": "The platform should only be used for personal purposes, and transferring access rights to anyone else is prohibited."
+      },
+      {
+        "title": "Content:",
+        "description": "It is strictly prohibited to publish or transfer any content that violates intellectual property rights or contradicts local laws."
+      },
+      {
+        "title": "Registration:",
+        "description": "Full access to the services requires registration, and accurate information must be provided and updated when necessary."
+      },
+      {
+        "title": "Inappropriate Behavior:",
+        "description": "Using the platform for any activity that is considered illegal, offensive, or violates the ethics of use is prohibited."
+      },
+      {
+        "title": "Updates:",
+        "description": "We reserve the right to modify the terms of use periodically, and any updates will be posted here. It is recommended to review the terms regularly."
+      },
+      {
+        "title": "User Responsibility:",
+        "description": "Users are responsible for keeping their account information confidential and must report any unauthorized use."
+      }
+    ]
+  },
+
+  "toasts": {
+    "loginAlert": "Please login first"
+  },
+  "RefundPage": { "title": "Refund Policy", "content": [{}] },
+  "productNotFound": "Product Not Found",
+  "percent": "%",
+  "Register": {
+    "securityAnswer": "Security Answer",
+    "title": "Sign Up",
+    "fullName": "Full Name",
+    "nickName": "Nickname",
+    "country": "Country",
+    "city": "City",
+    "email": "Email",
+    "name": "Name",
+    "phone": "Phone Number",
+    "password": "Password",
+    "rePassword": "confirmPassword",
+    "submit": "SIGNUP",
+    "errors": {
+      "fullName": {
+        "empty": "Full Name cannot be empty"
+      },
+      "country": {
+        "empty": "Country cannot be empty"
+      },
+      "city": {
+        "empty": "City cannot be empty"
+      },
+      "nickName": {
+        "empty": "Nickname cannot be empty"
+      },
+      "email": {
+        "empty": "Email cannot be empty"
+      },
+      "phone": {
+        "empty": "Please enter your phone number",
+        "invalid": "Please enter a valid saudi phone number"
+      },
+      "password": {
+        "empty": "Password cannot be empty",
+        "invalid": "Password must be at least 8 characters"
+      },
+      "confirmPassword": {
+        "empty": "ConfirmPassword cannot be empty",
+        "invalid": "passwords doesn't match"
+      }
+    },
+    "login": "Already has an account ?"
+  }
+}

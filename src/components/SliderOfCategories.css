@@ -1,0 +1,55 @@
+.landing1 {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+
+
+
+.img-col {
+    display: flex;
+    position: absolute;
+    transition-duration: 0.3s;
+    height: 100%;
+}
+
+.slide {
+    width: 100vw;
+    position: relative;
+}
+
+img {
+    min-width: 100%;
+}
+
+@media (min-width: 1024px) {
+    .text {
+        top: 50%;
+        transform: translate(0, -50%)
+    }
+}
+
+@media not all and (min-width: 550px) {
+    .sm-x {
+        display: none
+    }
+}
+.shopping-now {
+    padding: 5px;
+    height: 35px;
+    width: 90px;
+    color: #272727;
+    text-decoration: none;
+    text-align: center;
+    border: 1px solid #272727;
+    border-radius: 14px;
+  }
+  .sub-tile {
+    color: #272727;
+    font-size: 21px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 28px;
+  }
+  
