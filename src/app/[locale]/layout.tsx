@@ -33,11 +33,11 @@ export async function generateMetadata(params: any) {
   const { locale } = params.params;
 
   return {
-    title: locale === "en" ? "Mawared" : "موارد",
+    title: locale === "en" ? "PRIME" : "برايم",
     description:
       locale === "en"
-        ? "Discover a world of quality products at Mawared, your premier destination for all things industry. Explore our curated selection of industry-related items, from essentials to specialty products, all conveniently available at your fingertips. Shop with confidence and ease at Mawared – where quality meets convenience."
-        : "اكتشف عالمًا من المنتجات عالية الجودة في موارد، وجهتك الرئيسية لجميع ما يتعلق بالصناعة. استكشف تشكيلتنا المختارة بعناية من العناصر ذات الصلة بالصناعة، من الضروريات إلى المنتجات الخاصة، كلها متاحة بسهولة على مدار الساعة. تسوق بثقة وسهولة في موارد - حيث تلتقي الجودة بالراحة.",
+        ? "Discover a world of quality products at PRIME, your premier destination for all things industry. Explore our curated selection of industry-related items, from essentials to specialty products, all conveniently available at your fingertips. Shop with confidence and ease at PRIME – where quality meets convenience."
+        : "اكتشف عالمًا من المنتجات عالية الجودة في برايم وجهتك الرئيسية لجميع ما يتعلق بالصناعة. استكشف تشكيلتنا المختارة بعناية من العناصر ذات الصلة بالصناعة، من الضروريات إلى المنتجات الخاصة، كلها متاحة بسهولة على مدار الساعة. تسوق بثقة وسهولة في برايم - حيث تلتقي الجودة بالراحة.",
     icons: [
       { rel: "icon", url: icon.src },
       { rel: "apple", url: icon.src },
