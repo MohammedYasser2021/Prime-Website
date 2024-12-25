@@ -37,27 +37,27 @@ const Product: React.FC<ProductProps> = ({
 
   return (
     <div
-      className="w-[192px] min-h-[370px]  bg-[#ffffff] rounded-[20px]"
+      className="sm:w-[192px] w-full min-h-[370px]  bg-[#ffffff] rounded-[20px]"
       style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
     >
       <div
         className={`stars flex gap-1 p-3 ${
-          locale === "en" ? "flex-row-reverse justify-end" : "flex-row justify-end"
+          locale === "en" ? "sm:flex-row-reverse sm:justify-end justify-center" : "sm:flex-row sm:justify-end justify-center"
         }`}
       >
         {[...Array(5)].map((_, index) => (
           <FaStar key={index} className={`text-[20px] ${getStarClass(index)}`} />
         ))}
       </div>
-      <h1 className={`text-col text-[30px] ${locale === "en" ? "pl-3" : "pr-3"}`}>
+      <h1 className={`text-col text-[30px] ${locale === "en" ? "sm:pl-3 pl-5" : "sm:pr-3 pr-5"}`}>
         {perc} <span className="text-[40px] text-secondary">%</span>
       </h1>
       <div className="w-[165px] h-[179px] mx-auto mb-3">
         <Image src={ProductImage} alt="product" />
-        <h1 className="text-[#000000] font-bold text-[15px]">
+        <h1 className={`text-[#000000] font-bold text-[15px] text-center ${locale == "ar" ? "sm:text-right" : "sm:text-left"}`}>
           {locale === "en" ? name : nameAr}
         </h1>
-        <p className="text-[12px] font-semibold mb-3">
+        <p className={`text-[12px] font-semibold mb-3 text-center ${locale == "ar" ? "sm:text-right" : "sm:text-left"}`}>
           {locale === "en" ? descEN : desc}
         </p>
         <div className="flex justify-between items-center">

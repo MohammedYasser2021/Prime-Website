@@ -12,11 +12,11 @@ export async function generateMetadata(params: any) {
   const { locale } = params.params;
   unstable_setRequestLocale(locale);
   return {
-    title: locale === "en" ? "Mawared" : "موارد",
+    title: locale === "en" ? "PRIME" : "برايم",
     description:
       locale === "en"
-        ? "Welcome to Mawared, your gateway to quality products in the industry sector. Explore our featured collections, discover the latest trends, and find everything you need for your [industry] needs."
-        : "مرحبًا بكم في موارد، بوابتكم إلى المنتجات عالية الجودة في قطاع الصناعة. استكشف مجموعاتنا المميزة، اكتشف أحدث الاتجاهات، وابحث عن كل ما تحتاجه لاحتياجاتك في قطاع الصناعة.",
+        ? "Welcome to PRIME, your gateway to quality products in the industry sector. Explore our featured collections, discover the latest trends, and find everything you need for your [industry] needs."
+        : "مرحبًا بكم في برايم بوابتكم إلى المنتجات عالية الجودة في منتجات الصناعة. استكشف مجموعاتنا المميزة، اكتشف أحدث الاتجاهات، وابحث عن كل ما تحتاجه لاحتياجاتك في منتجات الصناعة.",
   };
 }
 

@@ -16,7 +16,7 @@ import ProviderContainer from "@/components/Uitily/ProviderCont";
 import ShoppingCarts from "@/layouts/ShoppingCarts";
 import { ToastContainer } from "react-toastify";
 import Toastify from "@/layouts/Toastify";
-import icon from "../../../public/image.ico";
+import icon from "../../assets/homeImages/logo.png";
 import { notFound } from "next/navigation";
 import storeCounter from "@/redux/store/store";
 
@@ -43,12 +43,13 @@ export async function generateMetadata(params: any) {
       { rel: "apple", url: icon.src },
     ],
     keywords: [
-      "mawared",
-      "Mawared",
+      "prime",
+      "Prime",
+      "PRIME",
       "industry",
-      "موارد للصناعة",
-      "موارد",
-      "Mawared e-store",
+      "برايم للصناعة",
+      "برايم",
+      "PRIME e-store",
       "quality products",
       "online shopping",
       "best deals",
@@ -58,7 +59,7 @@ export async function generateMetadata(params: any) {
       "reliable service",
       "wide selection",
       "industry-specific items",
-      "متجر موارد",
+      "متجر برايم",
       "منتجات عالية الجودة",
       "تجربة تسوق عبر الإنترنت",
       "أفضل العروض",
@@ -70,17 +71,17 @@ export async function generateMetadata(params: any) {
       "منتجات متخصصة في الصناعة",
     ],
     openGraph: {
-      title: locale === "en" ? "Mawared" : "موارد",
+      title: locale === "en" ? "PRIME" : "برايم",
       description:
         locale === "en"
-          ? "Discover a world of quality products at Mawared, your premier destination for all things industry. Explore our curated selection of industry-related items, from essentials to specialty products, all conveniently available at your fingertips. Shop with confidence and ease at Mawared – where quality meets convenience."
-          : "اكتشف عالمًا من المنتجات عالية الجودة في موارد، وجهتك الرئيسية لجميع ما يتعلق بالصناعة. استكشف تشكيلتنا المختارة بعناية من العناصر ذات الصلة بالصناعة، من الضروريات إلى المنتجات الخاصة، كلها متاحة بسهولة على مدار الساعة. تسوق بثقة وسهولة في موارد - حيث تلتقي الجودة بالراحة.",
+          ? "Discover a world of quality products at PRIME, your premier destination for all things industry. Explore our curated selection of industry-related items, from essentials to specialty products, all conveniently available at your fingertips. Shop with confidence and ease at PRIME – where quality meets convenience."
+          : "اكتشف عالمًا من المنتجات عالية الجودة في برايم وجهتك الرئيسية لجميع ما يتعلق بالصناعة. استكشف تشكيلتنا المختارة بعناية من العناصر ذات الصلة بالصناعة، من الضروريات إلى المنتجات الخاصة، كلها متاحة بسهولة على مدار الساعة. تسوق بثقة وسهولة في برايم - حيث تلتقي الجودة بالراحة.",
       // url: "<>",
-      siteName: "Mawared",
+      siteName: "PRIME",
       images: [
         {
           // put the url of the image to run it in metadata
-          url: "https://mawaredpanelapi.ersaiss.com/logo/logo.webp",
+          url: "../../assets/homeImages/logo.png",
           width: 80,
           height: 60,
         },
