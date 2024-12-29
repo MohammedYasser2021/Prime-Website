@@ -31,66 +31,63 @@ const Header: React.FC<HeaderProps> = ({ params }) => {
       }}
     >
       <div className="container mx-auto p-[20px]">
-      <nav className="flex flex-wrap xl:flex-row-reverse flex-col items-center justify-between gap-4">
-  {/* Logo */}
-  <div className="w-full xl:w-auto flex xl:justify-start justify-center mb-4 xl:mb-0">
-    <Image src={Logo} alt="Logo" width={159} height={104} />
-  </div>
+        <nav className="flex flex-wrap xl:flex-row-reverse flex-col items-center justify-between gap-4">
+          {/* Logo */}
+          <div className="w-full xl:w-auto flex xl:justify-start justify-center mb-4 xl:mb-0">
+            <Image src={Logo} alt="Logo" width={159} height={104} />
+          </div>
 
-  {/* Search Input */}
-  <div className="relative w-full xl:w-auto flex justify-center">
-    <input
-      type="text"
-      placeholder={
-        locale === "en"
-          ? "You will find everything"
-          : "ستجد كل ما تريد لدينا"
-      }
-      className="w-[100%] xl:w-[638px] h-[44px] px-[22px] rounded-[15px] opacity-50"
-    />
-    <Image
-      src={Search}
-      alt="Search"
-      width={30}
-      height={30}
-      className={`absolute ${
-        locale === "en" ? "right-[20px]" : "left-[20px]"
-      }  top-[50%] transform -translate-y-[50%]`}
-    />
-  </div>
+          {/* Search Input */}
+          <div className="relative w-full xl:w-auto flex justify-center">
+            <input
+              type="text"
+              placeholder={
+                locale === "en"
+                  ? "You will find everything"
+                  : "ستجد كل ما تريد لدينا"
+              }
+              className="w-[100%] xl:w-[638px] h-[44px] px-[22px] rounded-[15px] opacity-50"
+            />
+            <Image
+              src={Search}
+              alt="Search"
+              width={30}
+              height={30}
+              className={`absolute ${
+                locale === "en" ? "right-[20px]" : "left-[20px]"
+              }  top-[50%] transform -translate-y-[50%]`}
+            />
+          </div>
 
-  {/* Navigation Items */}
-  <div className="w-full xl:w-auto flex xl:justify-start justify-between items-center gap-4">
-    {/* Left Navigation */}
-    <div className="flex gap-3">
-      <button
-        title={locale === "en" ? "Cart" : "سلة"}
-        className="hvr-pop"
-      >
-        <Image src={Cart} alt="cart" width={36} height={36} />
-      </button>
-      <button
-        title={locale === "en" ? "Profile" : "الملف الشخصي"}
-        className="hvr-pop"
-      >
-        <Image src={Profile} alt="profile" width={36} height={36} />
-      </button>
-    </div>
+          {/* Navigation Items */}
+          <div className="w-full xl:w-auto flex xl:justify-start justify-between items-center gap-4">
+            {/* Left Navigation */}
+            <div className="flex gap-3">
+              <button
+                title={locale === "en" ? "Cart" : "سلة"}
+                className="hvr-pop"
+              >
+                <Image src={Cart} alt="cart" width={36} height={36} />
+              </button>
+              <button
+                title={locale === "en" ? "Profile" : "الملف الشخصي"}
+                className="hvr-pop"
+              >
+                <Image src={Profile} alt="profile" width={36} height={36} />
+              </button>
+            </div>
 
-    {/* Center Navigation */}
-    <div className="flex gap-3">
-      <a href="/" className="font-bold text-[14px] text-[#ffffff]">
-        {locale === "en" ? "We Are" : "من نحن"}
-      </a>
-      <a href="/" className="font-bold text-[14px] text-[#ffffff]">
-        {locale === "en" ? "Contact Us" : "الاتصال بنا"}
-      </a>
-    </div>
-  </div>
-</nav>
-
-
-
+            {/* Center Navigation */}
+            <div className="flex gap-3">
+              <a href="/" className="font-bold text-[14px] text-[#ffffff]">
+                {locale === "en" ? "We Are" : "من نحن"}
+              </a>
+              <a href="/" className="font-bold text-[14px] text-[#ffffff]">
+                {locale === "en" ? "Contact Us" : "الاتصال بنا"}
+              </a>
+            </div>
+          </div>
+        </nav>
 
         {/* Language Buttons */}
         <div
@@ -126,18 +123,26 @@ const Header: React.FC<HeaderProps> = ({ params }) => {
             <Image src={Content} alt="banner" className="w-full h-full" />
           </div>
           <div className="header_desc">
-            <h1 className={`font-bold text-[40px] text-[#ffffff] mb-4 ${locale == "en" ? "xl:text-left" : "xl:text-right"} text-center`}>
+            <h1
+              className={`font-bold text-[40px] text-[#ffffff] mb-4 ${
+                locale == "en" ? "xl:text-left" : "xl:text-right"
+              } text-center`}
+            >
               {locale === "en" ? "SHAAN CREAM" : "كريم شان"}
             </h1>
-            <p className={`font-bold xl:text-[25px] text-[20px] text-[#ffffff] max-w-[481px] ${locale == "en" ? "xl:text-left" : "xl:text-right"} text-center`}>
+            <p
+              className={`font-bold xl:text-[25px] text-[20px] text-[#ffffff] max-w-[481px] ${
+                locale == "en" ? "xl:text-left" : "xl:text-right"
+              } text-center`}
+            >
               {locale === "en"
                 ? "Today's special offer from shaan cream with a 30% discount on the German sunscreen"
                 : "العرض المميز اليوم من كريم شان بخصم 30% \n الواقي الشمسي الالماني"}
             </p>
             <div className="flex xl:justify-start justify-center">
-            <button className="text-[#ffffff] text-[22px] font-bold xl:mt-20 mt-10 bg-third border border-[#ffffff] w-[180px] h-[67px] rounded-[20px] hvr-pop">
-              {locale === "en" ? "Order Now" : "اطلب الان"}
-            </button>
+              <button className="text-[#ffffff] text-[22px] font-bold xl:mt-20 mt-10 bg-third border border-[#ffffff] w-[180px] h-[67px] rounded-[20px] hvr-pop">
+                {locale === "en" ? "Order Now" : "اطلب الان"}
+              </button>
             </div>
           </div>
         </div>
@@ -165,7 +170,11 @@ const Header: React.FC<HeaderProps> = ({ params }) => {
         />
       </div>
       <div
-        className={`absolute border-l-[29.5px] ${locale == "en" ? "md:right-[260.88px] right-[55px]" : "md:left-[260.88px] left-[55px]"} border-r-[29.5px] border-b-[92px] border-transparent border-b-[#E4A4FB] opacity-50`}
+        className={`absolute border-l-[29.5px] ${
+          locale == "en"
+            ? "md:right-[260.88px] right-[55px]"
+            : "md:left-[260.88px] left-[55px]"
+        } border-r-[29.5px] border-b-[92px] border-transparent border-b-[#E4A4FB] opacity-50`}
         style={{
           width: 0,
           height: 0,
