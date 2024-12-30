@@ -34,7 +34,9 @@ const Header: React.FC<HeaderProps> = ({ params }) => {
         <nav className="flex flex-wrap xl:flex-row-reverse flex-col items-center justify-between gap-4">
           {/* Logo */}
           <div className="w-full xl:w-auto flex xl:justify-start justify-center mb-4 xl:mb-0">
-            <Image src={Logo} alt="Logo" width={159} height={104} />
+            <a href={locale == "en" ? "/en" : "/ar"}>
+              <Image src={Logo} alt="Logo" width={159} height={104} />
+            </a>
           </div>
 
           {/* Search Input */}
@@ -63,18 +65,22 @@ const Header: React.FC<HeaderProps> = ({ params }) => {
           <div className="w-full xl:w-auto flex xl:justify-start justify-between items-center gap-4">
             {/* Left Navigation */}
             <div className="flex gap-3">
-              <button
+              <a
+                href={`${locale == "en" ? "/en/cartPage" : "/ar/cartPage"}`}
                 title={locale === "en" ? "Cart" : "سلة"}
                 className="hvr-pop"
               >
                 <Image src={Cart} alt="cart" width={36} height={36} />
-              </button>
-              <button
+              </a>
+              <a
+                href={`${
+                  locale == "en" ? "/en/primeProfile" : "/ar/primeProfile"
+                }`}
                 title={locale === "en" ? "Profile" : "الملف الشخصي"}
                 className="hvr-pop"
               >
                 <Image src={Profile} alt="profile" width={36} height={36} />
-              </button>
+              </a>
             </div>
 
             {/* Center Navigation */}

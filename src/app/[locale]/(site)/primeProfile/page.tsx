@@ -1,8 +1,14 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { FaBars, FaInfoCircle, FaCog, FaEnvelope, FaSignOutAlt } from "react-icons/fa"; // Import required icons
+import {
+  FaBars,
+  FaInfoCircle,
+  FaCog,
+  FaEnvelope,
+  FaSignOutAlt,
+} from "react-icons/fa"; // Import required icons
 import Search from "../../../../assets/homeImages/search.png";
 import Logo from "../../../../assets/homeImages/logo.png";
 import Cart from "../../../../assets/homeImages/cart.png";
@@ -35,39 +41,66 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ params }) => {
 
   return (
     <div
-      className={`flex min-h-[100vh] ${locale === "en" ? "flex-row-reverse" : "flex-row"}`}
+      className={`flex min-h-[100vh] ${
+        locale === "en" ? "flex-row-reverse" : "flex-row"
+      }`}
     >
       {/* Sidebar */}
       <div
-        className={`${sidebarOpen ? "w-64" : "w-16"} bg-primary min-h-full text-white p-6 transition-all duration-300 ease-in-out `}
+        className={`${
+          sidebarOpen ? "w-64" : "w-16"
+        } bg-primary min-h-full text-white p-6 transition-all duration-300 ease-in-out `}
       >
         {/* Logo */}
         <div className="flex items-center justify-center mb-6">
-          <div className={`rounded-full flex items-center justify-center text-4xl text-white ${!sidebarOpen && 'w-24'}`}>
-            <Image src={Logo} alt="Logo" width={sidebarOpen ? 159 : 159} height={sidebarOpen ? 104 : 104} />
-          </div>
+          <a
+            href={locale == "en" ? "/en" : "/ar"}
+            className={`rounded-full flex items-center justify-center text-4xl text-white ${
+              !sidebarOpen && "w-24"
+            }`}
+          >
+            <Image
+              src={Logo}
+              alt="Logo"
+              width={sidebarOpen ? 159 : 159}
+              height={sidebarOpen ? 104 : 104}
+              className={`${!sidebarOpen ? "max-w-[50px]" : "max-w-[100%]"} `}
+            />
+          </a>
         </div>
 
         {/* Sidebar Items */}
         {sidebarOpen ? (
           <ul>
             <li>
-              <a href="#" className="block py-2 px-4 hover:bg-[#412065] rounded">
+              <a
+                href="#"
+                className="block py-2 px-4 hover:bg-[#412065] rounded"
+              >
                 {locale === "en" ? "About Us" : "نبذة عننا"}
               </a>
             </li>
             <li>
-              <a href="#" className="block py-2 px-4 hover:bg-[#412065] rounded">
+              <a
+                href="#"
+                className="block py-2 px-4 hover:bg-[#412065] rounded"
+              >
                 {locale === "en" ? "Settings" : "الإعدادات"}
               </a>
             </li>
             <li>
-              <a href="#" className="block py-2 px-4 hover:bg-[#412065] rounded">
+              <a
+                href="#"
+                className="block py-2 px-4 hover:bg-[#412065] rounded"
+              >
                 {locale === "en" ? "Contact Us" : "تواصل معنا"}
               </a>
             </li>
             <li>
-              <a href="#" className="block py-2 px-4 hover:bg-[#412065] rounded">
+              <a
+                href="#"
+                className="block py-2 px-4 hover:bg-[#412065] rounded"
+              >
                 {locale === "en" ? "Logout" : "تسجيل الخروج"}
               </a>
             </li>
@@ -137,7 +170,9 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ params }) => {
               alt="Search"
               width={30}
               height={30}
-              className={`absolute ${locale === "en" ? "right-[20px]" : "left-[20px]"} top-[50%] transform -translate-y-[50%]`}
+              className={`absolute ${
+                locale === "en" ? "right-[20px]" : "left-[20px]"
+              } top-[50%] transform -translate-y-[50%]`}
             />
           </div>
 
@@ -145,18 +180,22 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ params }) => {
           <div className="w-full xl:w-auto flex xl:justify-start justify-between items-center gap-4">
             {/* Left Navigation */}
             <div className="flex gap-3">
-              <button
+              <a
+                href={`${locale == "en" ? "/en/cartPage" : "/ar/cartPage"}`}
                 title={locale === "en" ? "Cart" : "سلة"}
                 className="hvr-pop"
               >
                 <Image src={Cart} alt="cart" width={36} height={36} />
-              </button>
-              <button
+              </a>
+              <a
+                href={`${
+                  locale == "en" ? "/en/primeProfile" : "/ar/primeProfile"
+                }`}
                 title={locale === "en" ? "Profile" : "الملف الشخصي"}
                 className="hvr-pop"
               >
                 <Image src={Profile} alt="profile" width={36} height={36} />
-              </button>
+              </a>
             </div>
 
             {/* Center Navigation */}
