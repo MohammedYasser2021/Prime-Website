@@ -1,5 +1,5 @@
 "use client";
-
+import React, { useState } from "react";
 import {
   ShoppingBag,
   Star,
@@ -11,15 +11,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
-import Image1 from "../../../../assets/homeImages/img_1.avif";
-import Image2 from "../../../../assets/homeImages/img_2.avif";
+import { ShoppingCart as CartIcon } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import Prod from "../components/types/index";
+import cartproducts from "../components/productsData/CartProducts";
 import ShopImg from "../../../../assets/homeImages/shop_bg.avif";
-import Image3 from "../../../../assets/homeImages/img_3.jpg";
-import CreamGel from "../../../../assets/homeImages/creamGel.jpg";
-import AmlaOil from "../../../../assets/homeImages/oil.jpg";
-import Serum from "../../../../assets/homeImages/serum.jpg";
-import Perfume from "../../../../assets/homeImages/perfume.jpg";
-import SkinCare from "../../../../assets/homeImages/skincare.jpg";
 
 interface CartPageProps {
   params: {
@@ -29,6 +25,63 @@ interface CartPageProps {
 
 const CartPage: React.FC<CartPageProps> = ({ params }) => {
   const { locale } = params;
+  const [selectedCategory, setSelectedCategory] = useState<
+    "all" | "creams" | "cosmetics" | "skincare" | "perfume"
+  >("all");
+  const [selectedCategoryAr, setSelectedCategoryAr] = useState<
+    "كل المنتجات" | "كريمات" | "مستحضرات تجميل" | "عناية البشرة" | "عطور"
+  >("كل المنتجات");
+  const [selectedProduct, setSelectedProduct] = useState<Prod | null>(null);
+  const [cartItems, setCartItems] = useState<
+    { product: Prod; quantity: number }[]
+  >([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const filteredProducts =
+    selectedCategory === "all"
+      ? cartproducts
+      : cartproducts.filter((product) => product.category === selectedCategory);
+  const filteredProductsAr =
+    selectedCategoryAr === "كل المنتجات"
+      ? cartproducts
+      : cartproducts.filter(
+          (product) => product.categoryAr === selectedCategoryAr
+        );
+
+  const addToCart = (product: Prod) => {
+    setCartItems((prev) => {
+      const existingItem = prev.find((item) => item.product.id === product.id);
+      if (existingItem) {
+        return prev.map((item) =>
+          item.product.id === product.id
+            ? { ...item, quantity: Math.min(item.quantity + 1, 5) }
+            : item
+        );
+      }
+      return [...prev, { product, quantity: 1 }];
+    });
+  };
+
+  const removeFromCart = (productId: number) => {
+    setCartItems((prev) =>
+      prev.filter((item) => item.product.id !== productId)
+    );
+  };
+
+  const updateCartItemQuantity = (productId: number, quantity: number) => {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.product.id === productId ? { ...item, quantity } : item
+      )
+    );
+  };
+
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const cartTotal = cartItems.reduce((sum, item) => {
+    const price = item.product.price * (1 - item.product.discount / 100);
+    return sum + price * item.quantity;
+  }, 0);
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -62,107 +115,337 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
         </div>
       </section>
 
-      {/* Featured Products */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+      <header className="bg-white shadow-sm">
+        <div
+          className={`container mx-auto px-4 py-4 flex ${
+            locale == "en" ? "flex-row" : "flex-row-reverse"
+          } items-center justify-between`}
+        >
+          <h1 className="text-2xl font-bold text-gray-900">
             {" "}
-            {locale == "en" ? "Bestsellers" : "أفضل المبيعات"}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                name: locale == "en" ? "Natural Face Cream" : "كريم وجه طبيعي",
-                price: "$49.99",
-                image: Image1,
-              },
-              {
-                name: locale == "en" ? "Organic Lipstick" : "أحمر شفاه عضوي",
-                price: "$24.99",
-                image: Image2,
-              },
-              {
-                name: locale == "en" ? "Serum" : "سيروم",
-                price: "$39.99",
-                image: Image3,
-              },
-              {
-                name: locale == "en" ? "Vitamin C Serum" : "سيروم فيتامين سي",
-                price: "$39.99",
-                image: Serum,
-              },
-              {
-                name: locale == "en" ? "Cream Gel" : "كريم جيل",
-                price: "$50.58",
-                image: CreamGel,
-              },
-              {
-                name: locale == "en" ? "Amla Oil" : "زيت أملا",
-                price: "$39.99",
-                image: AmlaOil,
-              },
-              {
-                name: locale == "en" ? "Perfume" : "عطر",
-                price: "$39.99",
-                image: Perfume,
-              },
-              {
-                name: locale == "en" ? "SkinCare" : "العناية بالبشرة",
-                price: "$20.99",
-                image: SkinCare,
-              },
-            ].map((product, index) => (
-              <Card key={index} className="overflow-hidden group">
-                <div className="relative aspect-square">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+            {locale == "en" ? "PRIME Store" : "متجر برايم"}
+          </h1>
+          <button
+            onClick={() => setIsCartOpen(true)}
+            className="relative p-2 hover:bg-gray-100 rounded-full transition-colors"
+          >
+            <CartIcon size={24} />
+            {totalItems > 0 && (
+              <span className="absolute -top-1 -right-1 bg-primary text-white w-5 h-5 rounded-full text-xs flex items-center justify-center">
+                {totalItems}
+              </span>
+            )}
+          </button>
+        </div>
+        <div
+          className={`container mx-auto px-4 py-2 flex gap-3 flex-wrap ${
+            locale == "en" ? "flex-row" : "flex-row-reverse"
+          } justify-center items-center overflow-x-auto`}
+        >
+          {locale == "en"
+            ? (
+                ["all", "creams", "cosmetics", "skincare", "perfume"] as const
+              ).map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`px-4 py-2 rounded-full ${
+                    selectedCategory === category
+                      ? "bg-primary text-white"
+                      : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                  } transition-colors capitalize`}
+                >
+                  {category}
+                </button>
+              ))
+            : (
+                [
+                  "كل المنتجات",
+                  "كريمات",
+                  "مستحضرات تجميل",
+                  "عناية البشرة",
+                  "عطور",
+                ] as const
+              ).map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategoryAr(category)}
+                  className={`px-4 py-2 rounded-full ${
+                    selectedCategoryAr === category
+                      ? "bg-primary text-white"
+                      : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                  } transition-colors capitalize`}
+                >
+                  {category}
+                </button>
+              ))}
+        </div>
+      </header>
+
+      {/* Product Grid */}
+      <main className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {(locale === "en" ? filteredProducts : filteredProductsAr).map(
+            (product) => {
+              const discountedPrice =
+                product.price * (1 - product.discount / 100);
+              return (
+                <div
+                  key={product.id}
+                  className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+                >
+                  <div
+                    className="relative h-64 cursor-pointer"
+                    onClick={() => setSelectedProduct(product)}
+                  >
+                    <img
+                      src={product.images[0]}
+                      alt={product.title}
+                      className="w-full h-full object-cover"
+                    />
+                    {product.discount > 0 && (
+                      <div className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-md">
+                        {product.discount}% {locale == "en" ? "OFF" : "خصم"}
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-4">
+                    <h3 className={`text-lg font-semibold mb-2 ${locale == "en" ? "text-left" : "text-right"}`}>
+                      {locale == "en" ? product.title : product.titleAr}
+                    </h3>
+                    <p className={`text-gray-600 text-sm mb-3 line-clamp-2 ${locale == "en" ? "text-left" : "text-right"}`}>
+                      {locale == "en" ? product.description : product.descriptionAr}
+                    </p>
+                    <div className={`flex items-center justify-between ${locale == "en" ? "flex-row" : "flex-row-reverse"}`}>
+                      <div>
+                        {product.discount > 0 ? (
+                          <div>
+                            <span className="text-gray-400 line-through text-sm">
+                              ${product.price.toFixed(2)}
+                            </span>
+                            <span className="text-lg font-bold text-green-600 ml-2">
+                              ${discountedPrice.toFixed(2)}
+                            </span>
+                          </div>
+                        ) : (
+                          <span className="text-lg font-bold">
+                            ${product.price.toFixed(2)}
+                          </span>
+                        )}
+                      </div>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          addToCart(product);
+                        }}
+                        className="bg-primary text-white p-2 rounded-full hover:bg-secondary transition-colors"
+                      >
+                        <CartIcon size={20} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+          )}
+        </div>
+      </main>
+
+      {/* Product Details Modal */}
+      {selectedProduct && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-4 flex justify-end">
+              <button
+                onClick={() => {
+                  setSelectedProduct(null);
+                  setCurrentImageIndex(0);
+                }}
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+              >
+                <X size={24} />
+              </button>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6">
+              <div className="relative">
+                <div className="relative h-96">
+                  <img
+                    src={selectedProduct.images[currentImageIndex]}
+                    alt={`${selectedProduct.title} - Image ${
+                      currentImageIndex + 1
+                    }`}
+                    className="w-full h-full object-cover rounded-lg"
                   />
-                  <Button
-                    size="icon"
-                    variant="secondary"
-                    className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity"
+                  <button
+                    onClick={() =>
+                      setCurrentImageIndex(
+                        (prev) =>
+                          (prev - 1 + selectedProduct.images.length) %
+                          selectedProduct.images.length
+                      )
+                    }
+                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100"
                   >
-                    <Heart className="h-4 w-4" />
-                  </Button>
+                    <ChevronLeft size={24} />
+                  </button>
+                  <button
+                    onClick={() =>
+                      setCurrentImageIndex(
+                        (prev) => (prev + 1) % selectedProduct.images.length
+                      )
+                    }
+                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100"
+                  >
+                    <ChevronRight size={24} />
+                  </button>
                 </div>
-                <div className="p-4">
-                  <div
-                    className={`flex items-center mb-2 ${
-                      locale == "ar" ? "flex-row-reverse" : "flex-row"
-                    }`}
-                  >
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="h-4 w-4 fill-primary text-primary"
+                <div className={`flex gap-2 mt-4 ${locale == "en" ? "justify-start flex-row" : "flex-row-reverse text-right"}`}>
+                  {selectedProduct.images.map((image, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentImageIndex(index)}
+                      className={`w-20 h-20 rounded-md overflow-hidden ${
+                        currentImageIndex === index
+                          ? "ring-2 ring-blue-500"
+                          : ""
+                      }`}
+                    >
+                      <img
+                        src={image}
+                        alt={`${selectedProduct.title} - Thumbnail ${
+                          index + 1
+                        }`}
+                        className="w-full h-full object-cover"
                       />
-                    ))}
-                  </div>
-                  <h3
-                    className={`font-semibold mb-2 ${
-                      locale == "ar" ? "text-right" : "text-left"
-                    }`}
-                  >
-                    {product.name}
-                  </h3>
-                  <div
-                    className={`flex items-center justify-between ${
-                      locale == "ar" ? "flex-row-reverse" : "flex-row"
-                    }`}
-                  >
-                    <span className="text-lg font-bold">{product.price}</span>
-                    <Button size="sm" className="text-white">
-                      {locale == "en" ? "Add to Cart" : "أضف إلى السلة"}
-                    </Button>
-                  </div>
+                    </button>
+                  ))}
                 </div>
-              </Card>
-            ))}
+              </div>
+              <div>
+                <h2 className={`text-3xl font-bold mb-4 ${locale == "en" ? "text-left" : "text-right"}`}>
+                  {locale =="en" ? selectedProduct.title : selectedProduct.titleAr}
+                </h2>
+                <p className={`text-gray-600 mb-6 ${locale == "en" ? "text-left" : "text-right"}`}>
+                  {locale == "en" ?  selectedProduct.description : selectedProduct.descriptionAr}
+                </p>
+                <div className="mb-6">
+                  {selectedProduct.discount > 0 ? (
+                    <div className={`flex items-center gap-2 ${locale == "en" ? "justify-start" : "justify-end"}`}>
+                      <span className="text-gray-400 line-through text-xl">
+                        ${selectedProduct.price.toFixed(2)}
+                      </span>
+                      <span className="text-3xl font-bold text-green-600">
+                        $
+                        {(
+                          selectedProduct.price *
+                          (1 - selectedProduct.discount / 100)
+                        ).toFixed(2)}
+                      </span>
+                      <span className="bg-red-500 text-white px-2 py-1 rounded-md text-sm">
+                        {selectedProduct.discount}%  {locale == "en" ? "OFF" : "خصم"}
+                      </span>
+                    </div>
+                  ) : (
+                    <span className="text-3xl font-bold">
+                      ${selectedProduct.price.toFixed(2)}
+                    </span>
+                  )}
+                </div>
+                <button
+                  onClick={() => {
+                    addToCart(selectedProduct);
+                    setSelectedProduct(null);
+                    setCurrentImageIndex(0);
+                  }}
+                  className="w-full bg-primary text-white py-3 px-6 rounded-lg hover:bg-secondary transition-colors"
+                >
+                  {locale == "en" ? "Add to Cart" : "إضافة إلى العربة"}
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+      )}
+
+      {/* Cart Sidebar */}
+      {isCartOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-end z-50">
+          <div className="bg-white h-full w-full max-w-md shadow-xl">
+            <div className={`p-4 border-b flex items-center justify-between ${locale == "en" ? "flex-row" : "flex-row-reverse"}`}>
+              <h2 className="text-xl font-semibold"> {locale == "en" ? "Shopping Cart" : "عربة التسوق"}</h2>
+              <button
+                onClick={() => setIsCartOpen(false)}
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+              >
+                <X size={24} />
+              </button>
+            </div>
+            <div className="p-4">
+              {cartItems.length === 0 ? (
+                <div className="text-center text-gray-500">
+                  {locale == "en" ? "Your cart is empty" : "عربتك فارغة"}
+                </div>
+              ) : (
+                <>
+                  {cartItems.map((item) => {
+                    const discountedPrice =
+                      item.product.price * (1 - item.product.discount / 100);
+                    return (
+                      <div
+                        key={item.product.id}
+                        className="flex items-center gap-4 py-4 border-b last:border-b-0 "
+                      >
+                        <img
+                          src={item.product.images[0]}
+                          alt={item.product.title}
+                          className="w-20 h-20 object-cover rounded-md"
+                        />
+                        <div className="flex-1">
+                          <h3 className="font-semibold">
+                            {locale =="en" ? item.product.title : item.product.titleAr}
+                          </h3>
+                          <div className="text-sm text-gray-500">
+                            ${discountedPrice.toFixed(2)} x {item.quantity}
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <select
+                            value={item.quantity}
+                            onChange={(e) =>
+                              updateCartItemQuantity(
+                                item.product.id,
+                                Number(e.target.value)
+                              )
+                            }
+                            className="p-1 border rounded"
+                          >
+                            {[1, 2, 3, 4, 5].map((num) => (
+                              <option key={num} value={num}>
+                                {num}
+                              </option>
+                            ))}
+                          </select>
+                          <button
+                            onClick={() => removeFromCart(item.product.id)}
+                            className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+                          >
+                            <X size={20} />
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                  <div className="mt-4 text-right">
+                    <div className="text-lg font-bold">
+                      {locale == "en" ? "Total:" : "الإجمالي:"} ${cartTotal.toFixed(2)}
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* About Section */}
       <section className="py-20 bg-muted">
@@ -316,15 +599,19 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
               </ul>
             </div>
             <div>
-              <h3 className={`font-bold text-lg mb-4 ${
+              <h3
+                className={`font-bold text-lg mb-4 ${
                   locale == "ar" ? "text-right" : "text-left"
-                }`}>
+                }`}
+              >
                 {" "}
                 {locale == "en" ? "Follow Us" : "تابعنا"}
               </h3>
-              <div className={`flex space-x-4 ${
+              <div
+                className={`flex space-x-4 ${
                   locale == "ar" ? "justify-end" : "justify-start"
-                }`}>
+                }`}
+              >
                 {[
                   {
                     icon: Instagram,
