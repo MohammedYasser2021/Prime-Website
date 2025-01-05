@@ -12,10 +12,11 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import { ShoppingCart as CartIcon } from "lucide-react";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Eye } from "lucide-react";
 import Prod from "../components/types/index";
 import cartproducts from "../components/productsData/CartProducts";
 import ShopImg from "../../../../assets/homeImages/shop_bg.avif";
+import { useRouter } from "next/navigation"; // Importing the router
 
 interface CartPageProps {
   params: {
@@ -25,6 +26,7 @@ interface CartPageProps {
 
 const CartPage: React.FC<CartPageProps> = ({ params }) => {
   const { locale } = params;
+  const router = useRouter(); // Use the useRouter hook
   const [selectedCategory, setSelectedCategory] = useState<
     "all" | "creams" | "cosmetics" | "skincare" | "perfume"
   >("all");
@@ -82,6 +84,11 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
     const price = item.product.price * (1 - item.product.discount / 100);
     return sum + price * item.quantity;
   }, 0);
+
+  const navigateToProduct = (productId: number) => {
+    // Navigate to the product detail page using the dynamic productId
+    router.push(`/cartPage/${productId}`);
+  };
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -210,9 +217,12 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
                     )}
                   </div>
                   <div className="p-4">
-                    <h3 className={`text-lg font-semibold mb-2 ${locale == "en" ? "text-left" : "text-right"}`}>
+                    <div className={`flex justify-between items-center mb-2 ${locale == "en" ? "flex-row" : "flex-row-reverse"}`}>
+                    <h3 className={`text-lg font-semibold  `}>
                       {locale == "en" ? product.title : product.titleAr}
                     </h3>
+                    <button className="navigateProduct  bg-primary text-white p-2 rounded-full hover:bg-secondary transition-colors" title={locale == "en" ? "View Product Details" : "عرض تفاصيل المنتج"} onClick={() => navigateToProduct(product.id)}><Eye size={20}/></button>
+                    </div>
                     <p className={`text-gray-600 text-sm mb-3 line-clamp-2 ${locale == "en" ? "text-left" : "text-right"}`}>
                       {locale == "en" ? product.description : product.descriptionAr}
                     </p>
