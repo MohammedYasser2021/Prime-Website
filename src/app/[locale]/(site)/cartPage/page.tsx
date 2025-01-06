@@ -12,11 +12,21 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import { ShoppingCart as CartIcon } from "lucide-react";
-import { X, ChevronLeft, ChevronRight, Eye } from "lucide-react";
+import {
+  X,
+  ChevronLeft,
+  Minus,
+  Plus,
+  ChevronRight,
+  Eye,
+  Filter,
+} from "lucide-react";
 import Prod from "../components/types/index";
 import cartproducts from "../components/productsData/CartProducts";
 import ShopImg from "../../../../assets/homeImages/shop_bg.avif";
 import { useRouter } from "next/navigation"; // Importing the router
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 interface CartPageProps {
   params: {
@@ -31,21 +41,23 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
     "all" | "creams" | "cosmetics" | "skincare" | "perfume"
   >("all");
   const [selectedCategoryAr, setSelectedCategoryAr] = useState<
-    "كل المنتجات" | "كريمات" | "مستحضرات تجميل" | "عناية البشرة" | "عطور"
-  >("كل المنتجات");
+    "الكل" | "كريمات" | "مستحضرات تجميل" | "عناية البشرة" | "عطور"
+  >("الكل");
   const [selectedProduct, setSelectedProduct] = useState<Prod | null>(null);
   const [cartItems, setCartItems] = useState<
     { product: Prod; quantity: number }[]
   >([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const linkAr = "/ar/cartPage";
+  const linkEn = "/en/cartPage";
 
   const filteredProducts =
     selectedCategory === "all"
       ? cartproducts
       : cartproducts.filter((product) => product.category === selectedCategory);
   const filteredProductsAr =
-    selectedCategoryAr === "كل المنتجات"
+    selectedCategoryAr === "الكل"
       ? cartproducts
       : cartproducts.filter(
           (product) => product.categoryAr === selectedCategoryAr
@@ -89,65 +101,45 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
     // Navigate to the product detail page using the dynamic productId
     router.push(`/cartPage/${productId}`);
   };
+
+  const navigateToProductsFilteration = () => {
+    router.push(`/productFilteration`);
+  };
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[90vh] flex items-center justify-center">
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
-          <div className="absolute inset-0 bg-black/40" />
-        </div>
-        <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            {locale == "en"
-              ? "Natural Beauty Essentials"
-              : "أساسيات الجمال الطبيعي"}
-          </h1>
-          <p className="text-xl md:text-2xl mb-8">
-            {locale == "en"
-              ? "Discover our collection of organic and natural cosmetics "
-              : "اكتشف مجموعتنا من مستحضرات التجميل العضوية والطبيعية"}
-          </p>
-          <Button size="lg" className="bg-primary hover:bg-primary/90">
-            {locale == "en" ? "Shop Now" : "تسوق الأن"}{" "}
-            <ShoppingBag className="ml-2 h-5 w-5" />
-          </Button>
-        </div>
-      </section>
+      <Header params={params} linkAr={linkAr} linkEn={linkEn} />
 
       <header className="bg-white shadow-sm">
         <div
-          className={`container mx-auto px-4 py-4 flex ${
-            locale == "en" ? "flex-row" : "flex-row-reverse"
-          } items-center justify-between`}
+          className={`container mx-auto px-4 py-4 flex items-center justify-between`}
         >
           <h1 className="text-2xl font-bold text-gray-900">
             {" "}
             {locale == "en" ? "PRIME Store" : "متجر برايم"}
           </h1>
-          <button
-            onClick={() => setIsCartOpen(true)}
-            className="relative p-2 hover:bg-gray-100 rounded-full transition-colors"
-          >
-            <CartIcon size={24} />
-            {totalItems > 0 && (
-              <span className="absolute -top-1 -right-1 bg-primary text-white w-5 h-5 rounded-full text-xs flex items-center justify-center">
-                {totalItems}
-              </span>
-            )}
-          </button>
+          <div className="flex items-center">
+            <button
+              onClick={() => setIsCartOpen(true)}
+              className="relative p-2 hover:bg-gray-100 rounded-full transition-colors"
+            >
+              <CartIcon size={24} />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 bg-primary text-white w-5 h-5 rounded-full text-xs flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
+            </button>
+            <button
+              onClick={navigateToProductsFilteration}
+              className="hover:bg-gray-100 p-2 rounded-full transition-colors"
+            >
+              <Filter size={24} />
+            </button>
+          </div>
         </div>
         <div
-          className={`container mx-auto px-4 py-2 flex gap-3 flex-wrap ${
-            locale == "en" ? "flex-row" : "flex-row-reverse"
-          } justify-center items-center overflow-x-auto`}
+          className={`container mx-auto mb-2 px-4 py-2 flex gap-3 flex-wrap justify-center items-center overflow-x-auto`}
         >
           {locale == "en"
             ? (
@@ -167,7 +159,7 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
               ))
             : (
                 [
-                  "كل المنتجات",
+                  "الكل",
                   "كريمات",
                   "مستحضرات تجميل",
                   "عناية البشرة",
@@ -217,16 +209,36 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
                     )}
                   </div>
                   <div className="p-4">
-                    <div className={`flex justify-between items-center mb-2 ${locale == "en" ? "flex-row" : "flex-row-reverse"}`}>
-                    <h3 className={`text-lg font-semibold  `}>
-                      {locale == "en" ? product.title : product.titleAr}
-                    </h3>
-                    <button className="navigateProduct  bg-primary text-white p-2 rounded-full hover:bg-secondary transition-colors" title={locale == "en" ? "View Product Details" : "عرض تفاصيل المنتج"} onClick={() => navigateToProduct(product.id)}><Eye size={20}/></button>
+                    <div
+                      className={`flex justify-between items-center mb-2 `}
+                    >
+                      <h3 className={`text-lg font-semibold  `}>
+                        {locale == "en" ? product.title : product.titleAr}
+                      </h3>
+                      <button
+                        className="navigateProduct p-2 rounded-full  transition-colors"
+                        title={
+                          locale == "en"
+                            ? "View Product Details"
+                            : "عرض تفاصيل المنتج"
+                        }
+                        onClick={() => navigateToProduct(product.id)}
+                      >
+                        <Eye size={20} />
+                      </button>
                     </div>
-                    <p className={`text-gray-600 text-sm mb-3 line-clamp-2 ${locale == "en" ? "text-left" : "text-right"}`}>
-                      {locale == "en" ? product.description : product.descriptionAr}
+                    <p
+                      className={`text-gray-600 text-sm mb-3 line-clamp-2 ${
+                        locale == "en" ? "text-left" : "text-right"
+                      }`}
+                    >
+                      {locale == "en"
+                        ? product.description
+                        : product.descriptionAr}
                     </p>
-                    <div className={`flex items-center justify-between ${locale == "en" ? "flex-row" : "flex-row-reverse"}`}>
+                    <div
+                      className={`flex items-center justify-between `}
+                    >
                       <div>
                         {product.discount > 0 ? (
                           <div>
@@ -309,7 +321,9 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
                     <ChevronRight size={24} />
                   </button>
                 </div>
-                <div className={`flex gap-2 mt-4 ${locale == "en" ? "justify-start flex-row" : "flex-row-reverse text-right"}`}>
+                <div
+                  className={`flex gap-2 mt-4`}
+                >
                   {selectedProduct.images.map((image, index) => (
                     <button
                       key={index}
@@ -332,15 +346,27 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
                 </div>
               </div>
               <div>
-                <h2 className={`text-3xl font-bold mb-4 ${locale == "en" ? "text-left" : "text-right"}`}>
-                  {locale =="en" ? selectedProduct.title : selectedProduct.titleAr}
+                <h2
+                  className={`text-3xl font-bold mb-4 ${
+                    locale == "en" ? "text-left" : "text-right"
+                  }`}
+                >
+                  {locale == "en"
+                    ? selectedProduct.title
+                    : selectedProduct.titleAr}
                 </h2>
-                <p className={`text-gray-600 mb-6 ${locale == "en" ? "text-left" : "text-right"}`}>
-                  {locale == "en" ?  selectedProduct.description : selectedProduct.descriptionAr}
+                <p
+                  className={`text-gray-600 mb-6 `}
+                >
+                  {locale == "en"
+                    ? selectedProduct.description
+                    : selectedProduct.descriptionAr}
                 </p>
                 <div className="mb-6">
                   {selectedProduct.discount > 0 ? (
-                    <div className={`flex items-center gap-2 ${locale == "en" ? "justify-start" : "justify-end"}`}>
+                    <div
+                      className={`flex items-center gap-2`}
+                    >
                       <span className="text-gray-400 line-through text-xl">
                         ${selectedProduct.price.toFixed(2)}
                       </span>
@@ -352,7 +378,8 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
                         ).toFixed(2)}
                       </span>
                       <span className="bg-red-500 text-white px-2 py-1 rounded-md text-sm">
-                        {selectedProduct.discount}%  {locale == "en" ? "OFF" : "خصم"}
+                        {selectedProduct.discount}%{" "}
+                        {locale == "en" ? "OFF" : "خصم"}
                       </span>
                     </div>
                   ) : (
@@ -381,8 +408,12 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
       {isCartOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-end z-50">
           <div className="bg-white h-full w-full max-w-md shadow-xl">
-            <div className={`p-4 border-b flex items-center justify-between ${locale == "en" ? "flex-row" : "flex-row-reverse"}`}>
-              <h2 className="text-xl font-semibold"> {locale == "en" ? "Shopping Cart" : "عربة التسوق"}</h2>
+            <div
+              className={`p-4 border-b flex items-center justify-between`}
+            >
+              <h2 className="text-xl font-semibold">
+                {locale == "en" ? "Shopping Cart" : "عربة التسوق"}
+              </h2>
               <button
                 onClick={() => setIsCartOpen(false)}
                 className="p-2 hover:bg-gray-100 rounded-full transition-colors"
@@ -403,7 +434,7 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
                     return (
                       <div
                         key={item.product.id}
-                        className="flex items-center gap-4 py-4 border-b last:border-b-0 "
+                        className="flex items-center gap-4 py-4 border-b last:border-b-0"
                       >
                         <img
                           src={item.product.images[0]}
@@ -412,29 +443,50 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
                         />
                         <div className="flex-1">
                           <h3 className="font-semibold">
-                            {locale =="en" ? item.product.title : item.product.titleAr}
+                            {locale == "en"
+                              ? item.product.title
+                              : item.product.titleAr}
                           </h3>
                           <div className="text-sm text-gray-500">
                             ${discountedPrice.toFixed(2)} x {item.quantity}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
-                          <select
-                            value={item.quantity}
-                            onChange={(e) =>
-                              updateCartItemQuantity(
-                                item.product.id,
-                                Number(e.target.value)
-                              )
-                            }
-                            className="p-1 border rounded"
-                          >
-                            {[1, 2, 3, 4, 5].map((num) => (
-                              <option key={num} value={num}>
-                                {num}
-                              </option>
-                            ))}
-                          </select>
+                          <div className="flex items-center border rounded">
+                            <button
+                              onClick={() =>
+                                updateCartItemQuantity(
+                                  item.product.id,
+                                  Math.max(1, item.quantity - 1)
+                                )
+                              }
+                              className="p-1 hover:bg-gray-100 transition-colors"
+                              disabled={item.quantity <= 1}
+                            >
+                              <Minus
+                                size={16}
+                                className={
+                                  item.quantity <= 1
+                                    ? "text-gray-300"
+                                    : "text-gray-600"
+                                }
+                              />
+                            </button>
+                            <span className="px-3 py-1 min-w-[40px] text-center">
+                              {item.quantity}
+                            </span>
+                            <button
+                              onClick={() =>
+                                updateCartItemQuantity(
+                                  item.product.id,
+                                  item.quantity + 1
+                                )
+                              }
+                              className="p-1 hover:bg-gray-100 transition-colors"
+                            >
+                              <Plus size={16} className="text-gray-600" />
+                            </button>
+                          </div>
                           <button
                             onClick={() => removeFromCart(item.product.id)}
                             className="p-1 hover:bg-gray-100 rounded-full transition-colors"
@@ -447,7 +499,8 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
                   })}
                   <div className="mt-4 text-right">
                     <div className="text-lg font-bold">
-                      {locale == "en" ? "Total:" : "الإجمالي:"} ${cartTotal.toFixed(2)}
+                      {locale == "en" ? "Total:" : "الإجمالي:"} $
+                      {cartTotal.toFixed(2)}
                     </div>
                   </div>
                 </>
@@ -486,7 +539,7 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
                   : "نؤمن بقوة الطبيعة في تعزيز جمالك الطبيعي. منتجاتنا مصنوعة بعناية باستخدام أفضل المكونات العضوية فقط، لضمان حصول بشرتك على التغذية التي تستحقها."}
               </p>
               <ul
-                className={`space-y-4 ${locale === "ar" ? "text-right" : ""}`}
+                className={`space-y-4 `}
               >
                 {[
                   locale == "en"
@@ -502,9 +555,7 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
                 ].map((item, index) => (
                   <li
                     key={index}
-                    className={`flex items-center ${
-                      locale === "ar" ? "flex-row-reverse" : ""
-                    }`}
+                    className={`flex items-center `}
                   >
                     <div
                       className={`h-2 w-2 bg-primary rounded-full mr-3 ${
@@ -521,143 +572,7 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-background py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <h3
-                className={`font-bold text-lg mb-4 ${
-                  locale == "ar" ? "text-right" : "text-left"
-                }`}
-              >
-                {" "}
-                {locale == "en" ? "About Us" : "بنذة عننا"}
-              </h3>
-              <p
-                className={`text-muted-foreground ${
-                  locale == "ar" ? "text-right" : "text-left"
-                }`}
-              >
-                {locale == "en"
-                  ? "Natural beauty products for everyone. Made with love and care for your skin."
-                  : "منتجات الجمال الطبيعي للجميع. مصنوعة بحب وعناية لبشرتك."}
-              </p>
-            </div>
-            <div>
-              <h3
-                className={`font-bold text-lg mb-4 ${
-                  locale == "ar" ? "text-right" : "text-left"
-                }`}
-              >
-                {" "}
-                {locale == "en" ? "Quick Links" : "روابط سريعة"}
-              </h3>
-              <ul
-                className={`space-y-2 ${
-                  locale == "ar" ? "text-right" : "text-left"
-                }`}
-              >
-                {[
-                  locale == "en" ? "Shop" : "تسوق",
-                  locale == "en" ? "About" : "عننا",
-                  locale == "en" ? "Contact" : "الأسئلة الشائعة",
-                  locale == "en" ? "FAQ" : "تواصل معنا",
-                ].map((item, index) => (
-                  <li key={index}>
-                    <a
-                      href="#"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3
-                className={`font-bold text-lg mb-4 ${
-                  locale == "ar" ? "text-right" : "text-left"
-                }`}
-              >
-                {" "}
-                {locale == "en" ? "Contact" : "تواصل معنا"}
-              </h3>
-              <ul
-                className={`space-y-2 text-muted-foreground ${
-                  locale == "ar" ? "text-right" : "text-left"
-                }`}
-              >
-                <li>
-                  {" "}
-                  {locale == "en"
-                    ? "Email: hello@naturals.com"
-                    : " hello@naturals.com :البريد الإلكتروني"}
-                </li>
-                <li>
-                  {" "}
-                  {locale == "en"
-                    ? "Phone: (555) 123-4567"
-                    : "الهاتف: (555) 123-4567"}
-                </li>
-                <li>
-                  {" "}
-                  {locale == "en"
-                    ? "Address: 123 Beauty Street"
-                    : "العنوان: 123 شارع الجمال"}
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3
-                className={`font-bold text-lg mb-4 ${
-                  locale == "ar" ? "text-right" : "text-left"
-                }`}
-              >
-                {" "}
-                {locale == "en" ? "Follow Us" : "تابعنا"}
-              </h3>
-              <div
-                className={`flex space-x-4 ${
-                  locale == "ar" ? "justify-end" : "justify-start"
-                }`}
-              >
-                {[
-                  {
-                    icon: Instagram,
-                    label: locale == "en" ? "Instagram" : "انستجرام",
-                  },
-                  {
-                    icon: Facebook,
-                    label: locale == "en" ? "Facebook" : "فيسبوك",
-                  },
-                  {
-                    icon: Twitter,
-                    label: locale == "en" ? "Twitter" : "تويتر",
-                  },
-                ].map((social, index) => (
-                  <Button
-                    key={index}
-                    size="icon"
-                    className="rounded-lg text-white hvr-pop"
-                  >
-                    <social.icon className="h-5 w-5" />
-                    <span className="sr-only">{social.label}</span>
-                  </Button>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
-            <p>
-              &copy;{" "}
-              {locale == "en"
-                ? "2024 PRIME. All rights reserved."
-                : "2024 PRIME. جميع الحقوق محفوظة."}
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer params={params} />
     </main>
   );
 };

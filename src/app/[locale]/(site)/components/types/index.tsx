@@ -14,6 +14,7 @@ export default interface Prod {
   stock: number;
   rating: number;
   reviews: number;
+  sales: number;
   dimensions: string;
   weight: string;
   tags: string[];

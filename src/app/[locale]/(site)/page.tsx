@@ -1,11 +1,11 @@
 import HomeComp from "@/components/pageComponents/pages/homeComp";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import Products from "./components/Products";
 import Classification from "./components/Classification";
 import Offers from "./components/Offers";
 import RequestedProducts from "./components/RequestedProducts";
 import Beauty from "./components/Beauty";
-import Footer from "./components/Footer";
 import { unstable_setRequestLocale } from "next-intl/server";
 
 export async function generateMetadata(params: any) {
@@ -19,7 +19,8 @@ export async function generateMetadata(params: any) {
         : "مرحبًا بكم في برايم بوابتكم إلى المنتجات عالية الجودة في منتجات الصناعة. استكشف مجموعاتنا المميزة، اكتشف أحدث الاتجاهات، وابحث عن كل ما تحتاجه لاحتياجاتك في منتجات الصناعة.",
   };
 }
-
+const linkAr = "/ar"; // Arabic link
+const linkEn = "/en"; // English link
 interface IndexProps {
   params: {
     locale: string;
@@ -29,7 +30,7 @@ interface IndexProps {
 export default function Index({ params }: IndexProps) {
   return (
     <>
-      <Header params={params} />
+      <Header params={params} linkAr = {linkAr} linkEn = {linkEn}/>
       <Products params={params} />
       <Classification params={params} />
       <Offers params={params} />

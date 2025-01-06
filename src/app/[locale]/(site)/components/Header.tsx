@@ -16,9 +16,11 @@ interface HeaderProps {
   params: {
     locale: string;
   };
+  linkAr: string; // Arabic link
+  linkEn: string; // English link
 }
 
-const Header: React.FC<HeaderProps> = ({ params }) => {
+const Header: React.FC<HeaderProps> = ({ params, linkAr, linkEn }) => {
   const { locale } = params;
 
   return (
@@ -103,7 +105,7 @@ const Header: React.FC<HeaderProps> = ({ params }) => {
         >
           <div className="relative flex items-center">
             <Link
-              href="/ar"
+              href={`${linkAr}`}
               className={`w-[48px] h-[26px] z-10 rounded-[10px] ${
                 locale == "en" ? "bg-secondary pl-2" : "bg-primary pr-2"
               } text-[#ffffff] text-[14px]`}
@@ -111,7 +113,7 @@ const Header: React.FC<HeaderProps> = ({ params }) => {
               عربي
             </Link>
             <Link
-              href="/en"
+              href={`${linkEn}`}
               className={`w-[86px] h-[26px] rounded-[10px] leading-[21px] text-[#ffffff] text-[14px] absolute ${
                 locale === "en"
                   ? "right-0 pr-[56px] bg-primary"
