@@ -6,11 +6,11 @@ import Classification from "./components/Classification";
 import Offers from "./components/Offers";
 import RequestedProducts from "./components/RequestedProducts";
 import Beauty from "./components/Beauty";
-// import { unstable_setRequestLocale } from "next-intl/server";
+import { unstable_setRequestLocale } from "next-intl/server";
 
 export async function generateMetadata(params: any) {
   const { locale } = params.params;
-  // unstable_setRequestLocale(locale);
+  unstable_setRequestLocale(locale);
   return {
     title: locale === "en" ? "PRIME" : "برايم",
     description:
