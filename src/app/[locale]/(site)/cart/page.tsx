@@ -4,6 +4,7 @@ import { ShoppingCart as CartIcon } from "lucide-react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import Prod from "../components/types/index";
 import cartproducts from "../components/productsData/CartProducts";
+import Image from "next/image";
 
 interface CartProps {
   params: {
@@ -113,7 +114,7 @@ const Cart: React.FC<CartProps> = ({ params }) => {
                   className="relative h-64 cursor-pointer"
                   onClick={() => setSelectedProduct(product)}
                 >
-                  <img
+                  <Image
                     src={product.images[0]}
                     alt={product.title}
                     className="w-full h-full object-cover"
@@ -183,7 +184,7 @@ const Cart: React.FC<CartProps> = ({ params }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6">
               <div className="relative">
                 <div className="relative h-96">
-                  <img
+                  <Image
                     src={selectedProduct.images[currentImageIndex]}
                     alt={`${selectedProduct.title} - Image ${
                       currentImageIndex + 1
@@ -224,7 +225,7 @@ const Cart: React.FC<CartProps> = ({ params }) => {
                           : ""
                       }`}
                     >
-                      <img
+                      <Image
                         src={image}
                         alt={`${selectedProduct.title} - Thumbnail ${
                           index + 1
@@ -309,7 +310,7 @@ const Cart: React.FC<CartProps> = ({ params }) => {
                         key={item.product.id}
                         className="flex items-center gap-4 py-4 border-b last:border-b-0"
                       >
-                        <img
+                        <Image
                           src={item.product.images[0]}
                           alt={item.product.title}
                           className="w-20 h-20 object-cover rounded-md"

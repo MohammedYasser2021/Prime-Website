@@ -1,15 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import {
-  ShoppingBag,
-  Star,
-  Heart,
-  Instagram,
-  Facebook,
-  Twitter,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import { ShoppingCart as CartIcon } from "lucide-react";
 import {
@@ -191,80 +181,143 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
               return (
                 <div
                   key={product.id}
-                  className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+                  className="sm:w-[300px] w-full min-h-[450px] relative z-50 bg-white rounded-[20px] p-4 transition-transform hover:scale-[1.02]"
+                  style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
                 >
+                  {/* Top Section with Stars and Actions */}
+                  <div className="flex justify-between items-start mb-2">
+              
+                    <button
+                      className="order-1 p-2 rounded-full hover:bg-gray-100 transition-colors"
+                      title={
+                        locale == "en"
+                          ? "View Product Details"
+                          : "عرض تفاصيل المنتج"
+                      }
+                      onClick={() => navigateToProduct(product.id)}
+                    >
+                      <Eye size={20} className="text-gray-600" />
+                    </button>
+                  </div>
+
+                  {/* Discount Badge */}
+                  {product.discount > 0 && (
+                    <div className="absolute top-10 right-3 z-10">
+                      <h1 className="text-col text-[20px] bg-red-50 rounded-full p-2">
+                        {product.discount}{" "}
+                        <span className="text-[20px] text-secondary">%</span>
+                      </h1>
+                    </div>
+                  )}
+
+                  {/* Product Image */}
                   <div
-                    className="relative h-64 cursor-pointer"
+                    className="relative h-[250px] mb-4 group cursor-pointer"
                     onClick={() => setSelectedProduct(product)}
                   >
-                    <img
+                    <Image
                       src={product.images[0]}
                       alt={product.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover rounded-[15px]"
+                      width={300}
+                      height={250}
                     />
-                    {product.discount > 0 && (
-                      <div className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-md">
-                        {product.discount}% {locale == "en" ? "OFF" : "خصم"}
-                      </div>
-                    )}
+                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 rounded-[15px]" />
                   </div>
-                  <div className="p-4">
-                    <div
-                      className={`flex justify-between items-center mb-2 `}
+
+                  {/* Product Details */}
+                  <div className="space-y-3">
+                    <h1
+                      className={`text-[#000000] font-bold text-[18px] ${
+                        locale == "ar" ? "text-right" : "text-left"
+                      } line-clamp-1`}
                     >
-                      <h3 className={`text-lg font-semibold  `}>
-                        {locale == "en" ? product.title : product.titleAr}
-                      </h3>
-                      <button
-                        className="navigateProduct p-2 rounded-full  transition-colors"
-                        title={
-                          locale == "en"
-                            ? "View Product Details"
-                            : "عرض تفاصيل المنتج"
-                        }
-                        onClick={() => navigateToProduct(product.id)}
-                      >
-                        <Eye size={20} />
-                      </button>
-                    </div>
+                      {locale == "en" ? product.title : product.titleAr}
+                    </h1>
+
                     <p
-                      className={`text-gray-600 text-sm mb-3 line-clamp-2 ${
-                        locale == "en" ? "text-left" : "text-right"
-                      }`}
+                      className={`text-[14px] text-gray-600 ${
+                        locale == "ar" ? "text-right" : "text-left"
+                      } line-clamp-2`}
                     >
                       {locale == "en"
                         ? product.description
                         : product.descriptionAr}
                     </p>
+
+                    {/* Additional Product Info */}
                     <div
-                      className={`flex items-center justify-between `}
+                      className={`flex gap-4 text-sm text-gray-500 ${
+                        locale == "ar" ? "justify-end" : "justify-start"
+                      }`}
                     >
-                      <div>
+                      {product.category && (
+                        <span className="bg-gray-100 px-2 py-1 rounded-full">
+                          {product.category}
+                        </span>
+                      )}
+                      {product.brand && (
+                        <span className="bg-gray-100 px-2 py-1 rounded-full">
+                          {product.brand}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Price and Cart Section */}
+                    <div className="flex justify-between items-center pt-3 border-t">
+                      <div className="flex flex-col">
                         {product.discount > 0 ? (
-                          <div>
-                            <span className="text-gray-400 line-through text-sm">
+                          <>
+                            <span className="text-col text-[25px] font-bold">
+                              ${discountedPrice.toFixed(2)}{" "}
+                              <span className="text-[15px] font-bold text-secondary">
+                                {locale === "ar" ? " دك" : "Dr"}
+                              </span>
+                            </span>
+                            <span className="text-[15px] text-secondary line-through">
                               ${product.price.toFixed(2)}
                             </span>
-                            <span className="text-lg font-bold text-green-600 ml-2">
-                              ${discountedPrice.toFixed(2)}
-                            </span>
-                          </div>
+                          </>
                         ) : (
-                          <span className="text-lg font-bold">
-                            ${product.price.toFixed(2)}
+                          <span className="text-col text-[25px] font-bold">
+                            ${product.price.toFixed(2)}{" "}
+                            <span className="text-[15px] font-bold text-secondary">
+                              {locale === "ar" ? " دك" : "Dr"}
+                            </span>
                           </span>
                         )}
                       </div>
+
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
                           addToCart(product);
                         }}
-                        className="bg-primary text-white p-2 rounded-full hover:bg-secondary transition-colors"
+                        className="bg-primary text-white p-3 rounded-full hover:bg-secondary transition-all duration-300 hover:scale-110"
+                        title={
+                          locale === "ar" ? "أضف إلى السلة" : "Add to Cart"
+                        }
                       >
-                        <CartIcon size={20} />
+                        <CartIcon size={22} />
                       </button>
                     </div>
+
+                    {/* Stock Status */}
+                    {product.stock && (
+                      <div
+                        className={`text-sm ${
+                          product.stock > 0 ? "text-green-600" : "text-red-600"
+                        }`}
+                      >
+                        {product.stock > 0
+                          ? locale === "ar"
+                            ? "متوفر في المخزون"
+                            : "In Stock"
+                          : locale === "ar"
+                          ? "نفذت الكمية"
+                          : "Out of Stock"}
+                      </div>
+                    )}
                   </div>
                 </div>
               );
@@ -291,7 +344,9 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6">
               <div className="relative">
                 <div className="relative h-96">
-                  <img
+                  <Image
+                   width={500}  // Add the desired width
+                   height={300} // Add the desired height
                     src={selectedProduct.images[currentImageIndex]}
                     alt={`${selectedProduct.title} - Image ${
                       currentImageIndex + 1
@@ -321,9 +376,7 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
                     <ChevronRight size={24} />
                   </button>
                 </div>
-                <div
-                  className={`flex gap-2 mt-4`}
-                >
+                <div className={`flex gap-2 mt-4`}>
                   {selectedProduct.images.map((image, index) => (
                     <button
                       key={index}
@@ -334,8 +387,10 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
                           : ""
                       }`}
                     >
-                      <img
+                      <Image
                         src={image}
+                        width={500}  // Add the desired width
+                        height={300} // Add the desired height
                         alt={`${selectedProduct.title} - Thumbnail ${
                           index + 1
                         }`}
@@ -355,18 +410,14 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
                     ? selectedProduct.title
                     : selectedProduct.titleAr}
                 </h2>
-                <p
-                  className={`text-gray-600 mb-6 `}
-                >
+                <p className={`text-gray-600 mb-6 `}>
                   {locale == "en"
                     ? selectedProduct.description
                     : selectedProduct.descriptionAr}
                 </p>
                 <div className="mb-6">
                   {selectedProduct.discount > 0 ? (
-                    <div
-                      className={`flex items-center gap-2`}
-                    >
+                    <div className={`flex items-center gap-2`}>
                       <span className="text-gray-400 line-through text-xl">
                         ${selectedProduct.price.toFixed(2)}
                       </span>
@@ -408,9 +459,7 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
       {isCartOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-end z-50">
           <div className="bg-white h-full w-full max-w-md shadow-xl">
-            <div
-              className={`p-4 border-b flex items-center justify-between`}
-            >
+            <div className={`p-4 border-b flex items-center justify-between`}>
               <h2 className="text-xl font-semibold">
                 {locale == "en" ? "Shopping Cart" : "عربة التسوق"}
               </h2>
@@ -436,7 +485,9 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
                         key={item.product.id}
                         className="flex items-center gap-4 py-4 border-b last:border-b-0"
                       >
-                        <img
+                        <Image
+                         width={500}  // Add the desired width
+                         height={300} // Add the desired height
                           src={item.product.images[0]}
                           alt={item.product.title}
                           className="w-20 h-20 object-cover rounded-md"
@@ -516,6 +567,8 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
               <Image
+               width={500}  // Add the desired width
+               height={300} // Add the desired height
                 src={ShopImg}
                 alt="About Us"
                 className="rounded-lg shadow-xl"
@@ -538,9 +591,7 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
                   ? "We believe in the power of nature to enhance your natural beauty. Our products are crafted with care using only the finest organic ingredients, ensuring that your skin receives the nourishment it deserves. "
                   : "نؤمن بقوة الطبيعة في تعزيز جمالك الطبيعي. منتجاتنا مصنوعة بعناية باستخدام أفضل المكونات العضوية فقط، لضمان حصول بشرتك على التغذية التي تستحقها."}
               </p>
-              <ul
-                className={`space-y-4 `}
-              >
+              <ul className={`space-y-4 `}>
                 {[
                   locale == "en"
                     ? "100% Natural Ingredients"
@@ -553,10 +604,7 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
                     : "مراعية للبيئة",
                   locale == "en" ? "Dermatologically Tested" : "مختبرة طبياً",
                 ].map((item, index) => (
-                  <li
-                    key={index}
-                    className={`flex items-center `}
-                  >
+                  <li key={index} className={`flex items-center `}>
                     <div
                       className={`h-2 w-2 bg-primary rounded-full mr-3 ${
                         locale === "ar" ? "ml-3" : ""

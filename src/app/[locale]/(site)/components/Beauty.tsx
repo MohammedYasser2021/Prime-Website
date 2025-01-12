@@ -20,7 +20,7 @@ const Beauty: React.FC<BeautyProps> = ({ params }) => {
             alt="Beauty Image"
             className=" w-full h-full rounded-[30px]"
           />
-          <button className="transition-transform duration-300 transform hover:scale-110 bg-secondary w-[150px] h-[67px] border border-[#ffffff] rounded-[20px] text-[#ffffff] text-[22px] font-bold absolute bottom-[30px] left-1/2 -translate-x-1/2 opacity-75">
+          <button className="transition-transform duration-300 transform hover:scale-110 bg-secondary w-[180px] h-[67px] border border-[#ffffff] rounded-[20px] text-[#ffffff] text-[22px] font-bold absolute bottom-[30px] left-1/2 -translate-x-1/2 opacity-75">
             {locale == "en" ? "Order Now" : "اطلب الان"}
           </button>
         </div>

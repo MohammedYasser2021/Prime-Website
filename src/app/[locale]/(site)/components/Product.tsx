@@ -37,7 +37,7 @@ const Product: React.FC<ProductProps> = ({
 
   return (
     <div
-      className="sm:w-[192px] w-full min-h-[370px]  bg-[#ffffff] rounded-[20px]"
+      className="sm:w-[192px] w-full min-h-[370px] relative z-50 bg-[#ffffff] rounded-[20px]"
       style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
     >
       <div
@@ -71,14 +71,14 @@ const Product: React.FC<ProductProps> = ({
               position: "relative",
             }}
           >
-            <span className="text-col text-[25px] font-bold">
+            <span className="text-col text-[25px] font-bold relative">
               {price}{" "}
               <span className="text-[15px] font-bold text-secondary">
                 {locale === "ar" ? " دك" : "Dr"}
               </span>
             </span>
             <span
-              className="absolute top-[-10px] left-0 text-[15px] text-secondary"
+              className=" top-[-10px] left-0 text-[15px] text-secondary absolute right-[50px]"
               style={{
                 textDecoration: "line-through",
               }}

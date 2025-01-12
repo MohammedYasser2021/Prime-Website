@@ -71,12 +71,12 @@ const ProductDetailsComp = (props: Props) => {
       setSameProductWithDefProp(
         sameProduct.data
           .filter((item: any) => {
-            return item._id != defproduct.data?._id;
+            return item._id != defproduct.data?._id; // this is the line causing the issue
           })
           .slice(0, 4)
       );
     }
-
+  
     if (similarProducts?.data) {
       setSimilarProductsDefProp(
         similarProducts?.data?.filter((item: any) => {
@@ -84,7 +84,8 @@ const ProductDetailsComp = (props: Props) => {
         })
       );
     }
-  }, [sameProduct, similarProducts]);
+  }, [sameProduct, similarProducts]);  // Add defproduct?.data?._id to the dependency array
+  
   // end Get a same product
 
   const t = useTranslations("");
@@ -194,7 +195,7 @@ const ProductDetailsComp = (props: Props) => {
         );
       }
     }
-  }, [defproduct]);
+  }, [defproduct, locale, dispach]);
   const BestSellers = useAppSelector(
     (state: any) => state.productsData.product?.data
   );
@@ -269,7 +270,7 @@ const ProductDetailsComp = (props: Props) => {
       setFieldValue("firstName", profile?.name ? profile?.name : "");
       setDisableInput(false);
     }
-  }, [Logged, profile]);
+  },[id, Logged, dispach, setFieldValue]);
 
   const ratings = [
     t("ProductPage.sections.titles.reviews.rating.Price"),

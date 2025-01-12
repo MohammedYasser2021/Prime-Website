@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link"; // Import Link from Next.js
+import Link from "next/link";
 import Cart from "../../../../assets/homeImages/cart.png";
 import Profile from "../../../../assets/homeImages/profile.png";
 import Search from "../../../../assets/homeImages/search.png";
@@ -16,23 +16,61 @@ interface HeaderProps {
   params: {
     locale: string;
   };
-  linkAr: string; // Arabic link
-  linkEn: string; // English link
+  linkAr: string;
+  linkEn: string;
 }
 
 const Header: React.FC<HeaderProps> = ({ params, linkAr, linkEn }) => {
   const { locale } = params;
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  // Add a second background image URL here
+  const backgrounds = [
+    HeaderImg.src,
+    "https://th.bing.com/th/id/R.36e6f78377a0e817e300b3007d3d9f19?rik=2BJum6n5jMh2GA&riu=http%3a%2f%2fwww.pngmagic.com%2fproduct_images%2fbest-purple-banner-background.jpg&ehk=PVwtJwB%2fcZlmFGtqsm8BiiYJDKJlD973BAPi%2bF09Rqw%3d&risl=&pid=ImgRaw&r=0" // Example second image
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev === 0 ? 1 : 0));
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <div
-      className="min-h-[708px] relative overflow-hidden"
-      style={{
-        backgroundImage: `url(${HeaderImg.src})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      <div className="container mx-auto p-[20px]">
+    <div className="min-h-[708px] relative overflow-hidden">
+      {/* Background Slides */}
+      {backgrounds.map((bg, index) => (
+        <div
+          key={index}
+          className="absolute inset-0 transition-opacity duration-1000"
+          style={{
+            backgroundImage: `url(${bg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: activeSlide === index ? 1 : 0,
+          }}
+        />
+      ))}
+
+      {/* Bullet Navigation */}
+      <div className="absolute bottom-8 left-[109px] flex gap-2 z-50">
+        {backgrounds.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setActiveSlide(index)}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              activeSlide === index
+                ? "bg-[#e4a4fb] "
+                : "bg-white/50 hover:bg-white/70"
+            }`}
+            aria-label={`Slide ${index + 1}`}
+          />
+        ))}
+      </div>
+
+      <div className="container mx-auto p-[20px] relative z-10">
         <nav className="flex flex-wrap xl:flex-row-reverse flex-col items-center justify-between gap-4">
           {/* Logo */}
           <div className="w-full xl:w-auto flex xl:justify-start justify-center mb-4 xl:mb-0">

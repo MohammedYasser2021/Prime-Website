@@ -41,7 +41,7 @@ const InstantSearch = ({
     return () => {
       clearTimeout(debouncer);
     };
-  }, [searchQuery]);
+  }, [searchQuery, dispach]);
 
   return (
     <>

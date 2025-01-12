@@ -22,7 +22,7 @@ export default function AllProduct({ preview, products }: Props) {
 
   useEffect(() => {
     if (Logged) dispach(getFavourites());
-  }, [Logged]);
+  }, [Logged, dispach]);
 
   return (
     <div className="bg-white">

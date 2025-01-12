@@ -297,7 +297,7 @@ const ShopComp = () => {
     } else {
       dispach(getAllFilterProps({}));
     }
-  }, [dispach]);
+  }, [dispach, limit, page, searchQuery]);
 
   useEffect(() => {
     if (formReset) {
@@ -403,14 +403,14 @@ const ShopComp = () => {
         })
       );
     }
-  }, [categoryParam, subCategoryParam, brandParam]);
+  }, [categoryParam, subCategoryParam, brandParam, dispach, limit, page, setFieldValue, values]);
   console.log(values, "testtttttttttttttt");
 
   useEffect(() => {
     if (!subCategoryParam && !categoryParam && !brandParam) {
       dispach(getAllProducts({ page, limit }));
     }
-  }, [categoryParam, subCategoryParam, brandParam, page, limit]);
+  }, [categoryParam, subCategoryParam, brandParam, page, limit, dispach]);
 
   // To disable the clear button
   useEffect(() => {

@@ -71,7 +71,7 @@ export default function ViewSearchProductHook() {
       getStorage();
 
       // getAllProducts();
-   }, [dispatch]);
+   }, [dispatch, getStorage]);
 
    try {
       if (allProductData?.results) {

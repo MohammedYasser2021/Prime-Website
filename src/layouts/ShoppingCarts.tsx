@@ -34,7 +34,7 @@ export default function ShoppingCarts() {
 
   useEffect(() => {
     if (Logged) dispach(getCart());
-  }, [dispach]);
+  }, [dispach, Logged]);
   useEffect(() => {}, [cartData]);
   const removeItem = (id: string) => {
     if (Logged) dispach(deleteCart(id));

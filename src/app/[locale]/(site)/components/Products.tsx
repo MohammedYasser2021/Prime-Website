@@ -37,13 +37,13 @@ const Products: React.FC<ProductsProps> = ({ params }) => {
   }, [locale]);
 
   return (
-    <div className="bg-section h-auto relative">
+    <div className="bg-section h-auto relative pb-[40px]">
       <div>
         <Image
           src={Prime}
           alt="prime"
-          className={`w-[100%] max-w-[596px] h-[auto] opacity-[5%] absolute top-[-30px] ${
-            locale === "ar" ? "left-0" : "right-0"
+          className={`w-[100%] max-w-[598px] h-[696px] opacity-[5%] absolute top-[-30px] ${
+            locale === "ar" ? "left-0" : "left-0"
           }`}
         />
       </div>

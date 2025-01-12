@@ -1,5 +1,32 @@
 import Product from "../types/index";
-
+import Image from "next/image";
+import Prod1 from "../../../../../assets/homeImages/prod1.webp";
+import Prod2 from "../../../../../assets/homeImages/prod2.jpg";
+import Prod3 from "../../../../../assets/homeImages/prod3.jpg";
+import Prod4 from "../../../../../assets/homeImages/prod4.jpg";
+import Prod5 from "../../../../../assets/homeImages/prod5.webp";
+import Prod6 from "../../../../../assets/homeImages/prod6.jpg";
+import Prod7 from "../../../../../assets/homeImages/prod7.jpg";
+import Prod8 from "../../../../../assets/homeImages/prod8.jpg";
+import Prod9 from "../../../../../assets/homeImages/prod9.jpg";
+import Prod10 from "../../../../../assets/homeImages/prod10.jpg";
+import Prod11 from "../../../../../assets/homeImages/prod11.jpg";
+import Prod12 from "../../../../../assets/homeImages/prod12.jpg";
+import Prod13 from "../../../../../assets/homeImages/prod13.jpg";
+import Prod14 from "../../../../../assets/homeImages/prod14.jpg";
+import Prod15 from "../../../../../assets/homeImages/prod15.png";
+import Prod16 from "../../../../../assets/homeImages/prod16.webp";
+import Prod17 from "../../../../../assets/homeImages/prod17.jpg";
+import Prod18 from "../../../../../assets/homeImages/prod18.jpg";
+import Prod19 from "../../../../../assets/homeImages/prod19.jpg";
+import Prod20 from "../../../../../assets/homeImages/prod20.jpg";
+import Prod21 from "../../../../../assets/homeImages/prod21.webp";
+import Prod22 from "../../../../../assets/homeImages/prod22.jpg";
+import Prod23 from "../../../../../assets/homeImages/prod23.jpg";
+import Prod24 from "../../../../../assets/homeImages/prod24.jpg";
+import Prod25 from "../../../../../assets/homeImages/prod25.jpg";
+import Prod26 from "../../../../../assets/homeImages/prod26.jpg";
+import Prod27 from "../../../../../assets/homeImages/prod27.jpg";
 const cartproducts: Product[] = [
   {
     id: 1,
@@ -27,9 +54,9 @@ const cartproducts: Product[] = [
     ingredientsAr: ["حمض الهيالورونيك", "الجلسرين", "زبدة الشيا"],
     usageInstructionsAr: "ضع كمية صغيرة على وجه ورقبة نظيفين صباحًا ومساءً.",
     images: [
-      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b",
-      "https://i.pinimg.com/originals/b7/5e/e5/b75ee58df94b91de0ee73eb3b8615403.jpg",
-      "https://static.webshopapp.com/shops/044214/files/130691168/doterra-essential-hydrating-cream.jpg",
+      Prod1.src,
+      Prod2.src,
+      Prod3.src,
     ],
   },
       {
@@ -57,9 +84,9 @@ const cartproducts: Product[] = [
         ingredientsAr: ["حمض الهيالورونيك", "الجلسرين", "زبدة الشيا"],
         usageInstructionsAr: "ضع كمية صغيرة على وجه ورقبة نظيفين صباحًا ومساءً.",
         images: [
-          "https://images.unsplash.com/photo-1586495777744-4413f21062fa",
-          "https://i5.walmartimages.com/asr/a2694cd9-4416-4894-ac00-4f50fe8b0ae5.e678c2dbcbd6000640e14edc77de52aa.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff",
-          "https://th.bing.com/th/id/R.bd2d87b8072a4ac8c51cfc158fdd02bf?rik=181CIURYz4X%2b%2fA&pid=ImgRaw&r=0",
+          Prod4.src,
+          Prod5.src,
+          Prod6.src,
         ],
       },
       {
@@ -88,9 +115,9 @@ const cartproducts: Product[] = [
         ingredientsAr: ["حمض الهيالورونيك", "الجلسرين", "زبدة الشيا"],
         usageInstructionsAr: "ضع كمية صغيرة على وجه ورقبة نظيفين صباحًا ومساءً.",
         images: [
-          "https://images.unsplash.com/photo-1620916566398-39f1143ab7be",
-          "https://s.yimg.com/uu/api/res/1.2/ajjFiYSoPR4dqxmrLD2nrw--/aD0yMDAwO3c9NDAwMDtzbT0xO2FwcGlkPXl0YWNoeW9u/http://media.zenfs.com/en-US/homerun/good_housekeeping_561/7b47394311abf84023ecc9e50afe3e71",
-          "https://i.pinimg.com/originals/97/ef/46/97ef4648210c11d5347611a299d40f51.jpg",
+          Prod7.src,
+          Prod8.src,
+          Prod9.src,
         ],
       },
       {
@@ -118,9 +145,10 @@ const cartproducts: Product[] = [
         ingredientsAr: ["حمض الهيالورونيك", "الجلسرين", "زبدة الشيا"],
         usageInstructionsAr: "ضع كمية صغيرة على وجه ورقبة نظيفين صباحًا ومساءً.",
         images: [
-          "https://i.pinimg.com/originals/c1/d4/94/c1d494ae6af409ce11195ba55b4e07ae.jpg",
-          "https://th.bing.com/th/id/R.1224f3bd93b8a016be4810735d036109?rik=fKVldN7myxOelA&pid=ImgRaw&r=0",
-          "https://rejuvenatingsets.com/wp-content/uploads/2019/11/drc3.jpg",
+          Prod10.src,
+          Prod11.src,
+          Prod12.src,
+     
         ],
       },
       {
@@ -148,9 +176,9 @@ const cartproducts: Product[] = [
         ingredientsAr: ["حمض الهيالورونيك", "الجلسرين", "زبدة الشيا"],
         usageInstructionsAr: "ضع كمية صغيرة على وجه ورقبة نظيفين صباحًا ومساءً.",
         images: [
-          "https://images.unsplash.com/photo-1631730359585-38a4935cbec4",
-          "https://cdn.media.amplience.net/i/mrpricegroup/01_100805686_SI_00",
-          "https://www.thedailystruggle.co.uk/wp-content/uploads/2021/11/Untitled-37.png",
+          Prod13.src,
+          Prod14.src,
+          Prod15.src,
         ],
       },
       {
@@ -178,9 +206,9 @@ const cartproducts: Product[] = [
         ingredientsAr: ["حمض الهيالورونيك", "الجلسرين", "زبدة الشيا"],
         usageInstructionsAr: "ضع كمية صغيرة على وجه ورقبة نظيفين صباحًا ومساءً.",
         images: [
-          "https://i5.walmartimages.com/asr/1e3160ac-5417-4ee1-831c-5c166b3a9de4.5abc5649d057b742c811ae144d8f87a7.jpeg?odnWidth=1000&odnHeight=1000&odnBg=ffffff",
-          "https://th.bing.com/th/id/OIP.nFRk4DLnNtZuB9zfZf00IwHaHa?rs=1&pid=ImgDetMain",
-          "https://m.media-amazon.com/images/I/71nvIxJvMxL.jpg",
+          Prod16.src,
+          Prod17.src,
+          Prod18.src,
         ],
       },
       {
@@ -208,9 +236,9 @@ const cartproducts: Product[] = [
         ingredientsAr: ["حمض الهيالورونيك", "الجلسرين", "زبدة الشيا"],
         usageInstructionsAr: "ضع كمية صغيرة على وجه ورقبة نظيفين صباحًا ومساءً.",
         images: [
-          "https://images.unsplash.com/photo-1556229174-5e42a09e45af",
-          "https://img.freepik.com/premium-vector/sun-cream-bottle-3d-realistic-isolated-tropical-banner-packaging-protection-sun-cream-spf-50-summer-cosmetics-illustration_190024-666.jpg?w=2000",
-          "https://cdn.shopify.com/s/files/1/0280/6241/6930/products/mainimage_3_900x.jpg?v=1661774841",
+          Prod19.src,
+          Prod20.src,
+          Prod21.src,
         ],
       },
       {
@@ -238,9 +266,9 @@ const cartproducts: Product[] = [
         ingredientsAr: ["حمض الهيالورونيك", "الجلسرين", "زبدة الشيا"],
         usageInstructionsAr: "ضع كمية صغيرة على وجه ورقبة نظيفين صباحًا ومساءً.",
         images: [
-          "https://images.unsplash.com/photo-1599733594230-6b823276abcc",
-          "https://i.pinimg.com/originals/f9/0c/6f/f90c6f48f302ef43043d3b99c86adf8e.jpg",
-          "https://th.bing.com/th/id/R.440705175121ebd18c1ddac3bccd0b3c?rik=CoQgjKs%2bECs8IA&riu=http%3a%2f%2f4.bp.blogspot.com%2f-FVxsBtfuLQY%2fVSgNgNxfsdI%2fAAAAAAAABs0%2fZrnQz2Mp5DU%2fs1600%2fNARS5.jpg&ehk=t0rymi303tlBa8BmrwnyivwJjPvlD3%2bzI2IhADyW9ho%3d&risl=&pid=ImgRaw&r=0",
+          Prod22.src,
+          Prod23.src,
+          Prod24.src,
         ],
       },
       {
@@ -268,9 +296,9 @@ const cartproducts: Product[] = [
         ingredientsAr: ["حمض الهيالورونيك", "الجلسرين", "زبدة الشيا"],
         usageInstructionsAr: "ضع كمية صغيرة على وجه ورقبة نظيفين صباحًا ومساءً.",
         images: [
-          "https://th.bing.com/th/id/R.47603b5c78a41ad5d37377be80420d9a?rik=0o7dTLzLpK7UhA&pid=ImgRaw&r=0",
-          "https://th.bing.com/th/id/R.8b9ae60abf027d557d9ab6834a7be20f?rik=D%2fYKEjyb4Znzaw&riu=http%3a%2f%2fwww.peacefuldumpling.com%2fwp-content%2fuploads%2f2016%2f03%2forganic_skin_care_lines-simple_soul5.jpg&ehk=PHowwpQEw%2fpMjy6T5U9nvfshdyqF3i%2bhtYVOH08k9Rw%3d&risl=&pid=ImgRaw&r=0",
-          "https://th.bing.com/th/id/OIP.IokXqrr8Vj84fCR50-QB6QHaHa?rs=1&pid=ImgDetMain",
+          Prod25.src,
+          Prod26.src,
+          Prod27.src,
         ],
       },
   {
@@ -298,9 +326,9 @@ const cartproducts: Product[] = [
     ingredientsAr: ["حمض الهيالورونيك", "الجلسرين", "زبدة الشيا"],
     usageInstructionsAr: "ضع كمية صغيرة على وجه ورقبة نظيفين صباحًا ومساءً.",
     images: [
-      "https://th.bing.com/th/id/R.43412b83650a97a1bb84dabec6baad25?rik=HGM3OD3MZ9MveA&riu=http%3a%2f%2f1.bp.blogspot.com%2f-Gg2yS55qXuM%2fUYhXd3A7k9I%2fAAAAAAAAAB0%2fN2cc_dnP9-A%2fs1600%2fpink-perfume-bottle.jpg&ehk=EkQjQP7%2bTLhNZ8jq2dezqvNAOTaFyvbpLY1yXPQiZE8%3d&risl=&pid=ImgRaw&r=0",
-      "https://cdn.pixabay.com/photo/2023/06/01/06/21/perfume-8032808_1280.jpg",
-      "https://img.freepik.com/premium-photo/product-photography-one-pink-perfume-bottle_849906-15732.jpg?w=2000",
+      Prod27.src,
+      Prod26.src,
+      Prod25.src,
     ],
   },
   {
@@ -328,9 +356,9 @@ const cartproducts: Product[] = [
     ingredientsAr: ["حمض الهيالورونيك", "الجلسرين", "زبدة الشيا"],
     usageInstructionsAr: "ضع كمية صغيرة على وجه ورقبة نظيفين صباحًا ومساءً.",
     images: [
-      "https://img.freepik.com/premium-photo/bottle-perfume-with-pink-roses-blue-background_1089151-79801.jpg",
-      "https://img.freepik.com/premium-photo/perfume-mockup_946436-66.jpg",
-      "https://th.bing.com/th/id/OIP.9kNh55egeZLToMtFywdGTwHaE7?w=2000&h=1333&rs=1&pid=ImgDetMain",
+      Prod21.src,
+      Prod18.src,
+      Prod3.src,
     ],
   },
   {
@@ -358,9 +386,9 @@ const cartproducts: Product[] = [
     ingredientsAr: ["حمض الهيالورونيك", "الجلسرين", "زبدة الشيا"],
     usageInstructionsAr: "ضع كمية صغيرة على وجه ورقبة نظيفين صباحًا ومساءً.",
     images: [
-      "https://img.freepik.com/premium-photo/elegant-perfume-with-flowers_290854-650.jpg",
-      "https://th.bing.com/th/id/OIP.AB4Y2ZjxSi-ysJ_7GcTgMwHaFk?w=2000&h=1506&rs=1&pid=ImgDetMain",
-      "https://png.pngtree.com/thumb_back/fw800/background/20231001/pngtree-realistic-3d-vector-of-a-pink-perfume-bottle-image_13570361.png",
+      Prod11.src,
+      Prod12.src,
+      Prod10.src,
     ],
   },
 ];

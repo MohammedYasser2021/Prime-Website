@@ -70,22 +70,6 @@ export default function SidefilterShearchHook() {
     localStorage.removeItem("brandHome");
   }, []);
   useEffect(() => {
-    // if (
-    //   catData.length <= 0 ||
-    //   catCheckd != "category=" ||
-    //   catCheckd != null ||
-    //   catHome === ""
-    // ) {
-    //   console.log("asd");
-    //   console.log(catData);
-    //   localStorage.removeItem("catHome");
-    //   setTimeout(() => {
-    //     getStorage();
-    //     setTimeout(() => {
-    //       getProducts();
-    //     }, 500);
-    //   }, 500);
-    // } else {
     localStorage.setItem("catCheckd", `category=${catData}`);
     setTimeout(() => {
       getStorage();
@@ -93,8 +77,7 @@ export default function SidefilterShearchHook() {
         getProducts();
       }, 500);
     }, 500);
-    // }
-  }, [catData]);
+  }, [catData, getStorage, getProducts]); 
   // checke box brand
 
   var quertbrand = "";
@@ -120,16 +103,14 @@ export default function SidefilterShearchHook() {
     }
   };
   useEffect(() => {
-    // quertbrand = brandData.map((val: any) => "brand[in][]=" + val).join("&");
     localStorage.setItem("brandCheckd", `brand=${brandData}`);
-
     setTimeout(() => {
       getStorage();
       setTimeout(() => {
         getProducts();
       }, 500);
     }, 500);
-  }, [brandData]);
+  }, [brandData, getStorage, getProducts]);
 
   const [From, setFrom] = useState(0);
   const [To, setTo] = useState(0);
@@ -147,7 +128,7 @@ export default function SidefilterShearchHook() {
     setTimeout(() => {
       getProducts();
     }, 2000);
-  }, [From, To]);
+  }, [From, To, getProducts]);
 
   return [
     allCategoryData,

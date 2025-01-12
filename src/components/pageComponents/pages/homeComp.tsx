@@ -44,7 +44,7 @@ const HomeComp = (props: Props) => {
 
   useEffect(() => {
     if (Logged) dispach(getFavourites());
-  }, [Logged]);
+  }, [Logged,dispach]);
 
   if (isLoading) {
     return <Loading />;

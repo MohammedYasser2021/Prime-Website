@@ -20,7 +20,7 @@ const Classification: React.FC<ClassificationProps> = ({ params }) => {
       >
         {locale === "en" ? "Choose Classification" : "اختر التصنيف "}
       </h1>
-      <div className="flex flex-wrap justify-center gap-6 mx-auto">
+      <div className="flex flex-wrap justify-center gap-x-[87px] mx-auto">
         <div className="classification_item text-center">
           <Image
             src={Cosmatics}

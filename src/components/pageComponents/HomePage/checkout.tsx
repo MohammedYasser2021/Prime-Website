@@ -108,7 +108,7 @@ const Checkout = ({
     if (Logged) {
       dispach(getProfile()).then((data: any) => setProfile(data.payload?.data));
     }
-  }, [dispatch]);
+  }, [dispatch, Logged, dispach]);
 
   useEffect(() => {
     if (Logged) {
@@ -120,7 +120,7 @@ const Checkout = ({
         setPhoneError("");
       }
     }
-  }, [Logged, profile]);
+  }, [Logged, profile, phoneError, phonePattern, t]);
   return (
     <>
       <div

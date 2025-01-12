@@ -84,7 +84,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ params }) => {
                 <ChevronLeft size={24} />
               </button>
 
-              <img
+              <Image
                 src={product.images[currentImageIndex]}
                 alt={locale === "en" ? product.title : product.titleAr}
                 className="w-full h-full object-cover"
@@ -117,7 +117,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ params }) => {
                     setCurrentImageIndex(index);
                   }}
                 >
-                  <img
+                  <Image
                     src={image}
                     alt={`${
                       locale === "en" ? product.title : product.titleAr

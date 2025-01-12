@@ -71,7 +71,7 @@ const ServicesForm: React.FC<PropTypes> = ({
     setFieldValue("firstName", user?.data?.name || "");
     setFieldValue("email", user?.data?.email || "");
     setFieldValue("description", "ابلاغي عند توفر منتج جديد");
-  }, [logged]);
+  }, [logged, setFieldValue, user?.data?.email, user?.data?.name]);
 
   return (
     <>
