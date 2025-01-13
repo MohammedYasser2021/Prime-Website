@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import ProductsData from "../components/productsData/CartProducts";
 import Cart from "../../../../assets/homeImages/cart.png";
 import Profile from "../../../../assets/homeImages/profile.png";
 import Search from "../../../../assets/homeImages/search.png";
@@ -23,20 +24,46 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ params, linkAr, linkEn }) => {
   const { locale } = params;
   const [activeSlide, setActiveSlide] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState(ProductsData);
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
 
-  // Add a second background image URL here
   const backgrounds = [
     HeaderImg.src,
-    "https://th.bing.com/th/id/R.36e6f78377a0e817e300b3007d3d9f19?rik=2BJum6n5jMh2GA&riu=http%3a%2f%2fwww.pngmagic.com%2fproduct_images%2fbest-purple-banner-background.jpg&ehk=PVwtJwB%2fcZlmFGtqsm8BiiYJDKJlD973BAPi%2bF09Rqw%3d&risl=&pid=ImgRaw&r=0" // Example second image
+    "https://th.bing.com/th/id/R.36e6f78377a0e817e300b3007d3d9f19?rik=2BJum6n5jMh2GA&riu=http%3a%2f%2fwww.pngmagic.com%2fproduct_images%2fbest-purple-banner-background.jpg&ehk=PVwtJwB%2fcZlmFGtqsm8BiiYJDKJlD973BAPi%2bF09Rqw%3d&risl=&pid=ImgRaw&r=0"
   ];
 
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev === 0 ? 1 : 0));
-    }, 5000); // Change slide every 5 seconds
+    }, 5000);
 
     return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    if (searchQuery.trim() === "") {
+      setFilteredProducts([]);
+      return;
+    }
+
+    const filtered = ProductsData.filter((product) => {
+      const searchTerm = searchQuery.toLowerCase();
+      if (locale === "en") {
+        return (
+          product.title.toLowerCase().includes(searchTerm) ||
+          product.brand.toLowerCase().includes(searchTerm)
+        );
+      } else {
+        return (
+          product.titleAr.includes(searchTerm) ||
+          product.brandAr.includes(searchTerm)
+        );
+      }
+    });
+
+    setFilteredProducts(filtered);
+  }, [searchQuery, locale]);
 
   return (
     <div className="min-h-[708px] relative overflow-hidden">
@@ -62,7 +89,7 @@ const Header: React.FC<HeaderProps> = ({ params, linkAr, linkEn }) => {
             onClick={() => setActiveSlide(index)}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
               activeSlide === index
-                ? "bg-[#e4a4fb] "
+                ? "bg-[#e4a4fb]"
                 : "bg-white/50 hover:bg-white/70"
             }`}
             aria-label={`Slide ${index + 1}`}
@@ -79,14 +106,18 @@ const Header: React.FC<HeaderProps> = ({ params, linkAr, linkEn }) => {
             </a>
           </div>
 
-          {/* Search Input */}
+          {/* Search Input with Results */}
           <div className="relative w-full xl:w-auto flex justify-center">
             <input
               type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onFocus={() => setIsSearchFocused(true)}
+              onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
               placeholder={
                 locale === "en"
-                  ? "You will find everything"
-                  : "ستجد كل ما تريد لدينا"
+                  ? "Search products..."
+                  : "ابحث عن المنتجات..."
               }
               className="w-[100%] xl:w-[638px] h-[44px] px-[22px] rounded-[15px] opacity-50"
             />
@@ -97,8 +128,44 @@ const Header: React.FC<HeaderProps> = ({ params, linkAr, linkEn }) => {
               height={30}
               className={`absolute ${
                 locale === "en" ? "right-[20px]" : "left-[20px]"
-              }  top-[50%] transform -translate-y-[50%]`}
+              } top-[50%] transform -translate-y-[50%]`}
             />
+            
+            {/* Search Results */}
+            {isSearchFocused && searchQuery.length > 0 && filteredProducts.length > 0 && (
+              <div className="absolute top-full  left-0 right-0 mt-2 bg-white rounded-lg shadow-xl max-h-[400px] overflow-y-auto z-[9999]">
+                {filteredProducts.map((product) => (
+                  <Link 
+                    href={`/${locale}/productFilteration`} 
+                    key={product.id}
+                    className="flex items-center p-4 hover:bg-gray-50 transition-colors border-b last:border-b-0"
+                  >
+                    <div className="w-16 h-16 relative flex-shrink-0">
+                      <Image
+                        src={product.images[0]}
+                        alt={locale === 'en' ? product.title : product.titleAr}
+                        fill
+                        className="object-cover rounded"
+                      />
+                    </div>
+                    <div className={` ${locale == "en" ? "ml-4" : "mr-4"} flex-grow`}>
+                      <h3 className="font-medium text-gray-900">
+                        {locale === 'en' ? product.title : product.titleAr}
+                      </h3>
+                      <p className="text-sm text-gray-500">
+                        {locale === 'en' ? product.brand : product.brandAr}
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-medium text-gray-900">${product.price}</p>
+                      {product.discount > 0 && (
+                        <p className="text-sm text-green-600">-{product.discount}%</p>
+                      )}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Navigation Items */}

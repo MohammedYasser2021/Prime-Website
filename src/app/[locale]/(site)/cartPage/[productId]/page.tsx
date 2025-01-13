@@ -7,7 +7,6 @@ import {
   ChevronRight
 } from "lucide-react";
 import ShopImg from "../../../../../assets/homeImages/shop_bg.avif";
-import { Button } from "@/components/ui/button";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
@@ -85,6 +84,8 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ params }) => {
               </button>
 
               <Image
+                width={5000}
+                height={3000}
                 src={product.images[currentImageIndex]}
                 alt={locale === "en" ? product.title : product.titleAr}
                 className="w-full h-full object-cover"
@@ -118,6 +119,8 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ params }) => {
                   }}
                 >
                   <Image
+                  width={5000}
+                  height={3000}
                     src={image}
                     alt={`${
                       locale === "en" ? product.title : product.titleAr
@@ -241,6 +244,8 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ params }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div>
                 <Image
+                width={5000}
+                height={3000}
                   src={ShopImg}
                   alt="About Us"
                   className="rounded-lg shadow-xl"

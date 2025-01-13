@@ -14,6 +14,7 @@ import {
 import Prod from "../components/types/index";
 import cartproducts from "../components/productsData/CartProducts";
 import ShopImg from "../../../../assets/homeImages/shop_bg.avif";
+import CartAdd from "../../../../assets/homeImages/cartadd.png";
 import { useRouter } from "next/navigation"; // Importing the router
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -172,8 +173,8 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
       </header>
 
       {/* Product Grid */}
-      <main className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <main className="container mx-auto  px-4 py-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {(locale === "en" ? filteredProducts : filteredProductsAr).map(
             (product) => {
               const discountedPrice =
@@ -185,30 +186,8 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
                   style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
                 >
                   {/* Top Section with Stars and Actions */}
-                  <div className="flex justify-between items-start mb-2">
-              
-                    <button
-                      className="order-1 p-2 rounded-full hover:bg-gray-100 transition-colors"
-                      title={
-                        locale == "en"
-                          ? "View Product Details"
-                          : "عرض تفاصيل المنتج"
-                      }
-                      onClick={() => navigateToProduct(product.id)}
-                    >
-                      <Eye size={20} className="text-gray-600" />
-                    </button>
-                  </div>
 
                   {/* Discount Badge */}
-                  {product.discount > 0 && (
-                    <div className="absolute top-10 right-3 z-10">
-                      <h1 className="text-col text-[20px] bg-red-50 rounded-full p-2">
-                        {product.discount}{" "}
-                        <span className="text-[20px] text-secondary">%</span>
-                      </h1>
-                    </div>
-                  )}
 
                   {/* Product Image */}
                   <div
@@ -227,13 +206,26 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
 
                   {/* Product Details */}
                   <div className="space-y-3">
-                    <h1
-                      className={`text-[#000000] font-bold text-[18px] ${
-                        locale == "ar" ? "text-right" : "text-left"
-                      } line-clamp-1`}
-                    >
-                      {locale == "en" ? product.title : product.titleAr}
-                    </h1>
+                    <div className="flex justify-between items-center mb-2">
+                      <button
+                        className="order-1 p-2 rounded-full hover:bg-gray-100 transition-colors"
+                        title={
+                          locale == "en"
+                            ? "View Product Details"
+                            : "عرض تفاصيل المنتج"
+                        }
+                        onClick={() => navigateToProduct(product.id)}
+                      >
+                        <Eye size={20} className="text-gray-600" />
+                      </button>
+                      <h1
+                        className={`text-[#000000] font-bold text-[18px] ${
+                          locale == "ar" ? "text-right" : "text-left"
+                        } line-clamp-1`}
+                      >
+                        {locale == "en" ? product.title : product.titleAr}
+                      </h1>
+                    </div>
 
                     <p
                       className={`text-[14px] text-gray-600 ${
@@ -287,19 +279,20 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
                           </span>
                         )}
                       </div>
-
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
                           addToCart(product);
                         }}
-                        className="bg-primary text-white p-3 rounded-full hover:bg-secondary transition-all duration-300 hover:scale-110"
+                        className="w-[25px] h-[25px]"
                         title={
                           locale === "ar" ? "أضف إلى السلة" : "Add to Cart"
                         }
                       >
-                        <CartIcon size={22} />
+                        <Image src={CartAdd} alt="cart add" />
                       </button>
+
+                      
                     </div>
 
                     {/* Stock Status */}
@@ -345,8 +338,8 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
               <div className="relative">
                 <div className="relative h-96">
                   <Image
-                   width={500}  // Add the desired width
-                   height={300} // Add the desired height
+                    width={500} // Add the desired width
+                    height={300} // Add the desired height
                     src={selectedProduct.images[currentImageIndex]}
                     alt={`${selectedProduct.title} - Image ${
                       currentImageIndex + 1
@@ -389,7 +382,7 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
                     >
                       <Image
                         src={image}
-                        width={500}  // Add the desired width
+                        width={500} // Add the desired width
                         height={300} // Add the desired height
                         alt={`${selectedProduct.title} - Thumbnail ${
                           index + 1
@@ -486,8 +479,8 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
                         className="flex items-center gap-4 py-4 border-b last:border-b-0"
                       >
                         <Image
-                         width={500}  // Add the desired width
-                         height={300} // Add the desired height
+                          width={500} // Add the desired width
+                          height={300} // Add the desired height
                           src={item.product.images[0]}
                           alt={item.product.title}
                           className="w-20 h-20 object-cover rounded-md"
@@ -567,8 +560,8 @@ const CartPage: React.FC<CartPageProps> = ({ params }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
               <Image
-               width={500}  // Add the desired width
-               height={300} // Add the desired height
+                width={500} // Add the desired width
+                height={300} // Add the desired height
                 src={ShopImg}
                 alt="About Us"
                 className="rounded-lg shadow-xl"
