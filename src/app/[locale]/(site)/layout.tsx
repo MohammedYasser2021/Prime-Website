@@ -4,10 +4,6 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import "react-datepicker/dist/react-datepicker.css";
-
-import Footer from "@/layouts/Footer";
-import InfoBar from "@/layouts/InfoBar";
-import NavBar from "@/layouts/NavBar";
 import React from "react";
 import Transition from "@/components/Transition";
 

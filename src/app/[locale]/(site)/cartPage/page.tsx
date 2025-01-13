@@ -18,7 +18,7 @@ import CartAdd from "../../../../assets/homeImages/cartadd.png";
 import { useRouter } from "next/navigation"; // Importing the router
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-
+import { unstable_setRequestLocale } from 'next-intl/server';
 interface CartPageProps {
   params: {
     locale: string;
@@ -27,6 +27,7 @@ interface CartPageProps {
 
 const CartPage: React.FC<CartPageProps> = ({ params }) => {
   const { locale } = params;
+    unstable_setRequestLocale(locale);
   const router = useRouter(); // Use the useRouter hook
   const [selectedCategory, setSelectedCategory] = useState<
     "all" | "creams" | "cosmetics" | "skincare" | "perfume"

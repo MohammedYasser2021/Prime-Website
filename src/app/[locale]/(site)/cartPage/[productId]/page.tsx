@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import cartproducts from "../../components/productsData/CartProducts";
+import { unstable_setRequestLocale } from 'next-intl/server';
 import Image from "next/image";
 import {
   ChevronLeft,
@@ -19,6 +20,7 @@ interface ProductDetailProps {
 
 const ProductDetail: React.FC<ProductDetailProps> = ({ params }) => {
   const { productId, locale } = params;
+  unstable_setRequestLocale(locale);
   const isArabic = locale === "ar";
   const linkAr = `/ar/cartPage/${productId}`;
   const linkEn = `/en/cartPage/${productId}`;

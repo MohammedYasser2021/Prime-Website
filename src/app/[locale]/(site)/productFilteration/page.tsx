@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useMemo } from "react";
+import { unstable_setRequestLocale } from 'next-intl/server';
 import { useRouter } from "next/navigation"; // Importing the router
 import { ChevronLeft, ChevronRight, X, Eye, Minus, Plus } from "lucide-react";
 import { ShoppingCart as CartIcon } from "lucide-react";
@@ -22,6 +23,7 @@ const ProductFilterationPage: React.FC<ProductFilterationPageProps> = ({
 }) => {
   const router = useRouter(); // Use the useRouter hook
   const { locale } = params;
+  unstable_setRequestLocale(locale);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [sortBy, setSortBy] = useState<SortOption>("sales");
   const [selectedProduct, setSelectedProduct] = useState<Prod | null>(null);

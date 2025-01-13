@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { unstable_setRequestLocale } from 'next-intl/server';
 import Image from "next/image";
 import {
   FaBars,
@@ -26,7 +27,7 @@ interface ProfilePageProps {
 const ProfilePage: React.FC<ProfilePageProps> = ({ params }) => {
   const { locale } = params;
   const [sidebarOpen, setSidebarOpen] = useState(false); // State for sidebar toggle
-
+  unstable_setRequestLocale(locale);
   // Toggle sidebar visibility
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
