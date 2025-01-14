@@ -1,20 +1,3 @@
-// import { CartPageClient } from './CartPageClient';
-
-// export const dynamicParams = false;
-
-// export async function generateStaticParams() {
-//   return [
-//     { locale: "en" },
-//     { locale: "ar" }
-//   ];
-// }
-
-// export default function CartPage({ params }: { params: { locale: string } }) {
-//   return <CartPageClient params={params} />;
-// }
-
-
-
 
 "use client";
 
@@ -40,10 +23,10 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 interface CartPageClientProps {
-  params: {
-    locale: string;
-  };
-}
+    params: {
+      locale: string;
+    };
+  }
 
 export function CartPageClient({ params }: CartPageClientProps) {
     const { locale } = params;

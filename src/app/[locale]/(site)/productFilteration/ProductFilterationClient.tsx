@@ -13,6 +13,7 @@ import { notFound } from "next/navigation";
 
 
 
+
 type SortOption = "sales" | "priceHigh" | "priceLow" | "discount" | "rating";
 
 interface ProductFilterationPageProps {

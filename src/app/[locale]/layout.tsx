@@ -5,10 +5,6 @@ import "swiper/css/effect-fade";
 
 import { Inter, Noto_Kufi_Arabic } from "next/font/google";
 
-import DashboardSideBar from "@/layouts/DashboardSideBar";
-import Footer from "@/layouts/Footer";
-import InfoBar from "@/layouts/InfoBar";
-import type { Metadata } from "next";
 
 import { NextIntlClientProvider } from "next-intl";
 import ProviderContainer from "@/components/Uitily/ProviderCont";
@@ -16,16 +12,9 @@ import ShoppingCarts from "@/layouts/ShoppingCarts";
 import Toastify from "@/layouts/Toastify";
 import icon from "../../assets/homeImages/logo.png";
 import { notFound } from "next/navigation";
-import storeCounter from "@/redux/store/store";
 
 const inter = Inter({ subsets: ["latin"] });
 const noto = Noto_Kufi_Arabic({ subsets: ["arabic"] });
-
-// export const metadata: Metadata = {
-//   title: "موارد",
-//   description: "موارد",
-//   icons: [{ rel: "icon", url: icon.src }],
-// };
 
 export async function generateMetadata(params: any) {
   const { locale } = params.params;

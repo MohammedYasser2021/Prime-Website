@@ -1,5 +1,4 @@
 import Product from "../types/index";
-import Image from "next/image";
 import Prod1 from "../../../../../assets/homeImages/prod1.webp";
 import Prod2 from "../../../../../assets/homeImages/prod2.jpg";
 import Prod3 from "../../../../../assets/homeImages/prod3.jpg";

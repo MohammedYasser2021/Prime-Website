@@ -14,7 +14,6 @@ import { notFound } from "next/navigation";
 
 
 
-
 interface CartProductClientProps {
   params: {
     locale: string;
