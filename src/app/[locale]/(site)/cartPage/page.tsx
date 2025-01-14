@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
   unstable_setRequestLocale(locale);
 
   return {
-    title: locale === "en" ? "Your Cart" : "سلة التسوق",
+    title: locale === "en" ? "Cart" : "سلة التسوق",
     description: locale === "en"
       ? "Review and manage your shopping cart items."
       : "راجع وادارة عناصر سلة التسوق الخاصة بك.",
