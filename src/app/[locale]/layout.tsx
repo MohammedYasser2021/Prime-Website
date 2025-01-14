@@ -11,10 +11,8 @@ import InfoBar from "@/layouts/InfoBar";
 import type { Metadata } from "next";
 
 import { NextIntlClientProvider } from "next-intl";
-import { Provider } from "react-redux";
 import ProviderContainer from "@/components/Uitily/ProviderCont";
 import ShoppingCarts from "@/layouts/ShoppingCarts";
-import { ToastContainer } from "react-toastify";
 import Toastify from "@/layouts/Toastify";
 import icon from "../../assets/homeImages/logo.png";
 import { notFound } from "next/navigation";
