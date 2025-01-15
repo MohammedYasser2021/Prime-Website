@@ -205,11 +205,11 @@ export function CartPageClient({ params }: CartPageClientProps) {
                 </div>
             
                 {/* Discount Badge */}
-                {product.discount > 0 && (
+         
                   <h1 className="text-col text-[30px] sm:pl-3 pl-5">
                     {product.discount} <span className="text-[40px] text-secondary">%</span>
                   </h1>
-                )}
+          
             
                 {/* Product Image */}
                 <div
@@ -244,24 +244,12 @@ export function CartPageClient({ params }: CartPageClientProps) {
                   </div>
             
                   <p
-                    className={`text-[14px] text-gray-600 ${locale === "ar" ? "text-right" : "text-left"} line-clamp-2`}
+                    className={`text-[14px] ${locale === "ar" ? "text-right" : "text-left"} line-clamp-2`}
                   >
                     {locale === "en" ? product.description : product.descriptionAr}
                   </p>
             
-                  {/* Additional Product Info */}
-                  <div className={`flex gap-4 text-sm text-gray-500 ${locale === "ar" ? "justify-end" : "justify-start"}`}>
-                    {product.category && (
-                      <span className="bg-gray-100 px-2 py-1 rounded-full">
-                        {product.category}
-                      </span>
-                    )}
-                    {product.brand && (
-                      <span className="bg-gray-100 px-2 py-1 rounded-full">
-                        {product.brand}
-                      </span>
-                    )}
-                  </div>
+             
             
                   {/* Price and Cart Section */}
                   <div className="flex justify-between items-center pt-3 border-t">

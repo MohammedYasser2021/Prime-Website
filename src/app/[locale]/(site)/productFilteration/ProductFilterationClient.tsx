@@ -170,7 +170,7 @@ const ProductFilterationPage: React.FC<ProductFilterationPageProps> = ({
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
           {sortedAndFilteredProducts.map((product) => (
             <div
               key={product.id}
@@ -232,7 +232,7 @@ const ProductFilterationPage: React.FC<ProductFilterationPageProps> = ({
                     : product.descriptionAr}
                 </p>
 
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center ">
                   <button className="w-[25px] h-[25px]">
                     <Image
                       src={CartAdd}
