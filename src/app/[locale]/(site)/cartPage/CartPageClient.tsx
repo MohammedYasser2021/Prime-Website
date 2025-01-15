@@ -21,6 +21,7 @@ import CartAdd from "../../../../assets/homeImages/cartadd.png";
 import { useRouter } from "next/navigation"; // Importing the router
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { FaStar } from "react-icons/fa";
 
 interface CartPageClientProps {
     params: {
@@ -187,138 +188,115 @@ export function CartPageClient({ params }: CartPageClientProps) {
                 product.price * (1 - product.discount / 100);
               return (
                 <div
-                  key={product.id}
-                  className="sm:w-[300px] w-full min-h-[450px] relative z-50 bg-white rounded-[20px] p-4 transition-transform hover:scale-[1.02]"
-                  style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
+                key={product.id}
+                className="sm:w-[300px] w-full min-h-[450px] relative z-50 bg-[#ffffff] rounded-[20px] p-4 transition-transform hover:scale-[1.02]"
+                style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
+              >
+                {/* Top Section with Stars and Actions */}
+                <div
+                  className={`stars flex gap-1 p-3 ${locale === "en" ? "sm:flex-row-reverse sm:justify-end justify-center" : "sm:flex-row sm:justify-end justify-center"}`}
                 >
-                  {/* Top Section with Stars and Actions */}
-
-                  {/* Discount Badge */}
-
-                  {/* Product Image */}
-                  <div
-                    className="relative h-[250px] mb-4 group cursor-pointer"
-                    onClick={() => setSelectedProduct(product)}
-                  >
-                    <Image
-                      src={product.images[0]}
-                      alt={product.title}
-                      className="w-full h-full object-cover rounded-[15px]"
-                      width={300}
-                      height={250}
+                  {[...Array(5)].map((_, index) => (
+                    <FaStar
+                      key={index}
+                      className={`text-[20px] ${index < product.rating ? "text-col" : "text-secondary"}`}
                     />
-                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 rounded-[15px]" />
+                  ))}
+                </div>
+            
+                {/* Discount Badge */}
+                {product.discount > 0 && (
+                  <h1 className="text-col text-[30px] sm:pl-3 pl-5">
+                    {product.discount} <span className="text-[40px] text-secondary">%</span>
+                  </h1>
+                )}
+            
+                {/* Product Image */}
+                <div
+                  className="relative h-[250px] mb-4 group cursor-pointer"
+                  onClick={() => setSelectedProduct(product)}
+                >
+                  <Image
+                    src={product.images[0]}
+                    alt={locale === "en" ? product.title : product.titleAr}
+                    className="w-full h-full object-cover rounded-[15px]"
+                    width={300}
+                    height={250}
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 rounded-[15px]" />
+                </div>
+            
+                {/* Product Details */}
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center mb-2">
+                    <button
+                      className="order-1 p-2 rounded-full hover:bg-gray-100 transition-colors"
+                      title={locale === "en" ? "View Product Details" : "عرض تفاصيل المنتج"}
+                      onClick={() => navigateToProduct(product.id)}
+                    >
+                      <Eye size={20} className="text-gray-600" />
+                    </button>
+                    <h1
+                      className={`text-[#000000] font-bold text-[18px] ${locale === "ar" ? "text-right" : "text-left"} line-clamp-1`}
+                    >
+                      {locale === "en" ? product.title : product.titleAr}
+                    </h1>
                   </div>
-
-                  {/* Product Details */}
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center mb-2">
-                      <button
-                        className="order-1 p-2 rounded-full hover:bg-gray-100 transition-colors"
-                        title={
-                          locale == "en"
-                            ? "View Product Details"
-                            : "عرض تفاصيل المنتج"
-                        }
-                        onClick={() => navigateToProduct(product.id)}
-                      >
-                        <Eye size={20} className="text-gray-600" />
-                      </button>
-                      <h1
-                        className={`text-[#000000] font-bold text-[18px] ${
-                          locale == "ar" ? "text-right" : "text-left"
-                        } line-clamp-1`}
-                      >
-                        {locale == "en" ? product.title : product.titleAr}
-                      </h1>
-                    </div>
-
-                    <p
-                      className={`text-[14px] text-gray-600 ${
-                        locale == "ar" ? "text-right" : "text-left"
-                      } line-clamp-2`}
-                    >
-                      {locale == "en"
-                        ? product.description
-                        : product.descriptionAr}
-                    </p>
-
-                    {/* Additional Product Info */}
-                    <div
-                      className={`flex gap-4 text-sm text-gray-500 ${
-                        locale == "ar" ? "justify-end" : "justify-start"
-                      }`}
-                    >
-                      {product.category && (
-                        <span className="bg-gray-100 px-2 py-1 rounded-full">
-                          {product.category}
-                        </span>
-                      )}
-                      {product.brand && (
-                        <span className="bg-gray-100 px-2 py-1 rounded-full">
-                          {product.brand}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Price and Cart Section */}
-                    <div className="flex justify-between items-center pt-3 border-t">
-                      <div className="flex flex-col">
-                        {product.discount > 0 ? (
-                          <>
-                            <span className="text-col text-[25px] font-bold">
-                              ${discountedPrice.toFixed(2)}{" "}
-                              <span className="text-[15px] font-bold text-secondary">
-                                {locale === "ar" ? " دك" : "Dr"}
-                              </span>
-                            </span>
-                            <span className="text-[15px] text-secondary line-through">
-                              ${product.price.toFixed(2)}
-                            </span>
-                          </>
-                        ) : (
+            
+                  <p
+                    className={`text-[14px] text-gray-600 ${locale === "ar" ? "text-right" : "text-left"} line-clamp-2`}
+                  >
+                    {locale === "en" ? product.description : product.descriptionAr}
+                  </p>
+            
+                  {/* Additional Product Info */}
+                  <div className={`flex gap-4 text-sm text-gray-500 ${locale === "ar" ? "justify-end" : "justify-start"}`}>
+                    {product.category && (
+                      <span className="bg-gray-100 px-2 py-1 rounded-full">
+                        {product.category}
+                      </span>
+                    )}
+                    {product.brand && (
+                      <span className="bg-gray-100 px-2 py-1 rounded-full">
+                        {product.brand}
+                      </span>
+                    )}
+                  </div>
+            
+                  {/* Price and Cart Section */}
+                  <div className="flex justify-between items-center pt-3 border-t">
+                    <div className="flex flex-col">
+                     
+                        <>
+                        <span className="text-[15px] text-secondary line-through">
+                            ${product.price.toFixed(2)}
+                          </span>
                           <span className="text-col text-[25px] font-bold">
-                            ${product.price.toFixed(2)}{" "}
+                            ${(product.price - (product.price * product.discount) / 100).toFixed(2)}{" "}
                             <span className="text-[15px] font-bold text-secondary">
                               {locale === "ar" ? " دك" : "Dr"}
                             </span>
                           </span>
-                        )}
-                      </div>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          addToCart(product);
-                        }}
-                        className="w-[25px] h-[25px]"
-                        title={
-                          locale === "ar" ? "أضف إلى السلة" : "Add to Cart"
-                        }
-                      >
-                        <Image src={CartAdd} alt="cart add" />
-                      </button>
 
-                      
+                        </>
+                 
+                     
+                    
                     </div>
-
-                    {/* Stock Status */}
-                    {product.stock && (
-                      <div
-                        className={`text-sm ${
-                          product.stock > 0 ? "text-green-600" : "text-red-600"
-                        }`}
-                      >
-                        {product.stock > 0
-                          ? locale === "ar"
-                            ? "متوفر في المخزون"
-                            : "In Stock"
-                          : locale === "ar"
-                          ? "نفذت الكمية"
-                          : "Out of Stock"}
-                      </div>
-                    )}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        addToCart(product);
+                      }}
+                      className="w-[25px] h-[25px]"
+                      title={locale === "ar" ? "أضف إلى السلة" : "Add to Cart"}
+                    >
+                      <Image src={CartAdd} alt="cart add" />
+                    </button>
                   </div>
+            
                 </div>
+              </div>
               );
             }
           )}
