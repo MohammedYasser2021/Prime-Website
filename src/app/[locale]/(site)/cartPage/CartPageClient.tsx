@@ -97,11 +97,11 @@ export function CartPageClient({ params }: CartPageClientProps) {
 
   const navigateToProduct = (productId: number) => {
     // Navigate to the product detail page using the dynamic productId
-    router.push(`/cartPage/${productId}`);
+    router.push(`/${locale}/cartPage/${productId}`);
   };
 
   const navigateToProductsFilteration = () => {
-    router.push(`/productFilteration`);
+    router.push(`/${locale}/productFilteration`);
   };
   return (
     <main className="min-h-screen">

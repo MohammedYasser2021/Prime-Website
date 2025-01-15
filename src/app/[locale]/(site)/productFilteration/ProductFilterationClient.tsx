@@ -70,7 +70,7 @@ const ProductFilterationPage: React.FC<ProductFilterationPageProps> = ({
 
   const navigateToProduct = (productId: number) => {
     // Navigate to the product detail page using the dynamic productId
-    router.push(`/cartPage/${productId}`);
+    router.push(`/${locale}/cartPage/${productId}`);
   };
 
   const addToCart = (product: Prod) => {
