@@ -1,10 +1,11 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import Offer1 from "../../../../assets/homeImages/offer1.png";
 import Offer2 from "../../../../assets/homeImages/offer2.png";
 import Offer3 from "../../../../assets/homeImages/offer3.png";
 import Sale from "../../../../assets/homeImages/sale.png";
-
+import { useRouter } from "next/navigation"; // Importing the router
 interface OffersProps {
   params: {
     locale: string;
@@ -12,6 +13,11 @@ interface OffersProps {
 }
 
 const Offers: React.FC<OffersProps> = ({ params }) => {
+  const router = useRouter(); // Use the useRouter hook
+  const navigateToProduct = () => {
+    // Navigate to the product detail page using the dynamic productId
+    router.push(`${locale}/cartPage/`);
+  };
   const { locale } = params;
   return (
     <div className="bg-section min-h-[773px] relative">
@@ -56,7 +62,7 @@ const Offers: React.FC<OffersProps> = ({ params }) => {
               alt="Offer3"
               className="w-full h-full rounded-[20px]"
             />
-            <button className="transition-transform duration-300 transform hover:scale-110 bg-secondary w-[180px] h-[67px] border border-[#ffffff] rounded-[20px] text-[#ffffff] text-[22px] font-bold absolute bottom-[50px] left-1/2 -translate-x-1/2 opacity-75">
+            <button className="transition-transform duration-300 transform hover:scale-110 bg-secondary w-[180px] h-[67px] border border-[#ffffff] rounded-[20px] text-[#ffffff] text-[22px] font-bold absolute bottom-[50px] left-1/2 -translate-x-1/2 opacity-75" onClick={navigateToProduct}>
               {locale == "en" ? "Order Now" : "اطلب الان"}
             </button>
           </div>

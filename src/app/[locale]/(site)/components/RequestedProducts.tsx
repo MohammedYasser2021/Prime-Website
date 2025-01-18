@@ -3,7 +3,9 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Prime from "../../../../assets/homeImages/prime.png";
 import Product from "./Product";
-import productsData from "./Products.json"; // Path to your JSON file
+import productsData from "./Products.json";
+import { X, Plus, Minus } from "lucide-react";
+import CartAdd from "../../../../assets/homeImages/cartadd.png";
 
 interface RequestedProductsProps {
   params: {
@@ -11,7 +13,8 @@ interface RequestedProductsProps {
   };
 }
 
-interface RequestedProductProps {
+interface BaseProduct {
+  locale: string;
   id: number;
   name: string;
   nameAr: string;
@@ -21,23 +24,61 @@ interface RequestedProductProps {
   rate: number;
   discount: number;
   perc: number;
-  locale: string;
+}
+
+interface CartItem extends BaseProduct {
+  quantity: number;
 }
 
 const RequestedProducts: React.FC<RequestedProductsProps> = ({ params }) => {
   const { locale } = params;
-  const [products, setProducts] = useState<RequestedProductProps[]>([]);
+  const [products, setProducts] = useState<BaseProduct[]>([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const addToCart = (product: BaseProduct) => {
+    setCartItems(prev => {
+      const existingItem = prev.find(item => item.id === product.id);
+      if (existingItem) {
+        return prev.map(item =>
+          item.id === product.id
+            ? {...item, quantity: item.quantity + 1}
+            : item
+        );
+      }
+      return [...prev, { ...product, quantity: 1 }];
+    });
+  };
+
+  const removeFromCart = (productId: number) => {
+    setCartItems(prev => prev.filter(item => item.id !== productId));
+  };
+
+  const updateQuantity = (productId: number, quantity: number) => {
+    if (quantity >= 1) {
+      setCartItems(prev =>
+        prev.map(item =>
+          item.id === productId ? { ...item, quantity } : item
+        )
+      );
+    }
+  };
+
+  const cartTotal = cartItems.reduce((total, item) => {
+    const itemPrice = item.price * (1 - item.discount/100);
+    return total + (itemPrice * item.quantity);
+  }, 0);
 
   useEffect(() => {
     const productsWithLocale = productsData.products.map((product) => ({
       ...product,
-      locale: locale, // Adding locale property to each product
+      locale: locale,
     }));
     setProducts(productsWithLocale);
   }, [locale]);
 
   return (
-    <div className=" min-h-[620px] relative">
+    <div className="min-h-[620px] relative">
       <div>
         <Image
           src={Prime}
@@ -48,14 +89,104 @@ const RequestedProducts: React.FC<RequestedProductsProps> = ({ params }) => {
         />
       </div>
       <div className="container px-[16px] sm:px-[32px] md:px-[64px] lg:px-[112px] py-[30px] mx-auto">
-        <h1 className={`text-title font-bold text-[24px] sm:text-[30px] md:text-[36px] mb-5 text-center ${locale == "en" ? "lg:text-left" : "lg:text-right"}`}>
-          {locale === "en" ? "The most requested products" : "المنتجات الأكثر طلبا"}
-        </h1>
+        <div className="flex items-center justify-between mb-5">
+          <h1 className={`text-title font-bold text-[24px] sm:text-[30px] md:text-[36px] ${locale == "en" ? "lg:text-left" : "lg:text-right"}`}>
+            {locale === "en" ? "The most requested products" : "المنتجات الأكثر طلبا"}
+          </h1>
+          <button 
+            onClick={() => setIsCartOpen(true)}
+            className="relative p-2 rounded-full hover:bg-gray-100"
+          >
+            <Image src={CartAdd} alt="cart" width={25} height={25} />
+            {cartItems.length > 0 && (
+              <span className="absolute -top-1 -right-1 bg-col text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                {cartItems.reduce((total, item) => total + item.quantity, 0)}
+              </span>
+            )}
+          </button>
+        </div>
+
         <div className="product-list flex flex-wrap justify-center gap-6 mx-auto">
           {products.map((product) => (
-            <Product key={product.id} {...product} />
+            <Product
+              key={product.id}
+              {...product}
+              onAddToCart={() => addToCart(product)}
+            />
           ))}
         </div>
+
+        {isCartOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-end z-50">
+            <div className="bg-white h-full w-full max-w-md shadow-xl">
+              <div className="p-4 border-b flex items-center justify-between">
+                <h2 className="text-xl font-semibold">
+                  {locale === "en" ? "Shopping Cart" : "عربة التسوق"}
+                </h2>
+                <button
+                  onClick={() => setIsCartOpen(false)}
+                  className="p-2 hover:bg-gray-100 rounded-full"
+                >
+                  <X size={24} />
+                </button>
+              </div>
+
+              <div className="p-4">
+                {cartItems.length === 0 ? (
+                  <div className="text-center text-gray-500">
+                    {locale === "en" ? "Your cart is empty" : "عربتك فارغة"}
+                  </div>
+                ) : (
+                  <>
+                    {cartItems.map((item) => (
+                      <div key={item.id} className="flex items-center gap-4 py-4 border-b">
+                        <div className="flex-1">
+                          <h3 className="font-semibold">
+                            {locale === "en" ? item.name : item.nameAr}
+                          </h3>
+                          <div className="text-sm text-gray-500">
+                            ${(item.price * (1 - item.discount/100)).toFixed(2)} x {item.quantity}
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                          <div className="flex items-center border rounded">
+                            <button
+                              onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                              className="p-2"
+                            >
+                              <Minus size={16} />
+                            </button>
+                            <span className="px-3">{item.quantity}</span>
+                            <button
+                              onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                              className="p-2"
+                            >
+                              <Plus size={16} />
+                            </button>
+                          </div>
+
+                          <button
+                            onClick={() => removeFromCart(item.id)}
+                            className="p-2"
+                          >
+                            <X size={20} />
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+
+                    <div className="mt-4 text-right">
+                      <div className="text-lg font-bold">
+                        {locale === "en" ? "Total:" : "الإجمالي:"} ${cartTotal.toFixed(2)}
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

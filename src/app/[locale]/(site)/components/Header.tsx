@@ -11,6 +11,7 @@ import Content from "../../../../assets/homeImages/panner.png";
 import Tec1 from "../../../../assets/homeImages/tec1.png";
 import Tec2 from "../../../../assets/homeImages/tec2.png";
 import HeaderImg from "../../../../assets/homeImages/header.jpg";
+import { useRouter } from "next/navigation"; // Importing the router
 import "../../../globals.css";
 
 interface HeaderProps {
@@ -27,7 +28,7 @@ const Header: React.FC<HeaderProps> = ({ params, linkAr, linkEn }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState(ProductsData);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
-
+  const router = useRouter(); // Use the useRouter hook
   const backgrounds = [
     HeaderImg.src,
     "https://th.bing.com/th/id/R.36e6f78377a0e817e300b3007d3d9f19?rik=2BJum6n5jMh2GA&riu=http%3a%2f%2fwww.pngmagic.com%2fproduct_images%2fbest-purple-banner-background.jpg&ehk=PVwtJwB%2fcZlmFGtqsm8BiiYJDKJlD973BAPi%2bF09Rqw%3d&risl=&pid=ImgRaw&r=0"
@@ -40,6 +41,11 @@ const Header: React.FC<HeaderProps> = ({ params, linkAr, linkEn }) => {
 
     return () => clearInterval(timer);
   }, []);
+
+  const navigateToProduct = () => {
+    // Navigate to the product detail page using the dynamic productId
+    router.push(`${locale}/cartPage/`);
+  };
 
   useEffect(() => {
     if (searchQuery.trim() === "") {
@@ -82,7 +88,7 @@ const Header: React.FC<HeaderProps> = ({ params, linkAr, linkEn }) => {
       ))}
 
       {/* Bullet Navigation */}
-      <div className="absolute bottom-8 left-[109px] flex gap-2 z-50">
+      <div className="absolute bottom-8 lg:left-[35px] left-[30px] flex gap-2 z-50">
         {backgrounds.map((_, index) => (
           <button
             key={index}
@@ -252,8 +258,8 @@ const Header: React.FC<HeaderProps> = ({ params, linkAr, linkEn }) => {
                 ? "Today's special offer from shaan cream with a 30% discount on the German sunscreen"
                 : "العرض المميز اليوم من كريم شان بخصم 30% \n الواقي الشمسي الالماني"}
             </p>
-            <div className="flex xl:justify-start justify-center">
-              <button className="text-[#ffffff] text-[22px] font-bold xl:mt-20 mt-10 bg-third border border-[#ffffff] w-[180px] h-[67px] rounded-[20px] hvr-pop">
+            <div className="flex xl:justify-start justify-center relative z-[999]">
+              <button className="text-[#ffffff] text-[22px] font-bold xl:mt-20 mt-10 bg-third border border-[#ffffff] w-[180px] h-[67px] rounded-[20px] hvr-pop" onClick={navigateToProduct}>
                 {locale === "en" ? "Order Now" : "اطلب الان"}
               </button>
             </div>

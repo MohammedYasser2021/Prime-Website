@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState, useMemo } from "react";
 import { useRouter } from "next/navigation"; // Importing the router
@@ -10,9 +9,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Prod from "../components/types/index";
 import { notFound } from "next/navigation";
-
-
-
+import CartAdd from "../../../../assets/homeImages/cartadd.png";
 
 type SortOption = "sales" | "priceHigh" | "priceLow" | "discount" | "rating";
 
@@ -26,9 +23,9 @@ const ProductFilterationPage: React.FC<ProductFilterationPageProps> = ({
   params,
 }) => {
   const { locale } = params;
-    if (!["en", "ar"].includes(params.locale)) {
-      notFound();
-    }
+  if (!["en", "ar"].includes(params.locale)) {
+    notFound();
+  }
   const router = useRouter(); // Use the useRouter hook
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [sortBy, setSortBy] = useState<SortOption>("sales");
@@ -175,73 +172,121 @@ const ProductFilterationPage: React.FC<ProductFilterationPageProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {sortedAndFilteredProducts.map((product) => (
             <div
-            key={product.id}
-            className="sm:w-[300px] w-full bg-white rounded-[20px] overflow-hidden cursor-pointer hover:shadow-lg transition-all duration-300"
-            style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
-            onClick={() => setSelectedProduct(product)}
-          >
-            {/* Product Image */}
-            <div className="relative">
-              <Image
-                width={500}
-                height={300}
-                src={product.images[0]}
-                alt={locale === "en" ? product.title : product.titleAr}
-                className="w-full h-[200px] object-cover"
-              />
-              {product.discount > 0 && (
-                <div className="absolute top-2 right-2 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                  -{product.discount}%
+              key={product.id}
+              className="sm:w-[300px] w-full bg-white rounded-[20px] overflow-hidden cursor-pointer hover:shadow-lg transition-all duration-300"
+              style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
+              onClick={() => setSelectedProduct(product)}
+            >
+              {/* Product Image */}
+              <div className="relative">
+                <Image
+                  width={500}
+                  height={300}
+                  src={product.images[0]}
+                  alt={locale === "en" ? product.title : product.titleAr}
+                  className="w-full h-[200px] object-cover"
+                />
+                {product.discount > 0 && (
+                  <div className="absolute top-2 right-2 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                    -{product.discount}%
+                  </div>
+                )}
+              </div>
+
+              {/* Content Section */}
+              <div className="p-4">
+                {/* Title and View Button */}
+                <div className="flex justify-between items-start mb-3">
+                  <h3
+                    className={`text-lg font-semibold flex-1 ${
+                      locale === "ar" ? "text-right" : "text-left"
+                    }`}
+                  >
+                    {locale === "en" ? product.title : product.titleAr}
+                  </h3>
+                  <button
+                    className="rounded-full hover:bg-gray-100 transition-colors"
+                    title={
+                      locale == "en"
+                        ? "View Product Details"
+                        : "عرض تفاصيل المنتج"
+                    }
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigateToProduct(product.id);
+                    }}
+                  >
+                    <Eye size={20} className="text-gray-600" />
+                  </button>
                 </div>
-              )}
-            </div>
-          
-            {/* Content Section */}
-            <div className="p-4">
-              {/* Title and View Button */}
-              <div className="flex justify-between items-start mb-3">
-                <h3 className={`text-lg font-semibold flex-1 ${locale === "ar" ? "text-right" : "text-left"}`}>
-                  {locale === "en" ? product.title : product.titleAr}
-                </h3>
-                <button
-                  className="ml-2 p-2 rounded-full hover:bg-gray-100 transition-colors"
-                  title={locale == "en" ? "View Product Details" : "عرض تفاصيل المنتج"}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    navigateToProduct(product.id);
-                  }}
+
+                {/* Description */}
+                <p
+                  className={`text-gray-600 mb-3 line-clamp-2 text-sm ${
+                    locale === "ar" ? "text-right" : "text-left"
+                  }`}
                 >
-                  <Eye size={20} className="text-gray-600" />
-                </button>
-              </div>
-          
-              {/* Description */}
-              <p className={`text-gray-600 mb-3 line-clamp-2 text-sm ${locale === "ar" ? "text-right" : "text-left"}`}>
-                {locale === "en" ? product.description : product.descriptionAr}
-              </p>
-          
-              {/* Price and Rating */}
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2">
-                  <span className="text-lg font-bold text-primary">${product.price}</span>
-                  {product.discount > 0 && (
-                    <span className="text-sm text-green-600 font-medium">
-                      -{product.discount}%
+                  {locale === "en"
+                    ? product.description
+                    : product.descriptionAr}
+                </p>
+
+                {/* Price and Rating */}
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-lg font-bold text-primary">
+                      ${product.price}
                     </span>
-                  )}
+                    {product.discount > 0 && (
+                      <span className="text-sm text-green-600 font-medium">
+                        -{product.discount}%
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <span className="text-yellow-400">★</span>
+                    <span className="text-sm text-gray-600">
+                      {product.rating}
+                    </span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-1">
-                  <span className="text-yellow-400">★</span>
-                  <span className="text-sm text-gray-600">{product.rating}</span>
+
+                {/* Sales Info */}
+                <div className="flex items-center justify-between">
+                  <div
+                    className={`text-sm text-gray-500 ${
+                      locale === "ar" ? "text-right" : "text-left"
+                    }`}
+                  >
+                    {locale === "en"
+                      ? `${product.sales} sold`
+                      : `${product.sales} مبيعات`}
+                  </div>
+                  <div className="relative">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        addToCart(product);
+                        const button = e.currentTarget;
+                        const tooltip = document.createElement("div");
+                        tooltip.className =
+                          "absolute bottom-full left-[60px] transform -translate-x-1/2 mb-2 px-2 py-1 bg-col text-white text-sm rounded whitespace-nowrap z-50";
+                        tooltip.textContent =
+                          locale === "ar"
+                            ? "تمت الإضافة للسلة"
+                            : "Added to cart";
+                        button.parentElement?.appendChild(tooltip);
+                        setTimeout(() => tooltip.remove(), 2000);
+                      }}
+                      className="w-[25px] h-[25px]"
+                      title={locale === "ar" ? "أضف إلى السلة" : "Add to Cart"}
+                    >
+                      <Image src={CartAdd} alt="cart add" />
+                    </button>
+                  </div>
                 </div>
-              </div>
-          
-              {/* Sales Info */}
-              <div className={`text-sm text-gray-500 ${locale === "ar" ? "text-right" : "text-left"}`}>
-                {locale === "en" ? `${product.sales} sold` : `${product.sales} مبيعات`}
               </div>
             </div>
-          </div>
           ))}
         </div>
 
@@ -263,8 +308,8 @@ const ProductFilterationPage: React.FC<ProductFilterationPageProps> = ({
                 <div className="relative">
                   <div className="relative h-96">
                     <Image
-                     width={500}  // Add the desired width
-                     height={300} // Add the desired height
+                      width={500} // Add the desired width
+                      height={300} // Add the desired height
                       src={selectedProduct.images[currentImageIndex]}
                       alt={`${selectedProduct.title} - Image ${
                         currentImageIndex + 1
@@ -311,8 +356,8 @@ const ProductFilterationPage: React.FC<ProductFilterationPageProps> = ({
                         }`}
                       >
                         <Image
-                         width={500}  // Add the desired width
-                         height={300} // Add the desired height
+                          width={500} // Add the desired width
+                          height={300} // Add the desired height
                           src={image}
                           alt={`${selectedProduct.title} - Thumbnail ${
                             index + 1
@@ -413,8 +458,8 @@ const ProductFilterationPage: React.FC<ProductFilterationPageProps> = ({
                           className="flex items-center gap-4 py-4 border-b last:border-b-0"
                         >
                           <Image
-                           width={500}  // Add the desired width
-                           height={300} // Add the desired height
+                            width={500} // Add the desired width
+                            height={300} // Add the desired height
                             src={item.product.images[0]}
                             alt={item.product.title}
                             className="w-20 h-20 object-cover rounded-md"

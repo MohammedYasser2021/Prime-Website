@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from "react";
@@ -23,13 +22,13 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 interface CartPageClientProps {
-    params: {
-      locale: string;
-    };
-  }
+  params: {
+    locale: string;
+  };
+}
 
 export function CartPageClient({ params }: CartPageClientProps) {
-    const { locale } = params;
+  const { locale } = params;
   if (!["en", "ar"].includes(params.locale)) {
     notFound();
   }
@@ -285,20 +284,30 @@ export function CartPageClient({ params }: CartPageClientProps) {
                           </span>
                         )}
                       </div>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          addToCart(product);
-                        }}
-                        className="w-[25px] h-[25px]"
-                        title={
-                          locale === "ar" ? "أضف إلى السلة" : "Add to Cart"
-                        }
-                      >
-                        <Image src={CartAdd} alt="cart add" />
-                      </button>
-
-                      
+                      <div className="relative">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            addToCart(product);
+                            const button = e.currentTarget;
+                            const tooltip = document.createElement("div");
+                            tooltip.className =
+                              "absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-col text-white text-sm rounded whitespace-nowrap z-50";
+                            tooltip.textContent =
+                              locale === "ar"
+                                ? "تمت الإضافة للسلة"
+                                : "Added to cart";
+                            button.parentElement?.appendChild(tooltip);
+                            setTimeout(() => tooltip.remove(), 2000);
+                          }}
+                          className="w-[25px] h-[25px]"
+                          title={
+                            locale === "ar" ? "أضف إلى السلة" : "Add to Cart"
+                          }
+                        >
+                          <Image src={CartAdd} alt="cart add" />
+                        </button>
+                      </div>
                     </div>
 
                     {/* Stock Status */}
@@ -622,5 +631,4 @@ export function CartPageClient({ params }: CartPageClientProps) {
       <Footer params={params} />
     </main>
   );
-};
-
+}

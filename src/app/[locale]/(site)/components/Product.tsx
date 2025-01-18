@@ -1,11 +1,11 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import Image from "next/image";
 import ProductImage from "../../../../assets/homeImages/product.jpg";
 import CartAdd from "../../../../assets/homeImages/cartadd.png";
 
-interface ProductProps {
+interface BaseProduct {
   locale: string;
   id: number;
   name: string;
@@ -18,7 +18,11 @@ interface ProductProps {
   perc: number;
 }
 
-const Product: React.FC<ProductProps> = ({
+interface ProductComponentProps extends BaseProduct {
+  onAddToCart: () => void;
+}
+
+const Product: React.FC<ProductComponentProps> = ({
   locale,
   id,
   name,
@@ -29,10 +33,18 @@ const Product: React.FC<ProductProps> = ({
   rate,
   discount,
   perc,
+  onAddToCart
 }) => {
-  // Type the index parameter as number
+  const [showTooltip, setShowTooltip] = useState(false);
+
   const getStarClass = (index: number) => {
     return index < rate ? "text-col" : "text-secondary";
+  };
+
+  const handleAddToCart = () => {
+    onAddToCart();
+    setShowTooltip(true);
+    setTimeout(() => setShowTooltip(false), 2000);
   };
 
   return (
@@ -49,9 +61,11 @@ const Product: React.FC<ProductProps> = ({
           <FaStar key={index} className={`text-[20px] ${getStarClass(index)}`} />
         ))}
       </div>
+
       <h1 className={`text-col text-[30px] ${locale === "en" ? "sm:pl-3 pl-5" : "sm:pr-3 pr-5"}`}>
         {perc} <span className="text-[40px] text-secondary">%</span>
       </h1>
+
       <div className="w-[165px] h-[179px] mx-auto mb-3">
         <Image src={ProductImage} alt="product" />
         <h1 className={`text-[#000000] font-bold text-[15px] text-center ${locale == "ar" ? "sm:text-right" : "sm:text-left"}`}>
@@ -61,9 +75,16 @@ const Product: React.FC<ProductProps> = ({
           {locale === "en" ? descEN : desc}
         </p>
         <div className="flex justify-between items-center">
-          <button className="w-[25px] h-[25px]">
-            <Image src={CartAdd} alt="cart add" />
-          </button>
+          <div className="relative">
+            <button className="w-[25px] h-[25px]" onClick={handleAddToCart}>
+              <Image src={CartAdd} alt="cart add" />
+            </button>
+            {showTooltip && (
+              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-col text-white text-sm rounded whitespace-nowrap">
+                {locale === "ar" ? "تمت الإضافة للسلة" : "Added to cart"}
+              </div>
+            )}
+          </div>
           <div
             style={{
               fontSize: "24px",
@@ -78,7 +99,7 @@ const Product: React.FC<ProductProps> = ({
               </span>
             </span>
             <span
-              className=" top-[-10px] left-0 text-[15px] text-secondary absolute right-[50px]"
+              className="top-[-10px] left-0 text-[15px] text-secondary absolute right-[50px]"
               style={{
                 textDecoration: "line-through",
               }}
