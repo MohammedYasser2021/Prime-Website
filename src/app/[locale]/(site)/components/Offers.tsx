@@ -20,7 +20,7 @@ const Offers: React.FC<OffersProps> = ({ params }) => {
   };
   const { locale } = params;
   return (
-    <div className="bg-section min-h-[773px] relative">
+    <div className="bg-section min-h-[773px] relative overflow-hidden">
       <Image
         src={Sale}
         alt="sale"
