@@ -51,7 +51,7 @@ const Header: React.FC<HeaderProps> = ({ params, linkAr, linkEn }) => {
   useEffect(() => {
     const fetchImageOffer = async () => {
       try {
-        const response = await fetch('http://162.240.24.203/~primestore/api/website/home');
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/website/home`);
         const data = await response.json();
         setImageOffer(data.data.image_offer);
       } catch (error) {

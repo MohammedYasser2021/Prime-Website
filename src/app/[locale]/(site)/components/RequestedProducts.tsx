@@ -35,11 +35,13 @@ const RequestedProducts: React.FC<RequestedProductsProps> = ({ params }) => {
   const [products, setProducts] = useState<APIProduct[]>([]);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
-
+  const apiUrl = process.env.API_URL
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://162.240.24.203/~primestore/api/website/home');
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/website/home`);
+        console.log('API URL:', process.env.NEXT_PUBLIC_API_URL)
+        console.log('API URL:', process.env.API_URL)
         const data = await response.json();
         setProducts(data.data.mostRequestedProducts);
       } catch (error) {

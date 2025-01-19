@@ -39,7 +39,7 @@ const Offers: React.FC<OffersProps> = ({ params }) => {
   useEffect(() => {
     const fetchOffers = async () => {
       try {
-        const response = await fetch('http://162.240.24.203/~primestore/api/website/home');
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/website/home`);
         const data = await response.json();
         setOffers(data.data.todayoffer);
       } catch (error) {

@@ -21,7 +21,7 @@ const Classification: React.FC<ClassificationProps> = ({ params }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch('http://162.240.24.203/~primestore/api/website/home');
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/website/home`);
         const data = await response.json();
         setCategories(data.data.categories);
         console.log(data.data.categories);

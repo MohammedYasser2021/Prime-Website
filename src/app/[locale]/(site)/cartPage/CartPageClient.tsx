@@ -89,7 +89,7 @@ export function CartPageClient({ params }: CartPageClientProps) {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch('http://162.240.24.203/~primestore/api/website/getCategories');
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/website/getCategories`);
       const data = await response.json();
       
         setCategories(data.data);
@@ -101,7 +101,7 @@ export function CartPageClient({ params }: CartPageClientProps) {
 
   const fetchProducts = async () => {
     try {
-      let url = `http://162.240.24.203/~primestore/api/website/getProducts?page=${pagination.currentPage}`;
+      let url = `${process.env.NEXT_PUBLIC_API_URL}/website/getProducts?page=${pagination.currentPage}`;
       if (selectedCategory) {
         url += `&category_id=${selectedCategory}`;
       }

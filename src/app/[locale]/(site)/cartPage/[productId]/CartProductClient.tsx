@@ -50,7 +50,7 @@ const CartProductClient: React.FC<CartProductClientProps> = ({ params }) => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://162.240.24.203/~primestore/api/website/getProduct?id=${productId}`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/website/getProduct?id=${productId}`);
         const data = await response.json();
         if (data.success) {
           setProduct(data.data);
