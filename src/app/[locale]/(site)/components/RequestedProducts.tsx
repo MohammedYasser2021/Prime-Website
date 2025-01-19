@@ -1,11 +1,24 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Prime from "../../../../assets/homeImages/prime.png";
 import Product from "./Product";
-import productsData from "./Products.json";
 import { X, Plus, Minus } from "lucide-react";
 import CartAdd from "../../../../assets/homeImages/cartadd.png";
+
+interface APIProduct {
+  id: number;
+  name: string;
+  discount: number;
+  price: number;
+  selling_price: number;
+  image: string;
+  stars: number;
+  details: {
+    summaryDetails: null;
+  };
+}
 
 interface RequestedProductsProps {
   params: {
@@ -13,30 +26,31 @@ interface RequestedProductsProps {
   };
 }
 
-interface BaseProduct {
-  locale: string;
-  id: number;
-  name: string;
-  nameAr: string;
-  desc: string;
-  descEN: string;
-  price: number;
-  rate: number;
-  discount: number;
-  perc: number;
-}
-
-interface CartItem extends BaseProduct {
+interface CartItem extends APIProduct {
   quantity: number;
 }
 
 const RequestedProducts: React.FC<RequestedProductsProps> = ({ params }) => {
   const { locale } = params;
-  const [products, setProducts] = useState<BaseProduct[]>([]);
+  const [products, setProducts] = useState<APIProduct[]>([]);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const addToCart = (product: BaseProduct) => {
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('http://162.240.24.203/~primestore/api/website/home');
+        const data = await response.json();
+        setProducts(data.data.mostRequestedProducts);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const addToCart = (product: APIProduct) => {
     setCartItems(prev => {
       const existingItem = prev.find(item => item.id === product.id);
       if (existingItem) {
@@ -65,20 +79,11 @@ const RequestedProducts: React.FC<RequestedProductsProps> = ({ params }) => {
   };
 
   const cartTotal = cartItems.reduce((total, item) => {
-    const itemPrice = item.price * (1 - item.discount/100);
-    return total + (itemPrice * item.quantity);
+    return total + (item.price * item.quantity);
   }, 0);
 
-  useEffect(() => {
-    const productsWithLocale = productsData.products.map((product) => ({
-      ...product,
-      locale: locale,
-    }));
-    setProducts(productsWithLocale);
-  }, [locale]);
-
   return (
-    <div className="min-h-[620px] relative">
+    <div className="min-h-[520px] relative">
       <div>
         <Image
           src={Prime}
@@ -93,7 +98,7 @@ const RequestedProducts: React.FC<RequestedProductsProps> = ({ params }) => {
           <h1 className={`text-title font-bold text-[24px] sm:text-[30px] md:text-[36px] ${locale == "en" ? "lg:text-left" : "lg:text-right"}`}>
             {locale === "en" ? "The most requested products" : "المنتجات الأكثر طلبا"}
           </h1>
-          <button 
+          <button
             onClick={() => setIsCartOpen(true)}
             className="relative p-2 rounded-full hover:bg-gray-100"
           >
@@ -110,7 +115,8 @@ const RequestedProducts: React.FC<RequestedProductsProps> = ({ params }) => {
           {products.map((product) => (
             <Product
               key={product.id}
-              {...product}
+              product={product}
+              locale={locale}
               onAddToCart={() => addToCart(product)}
             />
           ))}
@@ -141,11 +147,9 @@ const RequestedProducts: React.FC<RequestedProductsProps> = ({ params }) => {
                     {cartItems.map((item) => (
                       <div key={item.id} className="flex items-center gap-4 py-4 border-b">
                         <div className="flex-1">
-                          <h3 className="font-semibold">
-                            {locale === "en" ? item.name : item.nameAr}
-                          </h3>
+                          <h3 className="font-semibold">{item.name}</h3>
                           <div className="text-sm text-gray-500">
-                            ${(item.price * (1 - item.discount/100)).toFixed(2)} x {item.quantity}
+                            ${item.price.toFixed(2)} x {item.quantity}
                           </div>
                         </div>
 

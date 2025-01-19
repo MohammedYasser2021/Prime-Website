@@ -5,8 +5,8 @@ import { FaStar } from "react-icons/fa";
 import Image from "next/image";
 import CartAdd from "../../../../assets/homeImages/cartadd.png";
 
-interface ProductProps {
-  product: {
+interface OfferProps {
+  offer: {
     id: number;
     name: string;
     discount: number;
@@ -14,23 +14,18 @@ interface ProductProps {
     selling_price: number;
     image: string;
     stars: number;
-    details: {
-      summaryDetails: null;
-    };
   };
   locale: string;
   onAddToCart: () => void;
 }
 
-const RequestedProduct: React.FC<ProductProps> = ({
-  product,
-  locale,
-  onAddToCart,
-}) => {
+const Offer: React.FC<OfferProps> = ({ offer, locale, onAddToCart }) => {
+  if (!offer) return null;
+  
   const [showTooltip, setShowTooltip] = useState(false);
 
   const getStarClass = (index: number) => {
-    return index < (product?.stars || 0) ? "text-col" : "text-secondary";
+    return index < (offer?.stars || 0) ? "text-col" : "text-secondary";
   };
 
   const handleAddToCart = () => {
@@ -39,12 +34,8 @@ const RequestedProduct: React.FC<ProductProps> = ({
     setTimeout(() => setShowTooltip(false), 2000);
   };
 
-  const discountPercentage = product.selling_price
-    ? (
-        ((product.selling_price - product.price) / product.selling_price) *
-        100
-      ).toFixed(0)
-    : 0;
+  const discountPercentage = offer.selling_price ?
+    ((offer.selling_price - offer.price) / offer.selling_price * 100).toFixed(0) : 0;
 
   return (
     <div
@@ -53,44 +44,30 @@ const RequestedProduct: React.FC<ProductProps> = ({
     >
       <div
         className={`stars flex gap-1 p-3 ${
-          locale === "en"
-            ? "sm:flex-row-reverse sm:justify-end justify-center"
-            : "sm:flex-row sm:justify-end justify-center"
+          locale === "en" ? "sm:flex-row-reverse sm:justify-end justify-center" : "sm:flex-row sm:justify-end justify-center"
         }`}
       >
         {[...Array(5)].map((_, index) => (
-          <FaStar
-            key={index}
-            className={`text-[20px] ${getStarClass(index)}`}
-          />
+          <FaStar key={index} className={`text-[20px] ${getStarClass(index)}`} />
         ))}
       </div>
 
-      {Number(discountPercentage) > 0 && (
-        <h1
-          className={`text-col text-[30px] ${
-            locale === "en" ? "sm:pl-3 pl-5" : "sm:pr-3 pr-5"
-          }`}
-        >
-          {discountPercentage}{" "}
-          <span className="text-[40px] text-secondary">%</span>
+      {offer.discount > 0 && (
+        <h1 className={`text-col text-[30px] ${locale === "en" ? "sm:pl-3 pl-5" : "sm:pr-3 pr-5"}`}>
+          {discountPercentage} <span className="text-[40px] text-secondary">%</span>
         </h1>
       )}
 
       <div className="w-[165px] h-[179px] mx-auto mb-3">
         <Image
-          src={product.image}
-          alt={product.name}
+          src={offer.image}
+          alt={offer.name}
           width={165}
           height={179}
           className="w-full h-full object-cover"
         />
-        <h1
-          className={`text-[#000000] font-bold text-[15px] text-center ${
-            locale == "ar" ? "sm:text-right" : "sm:text-left"
-          }`}
-        >
-          {product.name}
+        <h1 className={`text-[#000000] font-bold text-[15px] text-center ${locale == "ar" ? "sm:text-right" : "sm:text-left"}`}>
+          {offer.name}
         </h1>
 
         <div className="flex justify-between items-center mt-4">
@@ -104,15 +81,15 @@ const RequestedProduct: React.FC<ProductProps> = ({
               </div>
             )}
           </div>
-          <div className="text-right flex flex-col-reverse">
+          <div className="text-right flex flex-col">
             <span className="text-[15px] text-secondary line-through">
-              {product.selling_price}
+              {offer.selling_price}
               <span className="text-[12px] font-bold text-secondary">
                 {locale === "ar" ? " دك" : "Dr"}
               </span>
             </span>
             <span className="text-col text-[25px] font-bold">
-              {product.price}
+              {offer.price}
               <span className="text-[15px] font-bold text-secondary">
                 {locale === "ar" ? " دك" : "Dr"}
               </span>
@@ -124,4 +101,4 @@ const RequestedProduct: React.FC<ProductProps> = ({
   );
 };
 
-export default RequestedProduct;
+export default Offer;

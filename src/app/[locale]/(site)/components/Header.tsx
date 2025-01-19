@@ -28,6 +28,7 @@ const Header: React.FC<HeaderProps> = ({ params, linkAr, linkEn }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState(ProductsData);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [imageOffer, setImageOffer] = useState<string | null>(null);
   const router = useRouter(); // Use the useRouter hook
   const backgrounds = [
     HeaderImg.src,
@@ -46,6 +47,20 @@ const Header: React.FC<HeaderProps> = ({ params, linkAr, linkEn }) => {
     // Navigate to the product detail page using the dynamic productId
     router.push(`${locale}/cartPage/`);
   };
+
+  useEffect(() => {
+    const fetchImageOffer = async () => {
+      try {
+        const response = await fetch('http://162.240.24.203/~primestore/api/website/home');
+        const data = await response.json();
+        setImageOffer(data.data.image_offer);
+      } catch (error) {
+        console.error('Error fetching image offer:', error);
+      }
+    };
+  
+    fetchImageOffer();
+  }, []);
 
   useEffect(() => {
     if (searchQuery.trim() === "") {
@@ -238,9 +253,23 @@ const Header: React.FC<HeaderProps> = ({ params, linkAr, linkEn }) => {
 
         {/* Header Content */}
         <div className="header_content flex items-center gap-5 flex-wrap justify-center mt-8 xl:mt-0">
-          <div className="xl:w-[574px] xl:h-[561px] relative z-50">
-            <Image src={Content} alt="banner" className="w-full h-full" />
-          </div>
+        <div className="xl:w-[574px] xl:h-[561px] relative z-50">
+    {imageOffer ? (
+      <Image 
+        src={imageOffer} 
+        alt="offer banner" 
+        className="w-full h-full"
+        width={574}
+        height={561}
+      />
+    ) : (
+      <Image 
+        src={Content} 
+        alt="banner" 
+        className="w-full h-full"
+      />
+    )}
+  </div>
           <div className="header_desc">
             <h1
               className={`font-bold text-[40px] text-[#ffffff] mb-4 ${
