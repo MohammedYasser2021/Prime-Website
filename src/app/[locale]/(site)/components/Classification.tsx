@@ -21,7 +21,12 @@ const Classification: React.FC<ClassificationProps> = ({ params }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/website/home`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/website/home`, {
+          headers: {
+            'lang': locale, // Add language header based on current locale
+            'Accept': 'application/json',
+          }
+        });
         const data = await response.json();
         setCategories(data.data.categories);
         console.log(data.data.categories);

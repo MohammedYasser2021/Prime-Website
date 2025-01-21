@@ -39,7 +39,7 @@ const Offer: React.FC<OfferProps> = ({ offer, locale, onAddToCart }) => {
 
   return (
     <div
-      className="sm:w-[192px] w-full min-h-[370px] relative z-50 bg-[#ffffff] rounded-[20px]"
+      className="sm:w-[192px] w-full min-h-[440px] relative z-50 bg-[#ffffff] rounded-[20px]"
       style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
     >
       <div
@@ -52,11 +52,11 @@ const Offer: React.FC<OfferProps> = ({ offer, locale, onAddToCart }) => {
         ))}
       </div>
 
-      {offer.discount > 0 && (
+    
         <h1 className={`text-col text-[30px] ${locale === "en" ? "sm:pl-3 pl-5" : "sm:pr-3 pr-5"}`}>
           {discountPercentage} <span className="text-[40px] text-secondary">%</span>
         </h1>
-      )}
+   
 
       <div className="w-[165px] h-[179px] mx-auto mb-3">
         <Image

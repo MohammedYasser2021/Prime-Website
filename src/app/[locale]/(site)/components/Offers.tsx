@@ -39,7 +39,12 @@ const Offers: React.FC<OffersProps> = ({ params }) => {
   useEffect(() => {
     const fetchOffers = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/website/home`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/website/home`, {
+          headers: {
+            'lang': locale, // Add language header based on current locale
+            'Accept': 'application/json',
+          }
+        });
         const data = await response.json();
         setOffers(data.data.todayoffer);
       } catch (error) {

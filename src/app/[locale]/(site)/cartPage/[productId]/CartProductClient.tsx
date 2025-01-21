@@ -50,7 +50,12 @@ const CartProductClient: React.FC<CartProductClientProps> = ({ params }) => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/website/getProduct?id=${productId}`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/website/getProduct?id=${productId}`, {
+          headers: {
+            'lang': locale, // Add language header based on current locale
+            'Accept': 'application/json',
+          }
+        });
         const data = await response.json();
         if (data.success) {
           setProduct(data.data);

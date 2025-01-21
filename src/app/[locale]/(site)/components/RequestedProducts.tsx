@@ -39,7 +39,12 @@ const RequestedProducts: React.FC<RequestedProductsProps> = ({ params }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/website/home`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/website/home`, {
+          headers: {
+            'lang': locale, // Add language header based on current locale
+            'Accept': 'application/json',
+          }
+        });
         console.log('API URL:', process.env.NEXT_PUBLIC_API_URL)
         console.log('API URL:', process.env.API_URL)
         const data = await response.json();

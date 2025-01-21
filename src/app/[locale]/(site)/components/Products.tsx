@@ -39,16 +39,22 @@ const Products: React.FC<ProductsProps> = ({ params }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/website/home`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/website/home`, {
+          headers: {
+            'lang': locale, // Add language header based on current locale
+            'Accept': 'application/json',
+          }
+        });
         const data = await response.json();
         setProducts(data.data.products);
       } catch (error) {
         console.error('Error fetching products:', error);
       }
     };
-
+  
     fetchProducts();
-  }, []);
+  }, [locale]); // Add locale to dependency array
+  
 
   const addToCart = (product: APIProduct) => {
     setCartItems(prev => {
